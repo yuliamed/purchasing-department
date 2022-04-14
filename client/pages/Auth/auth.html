@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Authentication</title>
+  <link href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-window">
+      <form id="form">
+        <div class="title">Добро пожаловать!</div>
+        <div class="inputs">
+          <div class="login-wrapper">
+            <input id="login" type="text" placeholder="Логин">
+          </div>
+          <div class="password-wrapper">
+            <input id="password" type="password" class="error" placeholder="Пароль">
+            <span class="error-msg">Введено неверно</span>
+          </div>
+        </div>
+        <div class="submit">
+          <button id="submit" class="btn" type="submit">Войти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<script type="module" src="./auth.js"></script>
+</body>
+</html>

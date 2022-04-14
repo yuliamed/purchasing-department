@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products</title>
+  <link href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="mui-appbar mui--z1 header">
+  <div class="mui-container">
+    <div class="nav">
+      <a href="../Orders/orders.html" data-to="orders">Заказы</a>
+      <a href="../Resources/resources.html" data-to="resources">Ресурсы</a>
+      <a href="./products.html" data-to="products">Продукты</a>
+      <a href="../Producers/producers.html" data-to="producers">Поставщики</a>
+      <a href="../Plans/plans.html" data-to="plans">План производства</a>
+      <a href="../Store/store.html" data-to="store">Склад</a>
+      <div class="logout">
+        <a href="/logout"><img src="../../icons/logout.svg"></a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper" class="mui--text-center">
+  <div class="content-row-info">
+    <div class="line"></div>
+    <div class="mui-container info-title">
+      <div>Управление продуктами</div>
+      <div class="line"></div>
+    </div>
+    <div class="line"></div>
+  </div>
+  <div class="mui-container">
+    <div class="content-edit-buttons hide">
+      <div>
+        <img src="../../icons/refresh.svg"/>
+      </div>
+      <div>
+        <img src="../../icons/add.svg"/>
+      </div>
+      <div>
+        <img src="../../icons/edit.svg"/>
+      </div>
+      <div>
+        <img src="../../icons/close-square.svg"/>
+      </div>
+    </div>
+    <table class="content-table">
+      <thead>
+      <tr>
+        <th class="check-mark" scope="col"></th>
+        <th class="id" scope="col">ID</th>
+        <th class="name" scope="col">Название</th>
+        <th class="resource" scope="col">Ресурс</th>
+        <th class="description" scope="col">Описание</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="selected">
+        <td class="check-mark-active"></td>
+        <td>0001</td>
+        <td>Здесь что-то есть</td>
+        <td class="resources-wrapper">
+          <ul class="resources-list">
+            <li>
+              <div class="material">Дерево</div>
+              <div class="amount">1</div>
+            </li>
+          </ul>
+        </td>
+        <td>Здесь что-то есть</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0002</td>
+        <td></td>
+        <td class="resources-wrapper">
+          <ul class="resources-list">
+            <li>
+              <div class="material">Дерево</div>
+              <div class="amount">1</div>
+            </li>
+            <li>
+              <div class="material">Дерево</div>
+              <div class="amount">1</div>
+            </li>
+          </ul>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="check-mark-active"></td>
+        <td>0003</td>
+        <td></td>
+        <td class="resources-wrapper">
+          <ul class="resources-list">
+            <li>
+              <div class="material">Дерево</div>
+              <div class="amount">1</div>
+            </li>
+            <li>
+              <div class="material">Дерево</div>
+              <div class="amount">1</div>
+            </li>
+            <li>
+              <div class="material">Дерево</div>
+              <div class="amount">1</div>
+            </li>
+          </ul>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0004</td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script type="module" src="./products.js"></script>
+</body>
+</html>

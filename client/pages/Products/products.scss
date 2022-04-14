@@ -1,0 +1,40 @@
+@import "../../styles/variables.scss";
+
+.content-table {
+  th {
+    &.resource {
+      width: 400px;
+    }
+  }
+
+  td {
+    &.resources-wrapper {
+      padding: 0;
+    }
+  }
+
+  .resources-list {
+    height: 100%;
+
+    li {
+      display: grid;
+      grid-template-columns: 1fr 76px;
+      min-height: 63px;
+
+      &:not(:last-of-type) {
+        border-bottom: $border2pxBlack;
+      }
+
+      & > div {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      & .material {
+        border-right: $border2pxBlack;
+      }
+    }
+  }
+}

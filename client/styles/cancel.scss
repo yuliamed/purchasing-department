@@ -1,0 +1,18 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+input, textarea, button, select {
+  outline: none;
+}

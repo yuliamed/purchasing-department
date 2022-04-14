@@ -1,0 +1,72 @@
+@media (min-width: 1200px) {
+  .mui-container {
+    max-width: 1275px;
+  }
+}
+
+.content-processing-order {
+  display: grid;
+  grid-template-areas:
+    "left right"
+    "btn btn"
+  ;
+  grid-template-columns: 720px 1fr;
+  gap: 33px 81px;
+}
+
+.content-processing-main {
+  grid-area: left;
+
+  .ordering {
+    display: flex;
+    justify-self: flex-start;
+  }
+
+  .title {
+    margin: 40px 0 0 0;
+    font-size: 40px;
+    text-align: left;
+  }
+
+  .ordering {
+    margin: 79px 0 0 0;
+  }
+}
+
+.content-processing-inputs {
+  grid-area: right;
+  align-self: flex-end;
+  margin: 232px 0 0 0;
+
+  .processing-inputs {
+    display: grid;
+    grid-auto-rows: auto;
+    gap: 16px 0;
+
+    & > div {
+      display: grid;
+      grid-template-columns: 1fr 274px;
+      align-items: center;
+
+      input, select {
+        height: 64px;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.create-order {
+  grid-area: btn;
+  justify-self: flex-end;
+
+  button {
+    width: 274px;
+  }
+}
+

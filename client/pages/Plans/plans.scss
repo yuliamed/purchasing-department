@@ -1,0 +1,17 @@
+.content-table {
+  th {
+    &.date {
+      width: 276px;
+    }
+    &.product {
+      width: 344px;
+    }
+    &.units {
+      width: 256px;
+    }
+  }
+}
+
+.content-edit-buttons {
+  grid-template-columns: 1fr auto;
+}

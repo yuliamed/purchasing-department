@@ -1,0 +1,14 @@
+.mui-container {
+  padding: 0;
+}
+
+.mui-container::before,
+.mui-container::after {
+  content: none !important;
+}
+
+@media (min-width: 1200px) {
+  .mui-container {
+    max-width: 1176px;
+  }
+}

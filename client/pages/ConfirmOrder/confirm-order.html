@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confirm Order</title>
+  <link href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="mui-appbar mui--z1 header">
+  <div class="mui-container">
+    <div class="nav">
+      <a href="../Orders/orders.html" data-to="orders">Заказы</a>
+      <a href="../Resources/resources.html" data-to="resources">Ресурсы</a>
+      <a href="../Products/products.html" data-to="products">Продукты</a>
+      <a href="../Producers/producers.html" data-to="producers">Поставщики</a>
+      <a href="../Plans/plans.html" data-to="plans">План производства</a>
+      <a href="../Store/store.html" data-to="store">Склад</a>
+      <div class="logout">
+        <a href="/logout"><img src="../../icons/logout.svg"></a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper" class="mui--text-center">
+  <div>
+    <div class="content-row-info hide">
+      <div class="line"></div>
+      <div class="mui-container info-title">
+        <div>Управление заказами</div>
+        <div class="line"></div>
+      </div>
+      <div class="line"></div>
+    </div>
+    <div class="mui-container">
+      <div class="content-edit-wrapper content-confirm-order">
+        <div class="title">Подтверждение оплаты заказа</div>
+        <div class="content-edit-buttons content-edit-buttons-confirm">
+          <div>
+            <button class="btn btn-blue">Подтвердить</button>
+          </div>
+          <div>
+            <img src="../../icons/refresh.svg"/>
+          </div>
+        </div>
+      </div>
+      <table class="content-table content-table-confirm">
+        <thead>
+        <tr>
+          <th class="check-mark" scope="col"></th>
+          <th class="number" scope="col">№</th>
+          <th class="" scope="col">Поставщик</th>
+          <th class="" scope="col">Номенклатура</th>
+          <th class="" scope="col">Кол-во</th>
+          <th class="" scope="col">Дата поставки</th>
+          <th class="" scope="col">Тип оплаты</th>
+          <th class="" scope="col">Статус оплаты</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="selected">
+          <td class="check-mark-active"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>ДД.ММ.ГГГГ</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="">
+          <td class="check-mark-active"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>ДД.ММ.ГГГГ</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="">
+          <td class="check-mark-active"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>ДД.ММ.ГГГГ</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="">
+          <td class="check-mark-active"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>ДД.ММ.ГГГГ</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="">
+          <td class="check-mark-active"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>ДД.ММ.ГГГГ</td>
+          <td></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<script type="module" src="./confirm-order.js"></script>
+</body>
+</html>

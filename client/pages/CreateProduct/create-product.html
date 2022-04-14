@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Product</title>
+  <link href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="mui-appbar mui--z1 header">
+  <div class="mui-container">
+    <div class="nav">
+      <a href="../Orders/orders.html" data-to="orders">Заказы</a>
+      <a href="../Resources/resources.html" data-to="resources">Ресурсы</a>
+      <a href="../Products/products.html" data-to="products">Продукты</a>
+      <a href="../Producers/producers.html" data-to="producers">Поставщики</a>
+      <a href="../Plans/plans.html" data-to="plans">План производства</a>
+      <a href="../Store/store.html" data-to="store">Склад</a>
+      <div class="logout">
+        <a href="/logout"><img src="../../icons/logout.svg"></a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper" class="mui--text-center">
+  <div class="mui-container">
+    <div class="content-add-product">
+      <div class="add-product-title">Создание продукта</div>
+      <div class="add-product-form">
+        <div class="block-input">
+          <label for="add-product-id">ID</label>
+          <input id="add-product-id" type="text">
+        </div>
+        <div class="block-input add-product-select">
+          <label for="add-product-type">Тип продукта</label>
+          <select id="add-product-type" class="with-arrow">
+            <option disabled selected></option>
+            <option value="Первый">Первый</option>
+            <option value="Второй">Второй</option>
+          </select>
+        </div>
+        <div class="block-input">
+          <label for="add-product-name">Название</label>
+          <input id="add-product-name" type="text">
+        </div>
+      </div>
+    </div>
+    <table class="content-table">
+      <thead>
+      <tr>
+        <th class="check-mark" scope="col"></th>
+        <th class="id" scope="col">ID</th>
+        <th class="name" scope="col">Название</th>
+        <th class="description" scope="col">Описание</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="selected">
+        <td class="check-mark-active"></td>
+        <td>0001</td>
+        <td>Здесь что-то есть</td>
+        <td>Здесь что-то есть</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0002</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0003</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0004</td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="save-wrapper">
+      <button class="save btn btn-blue">Создать продукт</button>
+    </div>
+  </div>
+</main>
+<script type="module" src="./create-product.js"></script>
+</body>
+</html>

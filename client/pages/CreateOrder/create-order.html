@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Order</title>
+  <link href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="mui-appbar mui--z1 header">
+  <div class="mui-container">
+    <div class="nav">
+      <a href="../Orders/orders.html" data-to="orders">Заказы</a>
+      <a href="../Resources/resources.html" data-to="resources">Ресурсы</a>
+      <a href="../Products/products.html" data-to="products">Продукты</a>
+      <a href="../Producers/producers.html" data-to="producers">Поставщики</a>
+      <a href="../Plans/plans.html" data-to="plans">План производства</a>
+      <a href="../Store/store.html" data-to="store">Склад</a>
+      <div class="logout">
+        <a href="/logout"><img src="../../icons/logout.svg"></a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper" class="mui--text-center">
+    <div class="mui-container">
+      <div class="content-processing-order">
+        <div class="content-processing-main">
+          <div class="title">Оформление заказа</div>
+          <div class="ordering">
+            <button class="btn btn-gray">Запросить цены</button>
+          </div>
+          <table class="content-table">
+            <thead>
+            <th class="id" scope="col">ID</th>
+            <th class="id" scope="col">Поставшик</th>
+            <th class="id" scope="col">Номенклатура</th>
+            <th class="id" scope="col">Цена</th>
+            <th class="id" scope="col">Дата поставки</th>
+            </thead>
+            <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="content-processing-inputs">
+          <div class="processing-inputs">
+            <div>
+              <label for="id-order">ID Заказа</label>
+              <input id="id-order" type="text">
+            </div>
+            <div>
+              <label for="recourse">Ресурс</label>
+              <input id="recourse" type="text">
+            </div>
+            <div>
+              <label for="producer">Поставщик</label>
+              <input id="producer" type="text">
+            </div>
+            <div>
+              <label for="pay-type">Тип оплаты</label>
+              <input id="pay-type" type="text">
+            </div>
+            <div>
+              <label for="producer-2">Поставщик</label>
+              <input id="producer-2" type="text">
+            </div>
+            <div>
+              <label for="price">Цена</label>
+              <input id="price" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="create-order">
+          <button class=" btn btn-blue">Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+</main>
+<script type="module" src="./create-order.js"></script>
+</body>
+</html>
