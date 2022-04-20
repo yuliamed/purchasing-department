@@ -22,8 +22,8 @@ public class User extends AbstractEntity {
     private String pass;
     @Column(name = "name", length = 45, nullable = true)
     private String name;
-    @Column(name = "name", length = 45, nullable = true)
+    @Column(name = "surname", length = 45, nullable = true)
     private String surname;
-    @Column(name = "name", length = 45, nullable = true)
+    @Column(name = "patronymic", length = 45, nullable = true)
     private String patronymic;
 }

@@ -13,7 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "providers")
+@Table(name = "product")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
