@@ -1,67 +1,26 @@
 package by.bsuir.purchasingdepartment.controller;
 
-import by.bsuir.purchasingdepartment.entity.User;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import by.bsuir.purchasingdepartment.service.UserService;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-//@Controller
-//@RequestMapping(value = "/auth/")
-//@AllArgsConstructor
-//public class AuthController {
-//    private final UserService userService;
-//
-//    @GetMapping("/sign-in")
-//    public String showAll() {
-//        //String resp = userService.signIn(request);
-//
-//        return "index";
-//    }
-@Controller
-@RequestMapping("/auth")
+@RestController
+@RequestMapping(value = "/auth")
+@AllArgsConstructor
 public class AuthController {
-    //User user = new User();
-    @GetMapping
-    public String auth(Model model) {
-        model.addAttribute("user",  new User());
-        return "auth";
+    private final UserService userService;
+
+    @PostMapping("/sign-in")
+    //TODO доделать проверку valid
+    public ResponseEntity<JwtResp> signIn(@RequestBody SignInDto request) {
+        JwtResp resp = userService.signIn(request);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String authPost(@ModelAttribute("user") User user) {
-        //проверка наличия
-
-        return "redirect:/orders";
+    @PostMapping("/sign-up")
+    public ResponseEntity<UserDto> signUp(@RequestBody SignUpDto userReq) {
+        UserDto userResp = userService.signUp(userReq);
+        return new ResponseEntity<>(userResp, HttpStatus.CREATED);
     }
-//    @RequestMapping(method = RequestMethod.GET)
-//    public String auth(Model model) {
-//        model.addAttribute("message", "AAAAAAAAAAAAAAA");
-//        PersonForm personForm = new PersonForm();
-//        model.addAttribute("personForm", personForm);
-//
-//        return "my";
-//    }
-//
-//    @RequestMapping(method = RequestMethod.POST)
-//    public String authPost(Model model, @ModelAttribute("personForm") PersonForm personForm) {
-//
-//        model.addAttribute("message", personForm.getName());
-//        return "my1";
-//    }
-
-
 }
-
-//    @PostMapping("/sign-in")
-//    //TODO доделать проверку valid
-//    public ResponseEntity<JwtResp> signIn(@Valid @RequestBody SignInReq request, BindingResult result) {
-//        JwtResp resp = userService.signIn(request);
-//        return new ResponseEntity<>(resp, HttpStatus.OK);
-//    }
-//
-//    @PostMapping("/sign-up")
-//    public ResponseEntity<UserResp> signUp(@Valid @RequestBody SignUpReq userReq) {
-//        UserResp userResp = userService.signUp(userReq);
-//        return new ResponseEntity<>(userResp, HttpStatus.CREATED);
-//    }
-//}
