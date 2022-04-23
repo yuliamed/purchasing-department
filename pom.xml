@@ -22,7 +22,6 @@
         <spring-security-jwt>1.1.1.RELEASE</spring-security-jwt>
         <org.modelmapper.version>3.1.0</org.modelmapper.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>nz.net.ultraq.thymeleaf</groupId>
