@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Required Resources</title>
+  <link rel="stylesheet" href="../../static/cancel.css" />
+  <link rel="stylesheet" href="../../static/mui.css" />
+  <link rel="stylesheet" href="../../static/general.css" />
+  <link rel="stylesheet" href="./required-resources.css" />
+  <script src="../../scripts/definePage.js" defer></script>
+  <script src="../../scripts/tableControl.js" defer></script>
+</head>
+<body>
+<header class="mui-appbar mui--z1 header">
+  <div class="mui-container">
+    <div class="nav">
+      <a href="../orders.html" data-to="orders">Заказы</a>
+      <a href="../Resources/resources.html" data-to="resources">Ресурсы</a>
+      <a href="../Products/products.html" data-to="products">Продукты</a>
+      <a href="../Producers/producers.html" data-to="producers">Поставщики</a>
+      <a href="../Plans/plans.html" data-to="plans">План производства</a>
+      <a href="../Store/store.html" data-to="store">Склад</a>
+      <div class="logout">
+        <a href="/logout"><img src="../../icons/logout.svg"></a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper" class="mui--text-center">
+  <div class="mui-container">
+    <div class="content-edit-wrapper">
+      <div class="title">Требуемые ресурсы</div>
+      <div class="content-edit-buttons" data-table="required-resources-table">
+        <div>
+          <button class="btn btn-blue">Подтвердить</button>
+        </div>
+        <div data-action="refresh">
+          <img src="../../icons/refresh.svg"/>
+        </div>
+      </div>
+    </div>
+    <table class="content-table" id="required-resources-table">
+      <thead>
+      <tr>
+        <th class="check-mark" style="width:100px" scope="col" data-checkmark></th>
+        <th class="id" style="width:158px" scope="col">ID Ресурса</th>
+        <th class="name" style="width:276px" scope="col">Название</th>
+        <th style="width:314px" scope="col">Общая потребность</th>
+        <th style="width:314px" scope="col">Надо дозаказать</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="selected">
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="">
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="">
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="">
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script src="./required-resources.js"></script>
+</body>
+</html>

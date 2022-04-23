@@ -1,0 +1,26 @@
+.mui-container {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+}
+
+.mui-appbar {
+  min-height: 56px;
+}
+
+.mui-container-fluid {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px
+}
+
+@media (min-width: 1200px) {
+  .mui-container {
+    max-width: 1176px;
+  }
+}

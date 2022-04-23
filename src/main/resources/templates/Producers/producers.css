@@ -1,0 +1,12 @@
+.content-table th, .content-table td {
+  font-size: 16px;
+}
+
+.content-table th.nomenclature {
+  width: 575px;
+}
+
+.content-edit-buttons {
+  grid-template-columns: 1fr auto auto;
+  gap: 62px;
+}

@@ -1,0 +1,19 @@
+th.id {
+  width: 176px;
+}
+
+th.name {
+  width: 292px;
+}
+
+th.description {
+  width: 432px;
+}
+
+th.amount {
+  width: 276px;
+}
+
+.content-edit-buttons {
+  grid-template-columns: 1fr auto;
+}

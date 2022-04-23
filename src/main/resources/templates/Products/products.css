@@ -1,0 +1,36 @@
+.content-table th.resource {
+  width: 400px;
+}
+
+.content-table td.resources-wrapper {
+  padding: 0;
+}
+
+.resources-list {
+  height: 100%;
+}
+
+.resources-list li {
+  display: grid;
+  grid-template-columns: 1fr 76px;
+  min-height: 63px;
+}
+
+.resources-list li:not(:last-of-type) {
+  border-bottom: var(--border2pxBlack);
+}
+
+.resources-list li > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resources-list li .material {
+  border-right: var(--border2pxBlack);
+}
+
+.resources-list li .material:first-letter {
+  text-transform: uppercase;
+}

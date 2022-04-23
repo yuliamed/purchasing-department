@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Store</title>
+  <link rel="stylesheet" href="../../static/cancel.css"/>
+  <link rel="stylesheet" href="../../static/mui.css"/>
+  <link rel="stylesheet" href="../../static/general.css"/>
+  <link rel="stylesheet" href="./store.css"/>
+  <script src="../../scripts/definePage.js" defer></script>
+  <script src="../../scripts/tableControl.js" defer></script>
+</head>
+<body>
+<header class="mui-appbar header">
+  <div class="mui-container">
+    <div class="nav">
+      <a href="../orders.html" data-to="orders">Заказы</a>
+      <a href="../Resources/resources.html" data-to="resources">Ресурсы</a>
+      <a href="../Products/products.html" data-to="products">Продукты</a>
+      <a href="../Producers/producers.html" data-to="producers">Поставщики</a>
+      <a href="../Plans/plans.html" data-to="plans">План производства</a>
+      <a href="./store.html" data-to="store">Склад</a>
+      <div class="logout">
+        <a href="/logout"><img src="../../icons/logout.svg"></a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper" class="mui--text-center">
+  <div class="content-row-info">
+    <div class="line"></div>
+    <div class="mui-container info-title">
+      <div>Склад</div>
+      <div class="line"></div>
+    </div>
+    <div class="line"></div>
+  </div>
+  <div class="mui-container">
+    <div class="content-edit-buttons" data-table="store_table">
+      <div data-action="refresh">
+        <img src="../../icons/refresh.svg"/>
+      </div>
+      <div data-action="add">
+        <img src="../../icons/add.svg"/>
+      </div>
+    </div>
+    <table class="content-table" id="store_table">
+      <thead>
+      <tr>
+        <th class="id" style="width:176px" scope="col">ID</th>
+        <th class="name" style="width:292px" scope="col">Название</th>
+        <th class="description" style="width:432px" scope="col">Описание</th>
+        <th class="amount" style="width:276px" scope="col">Количество</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="selected">
+        <td class=""></td>
+        <td>0001</td>
+        <td>Здесь что-то есть</td>
+        <td>Здесь что-то есть</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0002</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0003</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0004</td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script src="./store.js"></script>
+</body>
+</html>

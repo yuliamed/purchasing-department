@@ -1,0 +1,395 @@
+:root {
+  --fontIbmDevargani: ibm-plex-devanagari, sans-serif;
+  --scaleArrowHeader: scale(0.8);
+  --border2pxBlack: 2px solid black;
+  --errorColor: #FF0909;
+  --errorInputBorder: 2px solid var(--errorColor);
+  --blurColor: #8EE5F8;
+  --blackTypicalBorder: 1px solid #000000;
+}
+
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+
+  font-family: var(--fontIbmDevargani);
+}
+
+.mui-container *, .header * {
+  transition: 0.2s all;
+}
+
+.hide {
+  display: none !important;
+}
+
+button {
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+#content-wrapper {
+  height: 100%;
+}
+
+main {
+  color: black;
+  padding-bottom: 30px;
+}
+
+.header {
+  height: 152px;
+  background-color: var(--blurColor);
+}
+
+.header .logout {
+  position: absolute;
+  top: -4px;
+  right: -110px;
+}
+
+.header .logout:hover {
+  transform: scale(1.1);
+}
+
+.header .mui-container {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.nav > a {
+  color: black;
+  font-family: var(--fontIbmDevargani);
+  font-size: 24px;
+  text-decoration: none;
+  transition: .2s all;
+  position: relative;
+}
+
+.nav > a::before {
+  content: url("../icons/arrow.svg");
+  display: inline-block;
+  transform: var(--scaleArrowHeader);
+  padding-right: 3px;
+  transition: .2s all;
+}
+
+.nav > a::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -8px;
+  width: 0;
+  border-bottom: var(--border2pxBlack);
+  transition: 0.2s all ease-out;
+}
+
+.nav > a:hover::after {
+  width: 100%;
+}
+
+.nav > a:hover::after {
+  width: 100%;
+}
+
+.nav > a:hover::before {
+  transform: rotate(-90deg) var(--scaleArrowHeader);
+}
+
+.nav > a.current {
+  font-weight: bold;
+}
+
+.nav > a.current::after {
+  width: 100%;
+}
+
+.nav > a.current::before {
+  transform: rotate(-90deg) var(--scaleArrowHeader);
+}
+
+.content-row-info {
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 1176px) 1fr;
+  align-items: center;
+  gap: 0;
+  margin: 56px 0 0 0;
+  font-size: 40px;
+}
+
+.content-row-info .line {
+  width: 100%;
+  height: 2px;
+  background-color: black;
+}
+
+.content-row-info .info-title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 18px;
+  padding: 0 0 0 18px;
+  width: 100%;
+}
+
+.content-row-info .info-title > div:first-of-type {
+  padding-bottom: 5px;
+}
+
+.content-edit-buttons {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: flex-start;
+  justify-items: flex-start;
+  gap: 40px;
+  margin: 69px 0 0 0;
+}
+
+.content-edit-buttons > div {
+  width: 57px;
+  height: 57px;
+  position: relative;
+  transition: 0.2s all;
+  cursor: pointer;
+}
+
+.content-edit-buttons > div > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content-edit-buttons > div:hover {
+  /*animation: 0.3s ease 0s 1 running aBitRotate;*/
+}
+
+.content-table {
+  width: 100%;
+  max-width: 1176px;
+  font-size: 24px;
+  border: 2px solid black;
+  border-collapse: collapse;
+  margin: 80px 0 0 0;
+}
+
+.content-table td, .content-table th {
+  font-weight: normal;
+  text-align: center;
+  padding: 8px 2px 3px 2px;
+  border: var(--border2pxBlack);
+}
+
+.content-table td {
+  word-break: break-word;
+  height: 64px;
+}
+
+.content-table td.check-mark-active::after {
+  content: url("../icons/done.svg");
+  display: block;
+  transform: scale(1.8);
+}
+
+.content-table td.check-mark-active {
+  width: 76px;
+}
+
+.content-table tr.selected {
+  background-color: rgba(142, 229, 248, 0.3);
+}
+
+.hover {
+  cursor: pointer;
+}
+
+.content-table tr.remove {
+  border: 2px solid rgb(255, 123, 123);
+  background-color: rgb(255, 123, 123);
+}
+
+.block-input {
+  display: grid;
+  grid-template-columns: 1fr 376px;
+  align-items: center;
+}
+
+.block-input label {
+  display: block;
+}
+
+.btn {
+  padding: 14px 25px;
+  font-weight: 500;
+  font-size: 24px;
+  border: var(--blackTypicalBorder);
+}
+
+.btn-red {
+  background-color: var(--errorColor);
+  color: white;
+}
+
+.btn-gray {
+  background-color: #C4C4C4;
+}
+
+.btn-white {
+  background-color: white;
+}
+
+.btn-white:hover {
+  background-color: #ececec;
+}
+
+.btn-white:active {
+  background-color: #dcdcdc;
+  box-shadow: none;
+}
+
+.btn-blue {
+  background-color: var(--blurColor);
+}
+
+.btn-blue:hover {
+  background-color: #6fcce1;
+}
+
+.btn-blue:active {
+  background-color: #56b1d0;
+}
+
+.content-edit-wrapper {
+  margin: 40px 0 0 0;
+}
+
+.content-edit-wrapper .title {
+  font-size: 40px;
+  text-align: left;
+}
+
+.content-edit-wrapper .content-edit-buttons {
+  grid-template-columns: 1fr auto;
+  justify-items: flex-end;
+  margin-top: 12px;
+}
+
+.content-edit-buttons > div.selected {
+  box-shadow: 0 0 0 2px var(--blurColor);
+}
+
+.content-edit-buttons > div.selected img {
+  transform: scale(0.9);
+}
+
+.content-edit-wrapper .content-edit-buttons > div:first-of-type {
+  width: auto;
+  animation: none;
+}
+
+tr.progress td {
+  padding: 4px;
+}
+
+td input:not([type='checkbox']), td select {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  font-size: 18px;
+}
+
+td input[type='checkbox'] {
+  margin-top: 7px;
+  width: 50%;
+  height: 50%;
+}
+
+td .btn {
+  font-size: 16px;
+  padding: 8px 5px;
+}
+
+td div.w-resource {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 5px;
+}
+
+td div.w-resource:first-of-type {
+  margin-top: 10px;
+}
+
+.save-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 27px 0 0 0;
+}
+
+.save-wrapper.space-between {
+  justify-content: space-between;
+}
+
+input.error, select.error {
+  border: var(--errorInputBorder) !important;
+}
+
+select.with-arrow {
+  position: relative;
+}
+
+select.with-arrow::after {
+  content: url("../icons/arrow.svg");
+  position: absolute;
+  display: block;
+  transform: scale(0.8);
+  top: 17px;
+  right: 22px;
+  pointer-events: none;
+}
+
+.error-msg {
+  margin-top: 13px;
+  color: #FF0E0E;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+:where(button, div[data-action]):active {
+  transform: scale(0.9);
+}
+
+@keyframes aBitRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  0% {
+    transform: rotate(0deg);
+  }
+}

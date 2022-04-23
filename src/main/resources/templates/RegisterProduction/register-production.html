@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register Production</title>
+  <link rel="stylesheet" href="../../static/cancel.css" />
+  <link rel="stylesheet" href="../../static/mui.css" />
+  <link rel="stylesheet" href="../../static/general.css" />
+  <link rel="stylesheet" href="./register-production.css" />
+  <script src="../../scripts/definePage.js" defer></script>
+  <script src="../../scripts/tableControl.js" defer></script>
+</head>
+<body>
+<header class="mui-appbar mui--z1 header">
+  <div class="mui-container">
+    <div class="nav">
+      <a href="../orders.html" data-to="orders">Заказы</a>
+      <a href="../Resources/resources.html" data-to="resources">Ресурсы</a>
+      <a href="../Products/products.html" data-to="products">Продукты</a>
+      <a href="../Producers/producers.html" data-to="producers">Поставщики</a>
+      <a href="../Plans/plans.html" data-to="plans">План производства</a>
+      <a href="../Store/store.html" data-to="store">Склад</a>
+      <div class="logout">
+        <a href="/logout"><img src="../../icons/logout.svg"></a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper" class="mui--text-center">
+  <div class="mui-container">
+    <div class="content-edit-wrapper">
+      <div class="title">Регистрация продукции</div>
+      <div class="content-edit-buttons" data-table="register-production-table">
+        <div>
+          <button class="btn btn-blue">Подтвердить</button>
+        </div>
+        <div data-action="refresh">
+          <img src="../../icons/refresh.svg"/>
+        </div>
+      </div>
+    </div>
+    <table class="content-table" id="register-production-table">
+      <thead>
+      <tr>
+        <th class="check-mark" style="width:63px" scope="col"></th>
+        <th class="number" style="width:66px" scope="col">№</th>
+        <th class="" style="width:171px" scope="col">Поставщик</th>
+        <th class="" style="width:200px" scope="col">Номенклатура</th>
+        <th class="" style="width:100px" scope="col">Кол-во</th>
+        <th class="" style="width:176px" scope="col">ID Ресурса</th>
+        <th class="resource" style="width:200px" scope="col">Ресурс</th>
+        <th class="" style="width:200px" scope="col">Дата поставки</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>ДД.ММ.ГГГГ</td>
+      </tr>
+      <tr class="">
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>ДД.ММ.ГГГГ</td>
+      </tr>
+      <tr class="">
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>ДД.ММ.ГГГГ</td>
+      </tr>
+      <tr class="">
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>ДД.ММ.ГГГГ</td>
+      </tr>
+      <tr class="">
+        <td class="check-mark-active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>ДД.ММ.ГГГГ</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script src="./register-production.js"></script>
+</body>
+</html>

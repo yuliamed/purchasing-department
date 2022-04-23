@@ -1,0 +1,15 @@
+.content-table th.date {
+  width: 276px;
+}
+
+.content-table th.product {
+  width: 344px;
+}
+
+.content-table th.units {
+  width: 256px;
+}
+
+.content-edit-buttons {
+  grid-template-columns: 1fr auto;
+}
