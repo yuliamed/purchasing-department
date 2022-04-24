@@ -83,7 +83,7 @@ main {
 }
 
 .nav > a::before {
-  content: url("../icons/arrow.svg");
+  content: url("../../icons/arrow.svg");
   display: inline-block;
   transform: var(--scaleArrowHeader);
   padding-right: 3px;
@@ -205,7 +205,7 @@ main {
 }
 
 .content-table td.check-mark-active::after {
-  content: url("../icons/done.svg");
+  content: url("../../icons/done.svg");
   display: block;
   transform: scale(1.8);
 }
@@ -358,7 +358,7 @@ select.with-arrow {
 }
 
 select.with-arrow::after {
-  content: url("../icons/arrow.svg");
+  content: url("../../icons/arrow.svg");
   position: absolute;
   display: block;
   transform: scale(0.8);
