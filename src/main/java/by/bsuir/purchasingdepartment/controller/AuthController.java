@@ -40,9 +40,9 @@ public class AuthController {
         } catch (AuthenticationException e) {
             resp=new JwtResp(null, null);
             //TODO вывод сообщения об ошибке входа и возврат на стартовую страницу
-            return "redirect:/resource";
+            return "redirect:/resources";
         }
-        return "redirect:/resource";
+        return "redirect:/resources";
     }
 
     @PostMapping("/sign-up")

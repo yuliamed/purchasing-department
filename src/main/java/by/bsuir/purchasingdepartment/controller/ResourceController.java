@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/resource")
+@RequestMapping(value = "/resources")
 @AllArgsConstructor
 public class ResourceController {
     private final ResourceService resourceService;

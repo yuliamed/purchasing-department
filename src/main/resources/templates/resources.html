@@ -14,12 +14,12 @@
 <header class="mui-appbar mui--z1 header">
     <div class="mui-container">
         <div class="nav">
-            <a href="orders.html" data-to="orders">Заказы</a>
-            <a href="resources.html" data-to="resources">Ресурсы</a>
-            <a href="Products/products.html" data-to="products">Продукты</a>
-            <a href="Producers/producers.html" data-to="producers">Поставщики</a>
-            <a href="Plans/plans.html" data-to="plans">План производства</a>
-            <a href="Store/store.html" data-to="store">Склад</a>
+            <a th:href="orders" data-to="orders">Заказы</a>
+            <a th:href="resources" data-to="resources">Ресурсы</a>
+            <a th:href="products" data-to="products">Продукты</a>
+            <a th:href="providers" data-to="producers">Поставщики</a>
+            <a th:href="plans" data-to="plans">План производства</a>
+            <a th:href="store" data-to="store">Склад</a>
             <div class="logout">
                 <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
             </div>
@@ -39,7 +39,7 @@
         <div class="mui-container">
             <div class="content-edit-buttons" data-table="resources_table">
                 <div data-action="refresh">
-                    <a th:href="@{/resource}"><img th:src="@{/icons/refresh.svg}"></a>
+                    <a th:href="@{/resources}"><img th:src="@{/icons/refresh.svg}"></a>
                 </div>
                 <div data-related="add-resource">
                     <img th:src="@{/icons/add.svg}"/>
@@ -74,9 +74,9 @@
     <div data-modal class="modal-wrapper hide">
         <div class="modal">
             <button class="modal-close">
-                <a th:href="@{/resource}"><img th:src="@{/icons/close-window.svg}"></a>
+                <a th:href="@{/resources}"><img th:src="@{/icons/close-window.svg}"></a>
             </button>
-            <form class="modal-form" method="POST" th:action="@{/resource/add}" th:object="${new_resource}">
+            <form class="modal-form" method="POST" th:action="@{/resources/add}" th:object="${new_resource}">
                 <h1 class="modal-title">Добавление ресурса</h1>
                 <div class="modal-input">
                     <div class="name">
