@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,27 +18,30 @@ import java.util.List;
 public class ResourceController {
     private final ResourceService resourceService;
 
-    @GetMapping("/")
-    public ResponseEntity<List<Resource>> findAll() {
+    @GetMapping
+    public String showResourcePage(Model model) {
         List<Resource> list = resourceService.findAll();
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        model.addAttribute("resources", list);
+        model.addAttribute("new_resource", new ResourceDto());
+        model.addAttribute("resIdForDelete", new Object());
+        return "resources";
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<String> delete(@RequestBody Long id) {
-        resourceService.deleteResource(id);
-        return new ResponseEntity<>("deleted res = " + id, HttpStatus.NO_CONTENT);
+    @DeleteMapping("/delete")
+    public String delete(@ModelAttribute("resIdForDelete") String idS) {
+        Integer id = Integer.parseInt(idS);
+        //resourceService.deleteResource(id);
+        return "redirect:";
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Resource> addResource(ResourceDto resourceDto) {
-        ResourceDto dto = new ResourceDto("rest-fuul", "eprogjeprogjeprgjeprogj");
-        Resource res = resourceService.addResource(dto);
+    @PostMapping("/add")
+    public String addResource(ResourceDto resourceDto) {
+        Resource res = resourceService.addResource(resourceDto);
 //        Resource res = resourceService.addResource(resourceDto);
-        return new ResponseEntity<>(res, HttpStatus.CREATED);
+        return "redirect:";
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public ResponseEntity<Resource> updateRes(Resource res) {
 //        res = resourceService.updateResource(res);
         Resource entity = new Resource("test-2", "test-2");

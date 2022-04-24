@@ -42,32 +42,33 @@ function configureModalForm(modal) {
   const inputName = modal.querySelector('#in-name');
   const inputDescription = modal.querySelector('#in-description');
   const form = modal.querySelector('form.modal-form');
-
-  form && form.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!inputId || !inputName || !inputDescription) return;
-
-    if (
-      !inputId.value.trim() ||
-      !inputName.value.trim() ||
-      !inputDescription.value.trim()
-    ) return alert('Заполните поля');
-
-    const data = {
-      checkMark: false,
-      id: inputId.value.trim(),
-      name: inputName.value.trim(),
-      description: inputDescription.value.trim()
-    };
-
-    addResourceToTable(data);
-    onAddRow();
-    toggleModal(modal, false);
-
-    inputId.value = '';
-    inputName.value = '';
-    inputDescription.value = '';
-  });
+  //TODO вернуть валидацию как и при авторизации
+  //
+  // form && form.addEventListener('submit', e => {
+  //   e.preventDefault();
+  //   if (!inputId || !inputName || !inputDescription) return;
+  //
+  //   if (
+  //     !inputId.value.trim() ||
+  //     !inputName.value.trim() ||
+  //     !inputDescription.value.trim()
+  //   ) return alert('Заполните поля');
+  //
+  //   const data = {
+  //     checkMark: false,
+  //     id: inputId.value.trim(),
+  //     name: inputName.value.trim(),
+  //     description: inputDescription.value.trim()
+  //   };
+  //
+  //   addResourceToTable(data);
+  //   onAddRow();
+  //   toggleModal(modal, false);
+  //
+  //   inputId.value = '';
+  //   inputName.value = '';
+  //   inputDescription.value = '';
+  // });
 }
 
 function addResourceToTable(data) {

@@ -1,123 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resources</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/resources.css}">
-  <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
-<!--  TODO скрипт не работает!-->
-<!--  <script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>-->
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Resources</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/resources.css}">
+
 </head>
 <body>
 <header class="mui-appbar mui--z1 header">
-  <div class="mui-container">
-    <div class="nav">
-      <a href="orders.html" data-to="orders">Заказы</a>
-      <a href="resources.html" data-to="resources">Ресурсы</a>
-      <a href="Products/products.html" data-to="products">Продукты</a>
-      <a href="Producers/producers.html" data-to="producers">Поставщики</a>
-      <a href="Plans/plans.html" data-to="plans">План производства</a>
-      <a href="Store/store.html" data-to="store">Склад</a>
-      <div class="logout">
-        <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
-      </div>
+    <div class="mui-container">
+        <div class="nav">
+            <a href="orders.html" data-to="orders">Заказы</a>
+            <a href="resources.html" data-to="resources">Ресурсы</a>
+            <a href="Products/products.html" data-to="products">Продукты</a>
+            <a href="Producers/producers.html" data-to="producers">Поставщики</a>
+            <a href="Plans/plans.html" data-to="plans">План производства</a>
+            <a href="Store/store.html" data-to="store">Склад</a>
+            <div class="logout">
+                <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 <main id="content-wrapper" class="mui--text-center">
-  <div>
-    <div class="content-row-info">
-      <div class="line"></div>
-      <div class="mui-container info-title">
-        <div>Управление ресурсами</div>
-        <div class="line"></div>
-      </div>
-      <div class="line"></div>
+    <div>
+        <div class="content-row-info">
+            <div class="line"></div>
+            <div class="mui-container info-title">
+                <div>Управление ресурсами</div>
+                <div class="line"></div>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="mui-container">
+            <div class="content-edit-buttons" data-table="resources_table">
+                <div data-action="refresh">
+                    <a th:href="@{/resource}"><img th:src="@{/icons/refresh.svg}"></a>
+                </div>
+                <div data-related="add-resource">
+                    <img th:src="@{/icons/add.svg}"/>
+                </div>
+                <div data-action="edit">
+                    <img th:src="@{/icons/edit.svg}"/>
+                </div>
+                <div data-action="remove">
+                   <img th:src="@{/icons/close-square.svg}"/>
+                </div>
+            </div>
+            <table class="content-table" id="resources_table">
+                <thead>
+                <tr>
+                    <th class="check-mark" scope="col" style="width:76px" data-checkmark></th>
+                    <th class="id" style="width:200px" scope="col">ID</th>
+                    <th class="name" style="width:320px" scope="col">Название</th>
+                    <th class="description" style="width:580px" scope="col">Описание</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="resource:${resources}">
+                    <td class="check-mark-active"></td>
+                    <td th:utext="${resource.id}"></td>
+                    <td th:utext="${resource.name}"></td>
+                    <td th:utext="${resource.description}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="mui-container">
-      <div class="content-edit-buttons" data-table="resources_table">
-        <div data-action="refresh">
-          <img th:src="@{/icons/refresh.svg}"/>
+    <div data-modal class="modal-wrapper hide">
+        <div class="modal">
+            <button class="modal-close">
+                <a th:href="@{/resource}"><img th:src="@{/icons/close-window.svg}"></a>
+            </button>
+            <form class="modal-form" method="POST" th:action="@{/resource/add}" th:object="${new_resource}">
+                <h1 class="modal-title">Добавление ресурса</h1>
+                <div class="modal-input">
+                    <div class="name">
+                        <label for="in-name">Название</label>
+                        <input id="in-name" type="text" th:field="*{name}">
+                    </div>
+                    <div class="description">
+                        <label for="in-description">Описание</label>
+                        <textarea id="in-description" th:field="*{description}"></textarea>
+                    </div>
+                </div>
+                <button type="submit">Добавить</button>
+            </form>
         </div>
-        <div data-related="add-resource">
-          <img th:src="@{/icons/add.svg}"/>
-        </div>
-        <div data-action="edit">
-          <img th:src="@{/icons/edit.svg}"/>
-        </div>
-        <div data-action="remove">
-          <img th:src="@{/icons/close-square.svg}"/>
-        </div>
-      </div>
-      <table class="content-table" id="resources_table">
-        <thead>
-        <tr>
-          <th class="check-mark" scope="col" style="width:76px" data-checkmark></th>
-          <th class="id" style="width:200px" scope="col">ID</th>
-          <th class="name" style="width:320px" scope="col">Название</th>
-          <th class="description" style="width:580px" scope="col">Описание</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="check-mark-active"></td>
-          <td>0001</td>
-          <td>Здесь что-то есть</td>
-          <td>Здесь что-то есть</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0002</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0003</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0004</td>
-          <td></td>
-          <td></td>
-        </tr>
-        </tbody>
-      </table>
     </div>
-  </div>
-  <div data-modal class="modal-wrapper hide">
-    <div class="modal">
-      <button class="modal-close">
-        <img th:src="@{/icons/close-window.svg}">
-      </button>
-      <form class="modal-form">
-        <h1 class="modal-title">Добавление ресурса</h1>
-        <div class="modal-input">
-          <div class="id">
-            <label for="in-id">ID</label>
-            <input id="in-id" type="text">
-          </div>
-          <div class="name">
-            <label for="in-name">Название</label>
-            <input id="in-name" type="text">
-          </div>
-          <div class="description">
-            <label for="in-description">Описание</label>
-            <textarea id="in-description"></textarea>
-          </div>
-        </div>
-        <button type="submit">Добавить</button>
-      </form>
-    </div>
-  </div>
 </main>
-<!--скрипт добавления нового ресурса-->
 <script type="text/javascript" th:src="@{/js/resources.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
 </body>
 </html>

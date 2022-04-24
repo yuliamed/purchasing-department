@@ -13,7 +13,7 @@
 <div class="auth-wrapper">
     <div class="auth-window">
         <form id="form" method="POST" th:action="@{/auth/sign-in}" th:object="${user}">
-            <div class="title">Добро пожаловать, bitch!</div>
+            <div class="title">Добро пожаловать!</div>
             <div class="inputs">
                 <div class="login-wrapper">
                     <input id="login" type="text" placeholder="Логин" th:field="*{email}">
