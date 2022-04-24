@@ -1,102 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Producers</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/producers.css}">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Producers</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/producers.css}">
 </head>
 <body>
 <header class="header">
-  <div class="mui-container">
-    <div class="nav">
-      <a th:href="orders" data-to="orders">Заказы</a>
-      <a th:href="resources" data-to="resources">Ресурсы</a>
-      <a th:href="products" data-to="products">Продукты</a>
-      <a th:href="providers" data-to="producers">Поставщики</a>
-      <a th:href="plans" data-to="plans">План производства</a>
-      <a th:href="store" data-to="store">Склад</a>
-      <div class="logout">
-        <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
-      </div>
+    <div class="mui-container">
+        <div class="nav">
+            <a th:href="orders" data-to="orders">Заказы</a>
+            <a th:href="resources" data-to="resources">Ресурсы</a>
+            <a th:href="products" data-to="products">Продукты</a>
+            <a th:href="providers" data-to="producers">Поставщики</a>
+            <a th:href="plans" data-to="plans">План производства</a>
+            <a th:href="store" data-to="store">Склад</a>
+            <div class="logout">
+                <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 <main id="content-wrapper">
-  <div>
-    <div class="content-row-info">
-      <div class="line"></div>
-      <div class="mui-container info-title">
-        <div>Поставщики</div>
-        <div class="line"></div>
-      </div>
-      <div class="line"></div>
+    <div>
+        <div class="content-row-info">
+            <div class="line"></div>
+            <div class="mui-container info-title">
+                <div>Поставщики</div>
+                <div class="line"></div>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="mui-container">
+            <div class="content-edit-buttons" data-table="producers_table">
+                <div data-action="refresh">
+                    <img th:src="@{/icons/refresh.svg}">
+                </div>
+                <div data-action="add">
+                    <img th:src="@{/icons/add.svg}">
+                </div>
+                <div data-action="remove">
+                    <img th:src="@{/icons/close-square.svg}">
+                </div>
+            </div>
+            <table class="content-table" id="producers_table">
+                <thead>
+                <tr>
+                    <th class="check-mark" style="width:70px" scope="col" data-checkmark=""></th>
+                    <th class="id" style="width:62px" scope="col">ID</th>
+                    <th class="name" style="width:262px" scope="col">Организация</th>
+                    <th class="description" style="width:256px" scope="col">Телефон</th>
+                    <th class="nomenclature" style="width:540px" scope="col">Номенклатура/Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pro:${providers}">
+                    <td class="check-mark-active"></td>
+                    <td th:utext="${pro.id}"></td>
+                    <td th:utext="${pro.name}"></td>
+                    <td th:utext="${pro.getPhNumber()}"></td>
+                    <td th:utext="${pro.getAddress()}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="mui-container">
-      <div class="content-edit-buttons" data-table="producers_table">
-        <div data-action="refresh">
-          <img th:src="@{/icons/refresh.svg}">
-        </div>
-        <div data-action="add">
-          <img th:src="@{/icons/add.svg}">
-        </div>
-        <div data-action="remove">
-          <img th:src="@{/icons/close-square.svg}">
-        </div>
-      </div>
-      <table class="content-table" id="producers_table">
-        <thead>
-        <tr>
-          <th class="check-mark" style="width:70px" scope="col" data-checkmark=""></th>
-          <th class="id" style="width:62px" scope="col">ID</th>
-          <th class="name" style="width:262px" scope="col">Организация</th>
-          <th class="description" style="width:256px" scope="col">Телефон</th>
-          <th class="nomenclature" style="width:540px" scope="col">Номенклатура</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="check-mark-active"></td>
-          <td>0001</td>
-          <td>Здесь что-то есть</td>
-          <td>Здесь что-то есть</td>
-          <td>Здесь что-то есть</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0002</td>
-          <td></td>
-          <td></td>
-          <td>Здесь что-то есть</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0003</td>
-          <td></td>
-          <td></td>
-          <td>Здесь что-то есть</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0004</td>
-          <td></td>
-          <td></td>
-          <td>Здесь что-то есть</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0004</td>
-          <td></td>
-          <td></td>
-          <td>Здесь что-то есть</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </main>
 <script type="text/javascript" th:src="@{/js/providers.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
