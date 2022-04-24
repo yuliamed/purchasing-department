@@ -39,10 +39,10 @@ public class AuthController {
             resp = userService.signIn(request);
         } catch (AuthenticationException e) {
             resp=new JwtResp(null, null);
-            return "auth";
+            //TODO вывод сообщения об ошибке входа и возврат на стартовую страницу
+            return "resources";
         }
-        //return new ResponseEntity<>(resp, HttpStatus.OK);
-        return "orders";
+        return "resources";
     }
 
     @PostMapping("/sign-up")

@@ -31,7 +31,7 @@
 
   function getTablesWithActions() {
     const table = document.querySelector('.content-table')
-    const thead = table.querySelector('thead');
+    // const thead = table.querySelector('thead');
     const tbody = table.querySelector('tbody');
 
     const trs = tbody.querySelectorAll('tr');

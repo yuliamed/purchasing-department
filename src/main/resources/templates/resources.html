@@ -4,25 +4,26 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Resources</title>
-  <link rel="stylesheet" href="../../static/css/cancel.css" />
-  <link rel="stylesheet" href="../../static/css/mui.css" />
-  <link rel="stylesheet" href="../../static/css/general.css" />
-  <link rel="stylesheet" href="./resources.css" />
-  <script src="../../scripts/definePage.js" defer></script>
-  <script src="../../scripts/tableControl.js" defer></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/resources.css}">
+  <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
+<!--  TODO скрипт не работает!-->
+<!--  <script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>-->
 </head>
 <body>
 <header class="mui-appbar mui--z1 header">
   <div class="mui-container">
     <div class="nav">
-      <a href="../orders.html" data-to="orders">Заказы</a>
-      <a href="./resources.html" data-to="resources">Ресурсы</a>
-      <a href="../Products/products.html" data-to="products">Продукты</a>
-      <a href="../Producers/producers.html" data-to="producers">Поставщики</a>
-      <a href="../Plans/plans.html" data-to="plans">План производства</a>
-      <a href="../Store/store.html" data-to="store">Склад</a>
+      <a href="orders.html" data-to="orders">Заказы</a>
+      <a href="resources.html" data-to="resources">Ресурсы</a>
+      <a href="Products/products.html" data-to="products">Продукты</a>
+      <a href="Producers/producers.html" data-to="producers">Поставщики</a>
+      <a href="Plans/plans.html" data-to="plans">План производства</a>
+      <a href="Store/store.html" data-to="store">Склад</a>
       <div class="logout">
-        <a href="/logout"><img src="../../icons/logout.svg"></a>
+        <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
       </div>
     </div>
   </div>
@@ -40,16 +41,16 @@
     <div class="mui-container">
       <div class="content-edit-buttons" data-table="resources_table">
         <div data-action="refresh">
-          <img src="../../icons/refresh.svg"/>
+          <img th:src="@{/icons/refresh.svg}"/>
         </div>
         <div data-related="add-resource">
-          <img src="../../icons/add.svg"/>
+          <img th:src="@{/icons/add.svg}"/>
         </div>
         <div data-action="edit">
-          <img src="../../icons/edit.svg"/>
+          <img th:src="@{/icons/edit.svg}"/>
         </div>
         <div data-action="remove">
-          <img src="../../icons/close-square.svg"/>
+          <img th:src="@{/icons/close-square.svg}"/>
         </div>
       </div>
       <table class="content-table" id="resources_table">
@@ -93,7 +94,7 @@
   <div data-modal class="modal-wrapper hide">
     <div class="modal">
       <button class="modal-close">
-        <img src="../../icons/close-window.svg">
+        <img th:src="@{/icons/close-window.svg}">
       </button>
       <form class="modal-form">
         <h1 class="modal-title">Добавление ресурса</h1>
@@ -116,6 +117,7 @@
     </div>
   </div>
 </main>
-<script src="./resources.js"></script>
+<!--скрипт добавления нового ресурса-->
+<script type="text/javascript" th:src="@{/js/resources.js}"></script>
 </body>
 </html>
