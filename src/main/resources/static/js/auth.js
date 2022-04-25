@@ -81,7 +81,6 @@ const password = document.querySelector('#password');
 const form = document.querySelector('#form');
 
 form.addEventListener('submit', event => {
-  event.preventDefault();
 
   changeErrorInput(loginName, '', true, '.login-wrapper');
   changeErrorInput(password, '', true, '.password-wrapper');
@@ -92,7 +91,7 @@ form.addEventListener('submit', event => {
   loginError && changeErrorInput(loginName, loginError, !loginError, '.login-wrapper');
   passwordError && changeErrorInput(password, passwordError, !passwordError, '.password-wrapper');
 
-  if (!loginError && !passwordError) {
-    //logic
+  if (loginError || passwordError) {
+    event.preventDefault();
   }
 });

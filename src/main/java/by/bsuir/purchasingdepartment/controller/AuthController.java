@@ -45,6 +45,7 @@ public class AuthController {
         return "redirect:/resources";
     }
 
+
     @PostMapping("/sign-up")
     public ResponseEntity<UserDto> signUp(@RequestBody SignUpDto userReq) {
         UserDto userResp = userService.signUp(userReq);

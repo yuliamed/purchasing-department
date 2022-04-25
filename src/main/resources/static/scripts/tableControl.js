@@ -351,6 +351,7 @@
     });
 
     const onSave = () => {
+      //TODO отправка запроса на удаление
       for (const trKey in trsBeforeDelete) {
         trsBeforeDelete[trKey].remove();
       }
