@@ -1,4 +1,5 @@
 package by.bsuir.purchasingdepartment.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,13 +13,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Specification extends AbstractEntity{
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Resource resource;
-
+public class Specification extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "product_ID")
     private Product product;
-    @Column(name="count", nullable = false)
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Resource resource;
+    @Column(name = "count", nullable = false)
     private Integer count;
 }

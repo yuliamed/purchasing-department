@@ -1,16 +1,13 @@
 package by.bsuir.purchasingdepartment.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -23,4 +20,6 @@ public class Product extends AbstractEntity {
     private String name;
     @Column(name="is_product", nullable = false)
     private Boolean isProduct = true;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "product", cascade = CascadeType.ALL)
+    List<Specification> specifications = new ArrayList<>();
 }
