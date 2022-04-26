@@ -74,11 +74,15 @@
     <div data-modal class="modal-wrapper hide">
         <div class="modal">
             <button class="modal-close">
-                <a th:href="@{/resources}"><img th:src="@{/icons/close-window.svg}"></a>
+               <img th:src="@{/icons/close-window.svg}">
             </button>
             <form class="modal-form" method="POST" th:action="@{/resources/add}" th:object="${new_resource}">
                 <h1 class="modal-title">Добавление ресурса</h1>
                 <div class="modal-input">
+<!--                    <div class="id">-->
+<!--                        <label for="in-id">ID</label>-->
+<!--                        <input id="in-id" type="text">-->
+<!--                    </div>-->
                     <div class="name">
                         <label for="in-name">Название</label>
                         <input id="in-name" type="text" th:field="*{name}">
