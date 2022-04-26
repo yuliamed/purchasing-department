@@ -3,11 +3,14 @@ package by.bsuir.purchasingdepartment.controller;
 import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.service.ResourceService;
 import by.bsuir.purchasingdepartment.service.dto.ResourceDto;
+import by.bsuir.purchasingdepartment.service.dto.ResourcesDeleteDto;
+import by.bsuir.purchasingdepartment.service.dto.UserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,10 +31,12 @@ public class ResourceController {
     }
 
     @DeleteMapping("/delete")
-    public String delete(@ModelAttribute("resIdForDelete") String idS) {
-        Integer id = Integer.parseInt(idS);
-        //resourceService.deleteResource(id);
-        return "redirect:";
+    public @ResponseBody String delete(ResourcesDeleteDto delIds, BindingResult result) {
+        String returnText="удаление ресурсов выполнено успешно";
+        for (int i = 0;i < delIds.getDelIds().size(); i++){
+            resourceService.deleteResource(delIds.getDelIds().get(i));
+        }
+        return returnText;
     }
 
     @PostMapping("/add")
@@ -40,7 +45,7 @@ public class ResourceController {
 //        Resource res = resourceService.addResource(resourceDto);
         return "redirect:";
     }
-
+    //TODO написать
     @PutMapping("/update")
     public ResponseEntity<Resource> updateRes(Resource res) {
 //        res = resourceService.updateResource(res);

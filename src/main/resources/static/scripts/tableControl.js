@@ -588,8 +588,22 @@
     });
 
     const onSave = () => {
+      selectedIndex = []
       selectedRows.forEach(row => {
+        selectedIndex.push(row.node.innerText.split('\t')[1]);
         row.node.remove();
+      });
+      $.ajax({
+        type: 'DELETE',
+        url: '/resources/delete', // адрес запроса
+        data: {'delIds':selectedIndex}, // данные запроса
+        dataType: 'text', // тип ожидаемых данных,
+        success: function(data) {
+          alert(data)
+          console.log(selectedIndex);
+        }, // обработка ответа от сервера
+        error: function(jqXHR) { console.log('Ошибка выполнения'); },
+        complete: function() { console.log('Завершение выполнения'); }
       });
       helper();
       toggleProcess();
