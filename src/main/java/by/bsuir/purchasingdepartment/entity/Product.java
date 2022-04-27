@@ -20,6 +20,8 @@ public class Product extends AbstractEntity {
     private String name;
     @Column(name="is_product", nullable = false)
     private Boolean isProduct = true;
+    @Column(name="description", length = 350)
+    private String description = "description";
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "product", cascade = CascadeType.ALL)
     List<Specification> specifications = new ArrayList<>();
 }

@@ -13,4 +13,5 @@ public class ProductDto extends AbstractDTO{
     private String name;
     private Boolean isProduct;
     private List<SpecificationDto> specifications;
+    private String description;
 }
