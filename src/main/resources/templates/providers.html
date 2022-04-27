@@ -41,7 +41,7 @@
         <div class="mui-container">
             <div class="content-edit-buttons" data-table="producers_table">
                 <div data-action="refresh">
-                    <img th:src="@{/icons/refresh.svg}">
+                    <a th:href="@{/providers}"><img th:src="@{/icons/refresh.svg}"></a>
                 </div>
                 <div data-action="add">
                     <img th:src="@{/icons/add.svg}">
@@ -73,6 +73,7 @@
         </div>
     </div>
 </main>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/providers.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
