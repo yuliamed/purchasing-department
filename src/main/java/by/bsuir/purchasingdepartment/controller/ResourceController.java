@@ -26,7 +26,7 @@ public class ResourceController {
         List<Resource> list = resourceService.findAll();
         model.addAttribute("resources", list);
         model.addAttribute("new_resource", new ResourceDto());
-        model.addAttribute("resIdForDelete", new Object());
+        //model.addAttribute("resIdForDelete", new Object());
         return "resources";
     }
 

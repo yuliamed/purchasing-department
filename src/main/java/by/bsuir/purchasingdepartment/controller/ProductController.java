@@ -5,6 +5,7 @@ import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.repository.ResourceRepository;
 import by.bsuir.purchasingdepartment.service.ProductService;
 import by.bsuir.purchasingdepartment.service.dto.ProductDto;
+import by.bsuir.purchasingdepartment.service.dto.ResourceDto;
 import by.bsuir.purchasingdepartment.service.dto.SpecificationDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class ProductController {
 //        product.getSpecifications().get(0).setCount(111);
 //        productService.updateProduct(product);
 //        productService.deleteProduct(product.getId());
-
+        model.addAttribute("products", products);
         return "products";
     }
 }
