@@ -595,7 +595,7 @@
       });
       $.ajax({
         type: 'DELETE',
-        url: '/resources/delete', // адрес запроса
+        url: '/'+page+'/delete', // адрес запроса
         data: {'delIds':selectedIndex}, // данные запроса
         dataType: 'text', // тип ожидаемых данных,
         success: function(data) {
