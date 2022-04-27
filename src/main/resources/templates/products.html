@@ -43,11 +43,9 @@
             <div data-action='refresh'>
                 <a th:href="@{/products}"><img th:src="@{/icons/refresh.svg}"></a>
             </div>
-            <a href="CreateProduct/create-product.html">
-                <div>
-                    <img th:src="@{/icons/add.svg}">
-                </div>
-            </a>
+            <div>
+                <a th:href="@{/products/create-product}"><img th:src="@{/icons/add.svg}"></a>
+            </div>
             <div data-action='edit'>
                 <img th:src="@{/icons/edit.svg}">
             </div>
@@ -73,8 +71,8 @@
                 <td class="resources-wrapper">
                     <ul class="resources-list">
                         <li th:each="spec:${product.specifications}">
-                            <div th:utext="${spec.resource.name}"  class="material"></div>
-                            <div th:utext="${spec.count}"class="amount"></div>
+                            <div th:utext="${spec.resource.name}" class="material"></div>
+                            <div th:utext="${spec.count}" class="amount"></div>
                         </li>
                     </ul>
                 </td>

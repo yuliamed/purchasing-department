@@ -27,7 +27,7 @@
 }
 
 .add-product-select::after {
-  content: url("../../static/icons/arrow.svg");
+  content: url("../icons/arrow.svg");
   position: absolute;
   display: block;
   transform: scale(0.8);
