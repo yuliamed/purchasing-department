@@ -3,8 +3,7 @@ package by.bsuir.purchasingdepartment.controller;
 import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.service.ResourceService;
 import by.bsuir.purchasingdepartment.service.dto.ResourceDto;
-import by.bsuir.purchasingdepartment.service.dto.ResourcesDeleteDto;
-import by.bsuir.purchasingdepartment.service.dto.UserDto;
+import by.bsuir.purchasingdepartment.service.dto.DeleteDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +25,12 @@ public class ResourceController {
         List<Resource> list = resourceService.findAll();
         model.addAttribute("resources", list);
         model.addAttribute("new_resource", new ResourceDto());
-        model.addAttribute("resIdForDelete", new Object());
+        //model.addAttribute("resIdForDelete", new Object());
         return "resources";
     }
 
     @DeleteMapping("/delete")
-    public @ResponseBody String delete(ResourcesDeleteDto delIds, BindingResult result) {
+    public @ResponseBody String delete(DeleteDto delIds, BindingResult result) {
         String returnText="удаление ресурсов выполнено успешно";
         for (int i = 0;i < delIds.getDelIds().size(); i++){
             resourceService.deleteResource(delIds.getDelIds().get(i));

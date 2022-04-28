@@ -11,6 +11,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResourcesDeleteDto extends AbstractDTO {
+public class DeleteDto extends AbstractDTO {
     private List<Long> delIds;
 }

@@ -11,6 +11,9 @@
 </head>
 <body>
 <header class="header">
+    <script>
+        var page = 'products';
+    </script>
     <div class="mui-container">
         <div class="nav">
             <a th:href="orders" data-to="orders">Заказы</a>
@@ -38,7 +41,7 @@
     <div class="mui-container">
         <div class="content-edit-buttons" data-table='products_table'>
             <div data-action='refresh'>
-                <img th:src="@{/icons/refresh.svg}">
+                <a th:href="@{/products}"><img th:src="@{/icons/refresh.svg}"></a>
             </div>
             <a href="CreateProduct/create-product.html">
                 <div>
@@ -63,71 +66,25 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr th:each="product:${products}">
                 <td class="check-mark-active"></td>
-                <td>0001</td>
-                <td>Здесь что-то есть</td>
+                <td th:utext="${product.id}"></td>
+                <td th:utext="${product.name}">Здесь что-то есть</td>
                 <td class="resources-wrapper">
                     <ul class="resources-list">
-                        <li>
-                            <div class="material">Дерево</div>
-                            <div class="amount">1</div>
+                        <li th:each="spec:${product.specifications}">
+                            <div th:utext="${spec.resource.name}"  class="material"></div>
+                            <div th:utext="${spec.count}"class="amount"></div>
                         </li>
                     </ul>
                 </td>
-                <td>Здесь что-то есть</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>0002</td>
-                <td></td>
-                <td class="resources-wrapper">
-                    <ul class="resources-list">
-                        <li>
-                            <div class="material">Дерево</div>
-                            <div class="amount">1</div>
-                        </li>
-                        <li>
-                            <div class="material">Дерево</div>
-                            <div class="amount">1</div>
-                        </li>
-                    </ul>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="check-mark-active"></td>
-                <td>0003</td>
-                <td></td>
-                <td class="resources-wrapper">
-                    <ul class="resources-list">
-                        <li>
-                            <div class="material">Дерево</div>
-                            <div class="amount">1</div>
-                        </li>
-                        <li>
-                            <div class="material">Дерево</div>
-                            <div class="amount">1</div>
-                        </li>
-                        <li>
-                            <div class="material">Дерево</div>
-                            <div class="amount">1</div>
-                        </li>
-                    </ul>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>0004</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td th:utext="${product.description}"></td>
             </tr>
             </tbody>
         </table>
     </div>
 </main>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/products.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
