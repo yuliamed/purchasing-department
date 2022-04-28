@@ -64,28 +64,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr class="selected">
+      <tr th:each="res:${resources}">
         <td class="check-mark-active"></td>
-        <td>0001</td>
-        <td>Здесь что-то есть</td>
-        <td>Здесь что-то есть</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>0002</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>0003</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>0004</td>
-        <td></td>
+        <td th:utext="${res.id}"></td>
+        <td th:utext="${res.name}"></td>
         <td></td>
       </tr>
       </tbody>
