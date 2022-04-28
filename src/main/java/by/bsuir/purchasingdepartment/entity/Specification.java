@@ -20,6 +20,7 @@ public class Specification extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Resource resource;
+
     @Column(name = "count", nullable = false)
     private Integer count;
 }

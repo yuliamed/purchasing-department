@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "providers")
@@ -24,5 +24,8 @@ public class Provider extends AbstractEntity{
 
     @Column(name="provider_ph_number")
     private Integer phNumber;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "provider", cascade = CascadeType.ALL)
+    List<Catalog> catalogList = new ArrayList<>();
 
 }

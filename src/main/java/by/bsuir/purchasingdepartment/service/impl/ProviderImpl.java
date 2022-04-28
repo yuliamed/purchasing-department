@@ -1,6 +1,8 @@
 package by.bsuir.purchasingdepartment.service.impl;
 
+import by.bsuir.purchasingdepartment.entity.Catalog;
 import by.bsuir.purchasingdepartment.entity.Provider;
+import by.bsuir.purchasingdepartment.repository.CatalogRepository;
 import by.bsuir.purchasingdepartment.repository.ProviderRepository;
 import by.bsuir.purchasingdepartment.service.ProviderService;
 import by.bsuir.purchasingdepartment.service.dto.ProviderDto;
@@ -15,9 +17,14 @@ import java.util.List;
 public class ProviderImpl implements ProviderService {
     private final ProviderRepository providerRepository;
     private final ProviderMapper providerMapper;
+    private final CatalogRepository catalogRepository;
 
     @Override
     public Provider addProvider(ProviderDto dto) {
+        Provider provider = providerMapper.toEntity(dto);
+        for(Catalog c: provider.getCatalogList()){
+            c.setProvider(provider);
+        }
         Provider res = providerRepository.save(providerMapper.toEntity(dto));
         return res;
     }
@@ -30,8 +37,12 @@ public class ProviderImpl implements ProviderService {
 
     @Override
     public void deleteProvider(Long id) {
-        Provider res = providerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("There is no resource with id = " + id));
-        providerRepository.delete(res);
+        //TODO проверка на наличие поставщика в актуальных записях заказов либо настройка правильного удаления через бд
+        Provider delProvider = providerRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("There is no Provider with id= " + id));
+        List<Catalog> catalogList = catalogRepository.findByProvider(delProvider);
+        catalogRepository.deleteAll(catalogList);
+        providerRepository.delete(delProvider);
     }
 
     @Override

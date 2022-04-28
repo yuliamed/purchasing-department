@@ -40,10 +40,18 @@
         <div data-action="refresh">
           <img th:src="@{/icons/refresh.svg}">
         </div>
-        <div data-action="add">
-          <img th:src="@{/icons/add.svg}">
-        </div>
+        <form id="add-file-plan" method="POST" th:action="@{/plans/add}" enctype="multipart/form-data" >
+          <input id="file" type="file" name="file" hidden="true" accept=".json">
+          <label for="file"><img th:src="@{/icons/add.svg}"></label>
+          <div>
+            <label for="file" id="label-for-file">   </label>
+          </div>
+          <div>
+            <button class="btn btn-primary" type="submit" id="btn-upload" hidden="true">Отправить</button>
+          </div>
+        </form>
       </div>
+
       <table class="content-table" id="plans_table">
         <thead>
         <tr>

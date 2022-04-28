@@ -1,14 +1,21 @@
 package by.bsuir.purchasingdepartment.service.dto;
 
+import by.bsuir.purchasingdepartment.entity.Provider;
 import by.bsuir.purchasingdepartment.entity.Resource;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
-public class SpecificationDto extends AbstractDTO{
-    private Integer count;
+@NoArgsConstructor
+public class CatalogDto extends AbstractDTO {
+
     private Resource resource;
+
+    private Provider provider;
+
+    private Double price;
+
+    private Integer deliveryTimeInDays;
 }

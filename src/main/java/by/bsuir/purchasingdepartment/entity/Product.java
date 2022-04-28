@@ -16,12 +16,15 @@ import java.util.List;
 @Getter
 @Setter
 public class Product extends AbstractEntity {
-    @Column(name="product_name", length = 45, nullable = false)
+    @Column(name = "product_name", length = 45, nullable = false)
     private String name;
-    @Column(name="is_product", nullable = false)
+
+    @Column(name = "is_product", nullable = false)
     private Boolean isProduct = true;
-    @Column(name="description", length = 350)
+
+    @Column(name = "description", length = 350)
     private String description = "description";
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "product", cascade = CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade = CascadeType.ALL)
     List<Specification> specifications = new ArrayList<>();
 }
