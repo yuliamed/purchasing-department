@@ -49,6 +49,7 @@ public class PlanImpl implements PlanService {
             temp = File.createTempFile("myTempFile", ".txt");
             System.out.println("Temp file created : " +
                     temp.getAbsolutePath());
+            file.transferTo(temp);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,6 +76,7 @@ public class PlanImpl implements PlanService {
         }
         if (Objects.nonNull(plans)) {
             List<Plan> newPlans = parsePlanFromDto(plans);
+            planRepository.deleteAll();
             planRepository.saveAll(newPlans);
         }
     }
