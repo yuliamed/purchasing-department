@@ -13,12 +13,12 @@
 <header class="header">
   <div class="mui-container">
     <div class="nav">
-      <a th:href="orders" data-to="orders">Заказы</a>
-      <a th:href="resources" data-to="resources">Ресурсы</a>
-      <a th:href="products" data-to="products">Продукты</a>
-      <a th:href="providers" data-to="producers">Поставщики</a>
-      <a th:href="plans" data-to="plans">План производства</a>
-      <a th:href="store" data-to="store">Склад</a>
+      <a th:href="@{/orders}" data-to="orders">Заказы</a>
+      <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
+      <a th:href="@{/products}" data-to="products">Продукты</a>
+      <a th:href="@{/providers}" data-to="producers">Поставщики</a>
+      <a th:href="@{/plans}" data-to="plans">План производства</a>
+      <a th:href="@{/store}" data-to="store">Склад</a>
       <div class="logout">
         <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
       </div>
