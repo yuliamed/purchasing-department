@@ -25,6 +25,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -43,11 +44,13 @@ public class PlanImpl implements PlanService {
     @SneakyThrows
     @Override
     public void addPlansFromFile(MultipartFile file) {
-        File fileTemp = new File("C:\\University\\purchasing-department\\plans\\" + file.getName() + ".json");
+        File temp = null;
         try {
-            file.transferTo(fileTemp);
+            temp = File.createTempFile("myTempFile", ".txt");
+            System.out.println("Temp file created : " +
+                    temp.getAbsolutePath());
         } catch (IOException e) {
-            throw new ResourceNotFoundException("Problems with file");
+            e.printStackTrace();
         }
 
         //Создание файла для теста и формы
@@ -66,12 +69,14 @@ public class PlanImpl implements PlanService {
         }.getType();
         List<PlanFileDto> plans = null;
         try {
-            plans = gson.fromJson(new FileReader(fileTemp.getAbsolutePath()), type);
+            plans = gson.fromJson(new FileReader(temp.getAbsolutePath()), type);
         } catch (FileNotFoundException e) {
             throw new ResourceNotFoundException("There are no temp file!");
         }
-        List<Plan> newPlans = parsePlanFromDto(plans);
-        planRepository.saveAll(newPlans);
+        if (Objects.nonNull(plans)) {
+            List<Plan> newPlans = parsePlanFromDto(plans);
+            planRepository.saveAll(newPlans);
+        }
     }
 
     private ArrayList<Plan> parsePlanFromDto(List<PlanFileDto> plans) {
