@@ -43,7 +43,7 @@ public class PlanImpl implements PlanService {
     @SneakyThrows
     @Override
     public void addPlansFromFile(MultipartFile file) {
-        File fileTemp = new File("C:\\University\\purchasing-department\\plans\\" + file.getName() + ".json");
+        File fileTemp = new File("D:\\univer\\6 sem\\SITAIRIS\\KURSACH\\purchasing-department\\plans\\" + file.getName() + ".json");
         try {
             file.transferTo(fileTemp);
         } catch (IOException e) {

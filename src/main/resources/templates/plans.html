@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -38,7 +38,7 @@
     <div class="mui-container">
       <div class="content-edit-buttons" data-table="plans_table">
         <div data-action="refresh">
-          <img th:src="@{/icons/refresh.svg}">
+          <a th:href="@{/plans}"><img th:src="@{/icons/refresh.svg}"></a>
         </div>
         <form id="add-file-plan" method="POST" th:action="@{/plans/add}" enctype="multipart/form-data" >
           <input id="file" type="file" name="file" hidden="true" accept=".json">
@@ -62,35 +62,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td></td>
-          <td>0001</td>
-          <td>Здесь что-то есть</td>
-          <td>Здесь что-то есть</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0002</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0003</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0004</td>
-          <td></td>
-          <td></td>
+        <tr th:each="plan:${plans}">
+          <td th:utext="${plan.date}"></td>
+          <td th:utext="${plan.product.name}"></td>
+          <td th:utext="${plan.dimension.name}"></td>
+          <td th:utext="${plan.count}"></td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
 </main>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/plans.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
