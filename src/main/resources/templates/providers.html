@@ -72,22 +72,48 @@
             </table>
             <br>
             <script></script>
-<!--            <form id="get-cat-btn" method="POST" th:action="@{/providers/get-catalog}"><input type="hidden" name="example" value=""/>-->
-<!--                <button id="btn1" class="btn btn-blue">Выбрать поставщика</button>-->
-<!--            </form>-->
-            <form id="get-cat-btn" method="GET" th:action="@{/providers/show-catalog}"><input type="hidden" name="example" value=""/>
-                <button id="btn1" class="btn btn-blue">Посмотреть номенклатуру</button>
-            </form>
-            <div class="content-row-info">
-                <div class="line"></div>
-                <div class="mui-container info-title">
-                    <div th:utext="${provider.name}"></div>
-                    <div class="line"></div>
-                </div>
-                <div class="line"></div>
-            </div>
-            <table class="content-table" id="catalog_table">
+            <!--            <form id="get-cat-btn" method="POST" th:action="@{/providers/get-catalog}"><input type="hidden" name="example" value=""/>-->
+            <!--                <button id="btn1" class="btn btn-blue">Выбрать поставщика</button>-->
+            <!--            </form>-->
+            <!--            <script>-->
+            <!--                chosenProveder-->
+            <!--            </script>-->
 
+
+<!--            <p id="demo"></p>-->
+
+
+            <form id="form" method="POST" th:action="@{/providers/get-catalog}" th:object="${provider}">
+                <div class="inputs"><input id="demo" hidden="true" type="text" name="example" th:field="*{id}"/></div>
+                <div class="submit">
+                    <button id="btn1" type="submit" class="btn btn-blue">Посмотреть номенклатуру</button>
+                </div>
+
+            </form>
+
+<!--            <div class="content-row-info">-->
+<!--                <div class="line"></div>-->
+<!--                <div class="mui-container info-title">-->
+<!--                    <div th:utext="${catalog.get(0).getProvider().name}"></div>-->
+<!--                    <div class="line"></div>-->
+<!--                </div>-->
+<!--                <div class="line"></div>-->
+<!--            </div>-->
+
+
+                        <div class="content-row-info">
+                            <div class="line"></div>
+                            <div th:if="${ not #lists.isEmpty(catalog)}" class="mui-container info-title">
+                                <div th:utext="${catalog.get(0).getProvider().name}"></div>
+                                <div class="line"></div>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+            <table class="content-table" id="catalog_table">
+<!--                <tr th:if="${ not #lists.isEmpty(catalog)}">-->
+                <!--                    <td class="check-mark-active"></td>-->
+                <!--                    <td th:utext="${catalog.get(0).provider.name}"></td>-->
+                <!--                </tr>-->
                 <thead>
                 <tr>
                     <th class="check-mark" style="width:70px" scope="col" data-checkmark=""></th>

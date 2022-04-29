@@ -4,7 +4,7 @@ import by.bsuir.purchasingdepartment.entity.Product;
 import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.repository.ResourceRepository;
 import by.bsuir.purchasingdepartment.service.ProductService;
-import by.bsuir.purchasingdepartment.service.dto.DeleteDto;
+import by.bsuir.purchasingdepartment.service.dto.IdsDto;
 import by.bsuir.purchasingdepartment.service.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -47,7 +47,7 @@ public class ProductController {
     }
     @DeleteMapping("/delete")
     public @ResponseBody
-    String delete(DeleteDto delIds, BindingResult result) {
+    String delete(IdsDto delIds, BindingResult result) {
         String returnText="удаление продуктов выполнено успешно";
         for (int i = 0;i < delIds.getDelIds().size(); i++){
             productService.deleteProduct(delIds.getDelIds().get(i));

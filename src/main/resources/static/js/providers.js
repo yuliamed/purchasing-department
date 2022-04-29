@@ -4,7 +4,7 @@
     let newRowsToAdd = [];
     let selectedRows = [];
     let isInProcess = false;
-
+    let chosenProveder;
     const onAddRowSave = () => {
     };
     const onRemoveRowSave = () => {
@@ -15,6 +15,10 @@
     };
 
     function onLoad() {
+
+
+
+       // document.getElementById("id123").innerHTML = 3;
         const table = getTablesWithActions();
 
         // const mutationObserver = new MutationObserver(() => {
@@ -713,31 +717,35 @@
 
     form1 = document.getElementById("btn1")
     form1.addEventListener('click', function (e) {
-        e.preventDefault();
+        //e.preventDefault();
         selectedIndex = []
         selectedRows.forEach(row => {
             selectedIndex.push(row.node.innerText.split('\t')[1]);
         });
-        console.log(selectedIndex)
+        //console.log(selectedIndex)
         if (selectedIndex.length > 1) {
             alert("Для отображения номенкларуры выберите пожалуйста ОДНОГО поставщика")
+            e.preventDefault();
         } else {
-            $.ajax({
-                type: 'POST',
-                url: '/' + page + '/get-catalog', // адрес запроса
-                data: {'delIds': selectedIndex}, // данные запроса
-                dataType: 'text', // тип ожидаемых данных,
-                success: function (data) {
-                    alert(data)
-                    console.log(selectedIndex);
-                }, // обработка ответа от сервера
-                error: function (jqXHR) {
-                    console.log('Ошибка выполнения');
-                },
-                complete: function () {
-                    console.log('Завершение выполнения');
-                }
-            });
+            chosenProveder = selectedIndex[0]
+            document.getElementById("demo").value = chosenProveder;
+            // $.ajax({
+            //     type: 'POST',
+            //     url: '/' + page + '/get-catalog', // адрес запроса
+            //     data: {'delIds': selectedIndex}, // данные запроса
+            //     dataType: 'html', // тип ожидаемых данных,
+            //     success: function (data) {
+            //         alert(data)
+            //
+            //         console.log(selectedIndex);
+            //     }, // обработка ответа от сервера
+            //     error: function (jqXHR) {
+            //         console.log('Ошибка выполнения');
+            //     },
+            //     complete: function () {
+            //         console.log('Завершение выполнения');
+            //     }
+            // });
         }
     });
 })();
