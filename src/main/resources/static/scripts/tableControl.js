@@ -351,7 +351,6 @@
     });
 
     const onSave = () => {
-      //TODO отправка запроса на удаление
       for (const trKey in trsBeforeDelete) {
         trsBeforeDelete[trKey].remove();
       }
@@ -707,4 +706,14 @@
       document.head.append(newScript);
     }
   }
+  // function loadProvidersPage(){
+  //   form.addEventListener('click', function(e){
+  //   selectedIndex = []
+  //   selectedRows.forEach(row => {
+  //     selectedIndex.push(row.node.innerText.split('\t')[1]);
+  //
+  //   });
+  //   console.log(selectedRows)
+  // })}
 })();
+

@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/producers.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/providers.css}">
 </head>
 <body>
 <header class="header">
@@ -57,7 +57,7 @@
                     <th class="id" style="width:62px" scope="col">ID</th>
                     <th class="name" style="width:262px" scope="col">Организация</th>
                     <th class="description" style="width:256px" scope="col">Телефон</th>
-                    <th class="nomenclature" style="width:540px" scope="col">Номенклатура/Address</th>
+                    <th class="nomenclature" style="width:540px" scope="col">Адрес</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,12 +70,47 @@
                 </tr>
                 </tbody>
             </table>
+            <br>
+            <script></script>
+<!--            <form id="get-cat-btn" method="POST" th:action="@{/providers/get-catalog}"><input type="hidden" name="example" value=""/>-->
+<!--                <button id="btn1" class="btn btn-blue">Выбрать поставщика</button>-->
+<!--            </form>-->
+            <form id="get-cat-btn" method="GET" th:action="@{/providers/show-catalog}"><input type="hidden" name="example" value=""/>
+                <button id="btn1" class="btn btn-blue">Посмотреть номенклатуру</button>
+            </form>
+            <div class="content-row-info">
+                <div class="line"></div>
+                <div class="mui-container info-title">
+                    <div th:utext="${provider.name}"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="line"></div>
+            </div>
+            <table class="content-table" id="catalog_table">
+
+                <thead>
+                <tr>
+                    <th class="check-mark" style="width:70px" scope="col" data-checkmark=""></th>
+                    <th class="name" style="width:262px" scope="col">Ресурс</th>
+                    <th class="delivery-time" style="width:256px" scope="col">Время доставки</th>
+                    <th class="price" style="width:540px" scope="col">Цена</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cat:${catalog}">
+                    <td class="check-mark-active"></td>
+                    <td th:utext="${cat.resource.name}"></td>
+                    <td th:utext="${cat.deliveryTimeInDays}"></td>
+                    <td th:utext="${cat.price}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </main>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/providers.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
-<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+<!--<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>-->
 </body>
 </html>
