@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class Storehouse extends AbstractEntity {
 
     @OneToOne
+    @JoinColumn(name = "resource")
     private Resource resource;
 
     @Column(name = "count", nullable = false)

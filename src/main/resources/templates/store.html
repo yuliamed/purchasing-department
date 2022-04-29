@@ -39,7 +39,7 @@
       <div data-action="refresh">
         <img th:src="@{/icons/refresh.svg}">
       </div>
-      <form id="add-file-plan" method="POST" th:action="@{/plans/add}" enctype="multipart/form-data" >
+      <form id="add-file-plan" method="POST" th:action="@{/store/add}" enctype="multipart/form-data" >
         <input id="file" type="file" name="file" hidden="true" accept=".json">
         <label for="file"><img th:src="@{/icons/add.svg}"></label>
         <div>

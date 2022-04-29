@@ -1,12 +1,12 @@
 package by.bsuir.purchasingdepartment.service.impl;
 
-import by.bsuir.purchasingdepartment.entity.*;
+import by.bsuir.purchasingdepartment.entity.Dimension;
+import by.bsuir.purchasingdepartment.entity.Resource;
+import by.bsuir.purchasingdepartment.entity.Storehouse;
 import by.bsuir.purchasingdepartment.repository.DimensionRepository;
-import by.bsuir.purchasingdepartment.repository.ProductRepository;
 import by.bsuir.purchasingdepartment.repository.ResourceRepository;
 import by.bsuir.purchasingdepartment.repository.StorehouseRepository;
 import by.bsuir.purchasingdepartment.service.StorehouseService;
-import by.bsuir.purchasingdepartment.service.dto.PlanFileDto;
 import by.bsuir.purchasingdepartment.service.dto.StorehouseFileDto;
 import by.bsuir.purchasingdepartment.service.exception.ResourceNotFoundException;
 import com.google.gson.Gson;
@@ -21,12 +21,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -46,7 +42,7 @@ public class StorehouseImpl implements StorehouseService {
     public void addProductsFromFile(MultipartFile file) {
         File temp = null;
         try {
-            temp = File.createTempFile("myTempFile_" + LocalDateTime.now(), ".txt");
+            temp = File.createTempFile("myTempFile_" + new Random(), ".txt");
             System.out.println("Temp file created : " +
                     temp.getAbsolutePath());
             file.transferTo(temp);
