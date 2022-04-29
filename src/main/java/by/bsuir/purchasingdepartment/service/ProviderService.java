@@ -10,5 +10,5 @@ public interface ProviderService {
     List<Provider> findAll();
     void deleteProvider(Long id);
     Provider updateProvider(Provider provider);
-
+Provider getProviderById(Long id);
 }

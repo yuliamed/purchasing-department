@@ -50,4 +50,10 @@ public class ProviderImpl implements ProviderService {
         Provider res = providerRepository.save(provider);
         return res;
     }
+
+    @Override
+    public Provider getProviderById(Long id) {
+        Provider res = providerRepository.getById(id);
+        return res;
+    }
 }
