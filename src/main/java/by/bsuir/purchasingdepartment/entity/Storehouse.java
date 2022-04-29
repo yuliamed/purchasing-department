@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "storehouse")
@@ -14,11 +13,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Storehouse implements Serializable {
-    @Id
+public class Storehouse extends AbstractEntity {
+
     @OneToOne
     private Resource resource;
 
     @Column(name = "count", nullable = false)
     private Integer count;
+
+    @ManyToOne
+    @JoinColumn(name = "dimension")
+    private Dimension dimension;
 }
