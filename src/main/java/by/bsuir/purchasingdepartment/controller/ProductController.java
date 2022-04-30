@@ -59,7 +59,7 @@ public class ProductController {
         List<Resource> resources = resourceRepository.findAll();
         model.addAttribute("new_product", new ProductDto());
         model.addAttribute("resources", resources);
-        model.addAttribute("ids", new IdsDto());
+        model.addAttribute("specif", new NewProductSpecification());
         return "create-product";
     }
 
@@ -67,8 +67,6 @@ public class ProductController {
     public String addProduct(@ModelAttribute("new_product") ProductDto productDto,
                              @ModelAttribute("specifDto") NewProductSpecification dto) {
         productService.addProduct(productDto, dto);
-
-        //Specification specification = new Specification();
         return "redirect:/products";
     }
 }

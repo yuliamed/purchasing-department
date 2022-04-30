@@ -55,7 +55,8 @@
                         <label for="add-product-description">Описание</label>
                         <input th:field="*{new_product.description}" id="add-product-description" type="text">
                     </div>
-                    <input id="specifications" hidden="true" type="text" name="example" th:field="*{ids.delIds}"/>
+                    <input id="specifications" hidden="true" type="text" name="example" th:field="*{specif.idsRes}"/>
+                    <input id="counters" hidden="true" type="text" name="example" th:field="*{specif.countOfRes}"/>
                     <!--        <div class="block-input">-->
                     <!--          <label for="add-product-amount">Количество</label>-->
                     <!--          <input id="add-product-amount" type="text">-->
@@ -76,7 +77,7 @@
                     <td class="check-mark-active"></td>
                     <td th:utext="${res.id}"></td>
                     <td th:utext="${res.name}"></td>
-                    <td><input id="resource_counter" hidden="true" type="number"></td>
+                    <td><input id="resource_counter" hidden="true" required="true" type="number" min="1" value="1"></td>
                 </tr>
                 </tbody>
             </table>

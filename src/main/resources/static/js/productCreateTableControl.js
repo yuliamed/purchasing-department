@@ -713,17 +713,22 @@
   }
   let saveBtn = document.getElementById("save-btn");
   saveBtn.addEventListener('click', function (e) {
-    //e.preventDefault();
     selectedIndex = []
+    selectedCounters = []
     selectedRows.forEach(row => {
       selectedIndex.push(row.node.innerText.split('\t')[1]);
     });
-    console.log(selectedIndex)
+    selectedRows.forEach(row => {
+      selectedCounters.push(row.node.getElementsByTagName("td")[3].getElementsByTagName("input")[0].value)
+    });
+    //console.log(selectedCounters)
+
     if (selectedIndex.length < 1) {
       alert("Для создания продукта выберите хотя бы 1 ресурс")
       e.preventDefault();
     } else {
       document.getElementById("specifications").value = selectedIndex;
+      document.getElementById("counters").value = selectedCounters;
     }
   });
 })();
