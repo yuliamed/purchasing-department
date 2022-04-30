@@ -12,5 +12,4 @@ public class RequiredResourcesDto extends AbstractDTO{
     private Resource resource;
     private Integer requiredResCount;
     private Integer needToBuyCount;
-
 }

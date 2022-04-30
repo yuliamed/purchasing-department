@@ -40,7 +40,7 @@ public class OrderImpl implements OrderService {
             dto.setRequiredResCount(mainMap.get(r));
             Storehouse store = storeRepository.findByResource(r);
             if (Objects.nonNull(store)) {
-                Integer needToBuyCount = mainMap.get(r) - store.getCount();
+                Integer needToBuyCount = mainMap.get(r) - store.getCount()*store.getDimension().getCapacity();
                 if (needToBuyCount > 0) {
                     dto.setNeedToBuyCount(needToBuyCount);
                 } else {
@@ -62,7 +62,7 @@ public class OrderImpl implements OrderService {
             } else {
                 count = s.getCount() * plansCont;
             }
-            
+
             map.put(s.getResource(), count);
         }
 

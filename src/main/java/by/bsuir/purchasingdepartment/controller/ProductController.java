@@ -2,10 +2,10 @@ package by.bsuir.purchasingdepartment.controller;
 
 import by.bsuir.purchasingdepartment.entity.Product;
 import by.bsuir.purchasingdepartment.entity.Resource;
-import by.bsuir.purchasingdepartment.entity.Specification;
 import by.bsuir.purchasingdepartment.repository.ResourceRepository;
 import by.bsuir.purchasingdepartment.service.ProductService;
 import by.bsuir.purchasingdepartment.service.dto.IdsDto;
+import by.bsuir.purchasingdepartment.service.dto.NewProductSpecification;
 import by.bsuir.purchasingdepartment.service.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -43,15 +43,17 @@ public class ProductController {
         model.addAttribute("products", products);
         return "products";
     }
+
     @DeleteMapping("/delete")
     public @ResponseBody
     String delete(IdsDto delIds, BindingResult result) {
-        String returnText="удаление продуктов выполнено успешно";
-        for (int i = 0;i < delIds.getDelIds().size(); i++){
+        String returnText = "удаление продуктов выполнено успешно";
+        for (int i = 0; i < delIds.getDelIds().size(); i++) {
             productService.deleteProduct(delIds.getDelIds().get(i));
         }
         return returnText;
     }
+
     @GetMapping(value = "/create-product")
     public String showProductAddPage(Model model) {
         List<Resource> resources = resourceRepository.findAll();
@@ -60,9 +62,11 @@ public class ProductController {
         model.addAttribute("ids", new IdsDto());
         return "create-product";
     }
+
     @PostMapping(value = "/create-product/add")
-    public String addProduct(@ModelAttribute("new_product") ProductDto productDto, @ModelAttribute("ids") IdsDto idsDto) {
-        //productService.addProduct(productDto.setSpecifications(););
+    public String addProduct(@ModelAttribute("new_product") ProductDto productDto,
+                             @ModelAttribute("specifDto") NewProductSpecification dto) {
+        productService.addProduct(productDto, dto);
 
         //Specification specification = new Specification();
         return "redirect:/products";
