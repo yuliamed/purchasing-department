@@ -3,7 +3,7 @@ package by.bsuir.purchasingdepartment.controller;
 import by.bsuir.purchasingdepartment.entity.Catalog;
 import by.bsuir.purchasingdepartment.entity.Provider;
 import by.bsuir.purchasingdepartment.service.ProviderService;
-import by.bsuir.purchasingdepartment.service.dto.IdsDto;
+import by.bsuir.purchasingdepartment.service.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,6 +49,13 @@ public class ProviderController {
         String returnText="Для Отображения номенклатуры выбранного поставщика обновите пожалуйста страницу";
         this.catalogs = providerService.getProviderById(p.getId()).getCatalogList();
         return "redirect:";
+    }
+
+    @PostMapping(value = "/create-provider/add")
+    public String addProduct(@ModelAttribute("new_provider") ProviderDto providerDto,
+                             @ModelAttribute("catalogDto") NewProviderCatalog dto) {
+        providerService.addProvider(providerDto, dto);
+        return "redirect:/products";
     }
 //    @GetMapping("/show-catalog")
 //    public String showCatalog(Model model){
