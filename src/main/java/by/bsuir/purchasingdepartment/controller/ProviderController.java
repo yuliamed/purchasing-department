@@ -2,8 +2,10 @@ package by.bsuir.purchasingdepartment.controller;
 
 import by.bsuir.purchasingdepartment.entity.Catalog;
 import by.bsuir.purchasingdepartment.entity.Provider;
+import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.service.ProviderService;
-import by.bsuir.purchasingdepartment.service.dto.IdsDto;
+import by.bsuir.purchasingdepartment.service.ResourceService;
+import by.bsuir.purchasingdepartment.service.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProviderController {
     private final ProviderService providerService;
+    private final ResourceService resourceService;
     private List<Catalog> catalogs;
     @GetMapping
     public String showProvidersPage(Model model) {
@@ -49,6 +52,20 @@ public class ProviderController {
         String returnText="Для Отображения номенклатуры выбранного поставщика обновите пожалуйста страницу";
         this.catalogs = providerService.getProviderById(p.getId()).getCatalogList();
         return "redirect:";
+    }
+    @GetMapping(value = "/create-provider")
+    public String showProviderAddPage(Model model) {
+        List<Resource> resources = resourceService.findAll();
+        model.addAttribute("new_provider", new ProviderDto());
+        model.addAttribute("resources", resources);
+        model.addAttribute("catalog", new NewProviderCatalog());
+        return "create-provider";
+    }
+    @PostMapping(value = "/create-provider/add")
+    public String addProduct(@ModelAttribute("new_provider") ProviderDto providerDto,
+                             @ModelAttribute("catalog") NewProviderCatalog dto) {
+        //providerService.addProvider(providerDto, dto);
+        return "redirect:/providers";
     }
 //    @GetMapping("/show-catalog")
 //    public String showCatalog(Model model){
