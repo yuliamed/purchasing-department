@@ -19,6 +19,7 @@ public class StorehouseController {
     @GetMapping
     public String showPlanPage(Model model) {
         List<Storehouse> s = storehouseService.findAll();
+        model.addAttribute("stores", s);
         return "store";
     }
 
