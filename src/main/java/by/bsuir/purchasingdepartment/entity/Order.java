@@ -28,12 +28,15 @@ public class Order extends AbstractEntity {
     @Column(name = "whole_price")
     private Double wholePrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Catalog catalog;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     private User manager;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private PaymentType paymentType;
 }

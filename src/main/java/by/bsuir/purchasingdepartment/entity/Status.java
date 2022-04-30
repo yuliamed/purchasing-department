@@ -18,4 +18,7 @@ import javax.persistence.Table;
 public class Status extends AbstractEntity{
     @Column(name="status_name", length = 45, nullable = false)
     private String name;
+
+    @Column(name="rus_status_name", length = 45, nullable = false)
+    private String name_rus;
 }

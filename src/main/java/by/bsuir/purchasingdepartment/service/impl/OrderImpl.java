@@ -1,13 +1,14 @@
 package by.bsuir.purchasingdepartment.service.impl;
 
 import by.bsuir.purchasingdepartment.entity.*;
+import by.bsuir.purchasingdepartment.entity.enam.OrderStatus;
 import by.bsuir.purchasingdepartment.repository.*;
+import by.bsuir.purchasingdepartment.security.service.JwtUser;
 import by.bsuir.purchasingdepartment.service.OrderService;
-import by.bsuir.purchasingdepartment.service.dto.DataForCreatingOrderDto;
-import by.bsuir.purchasingdepartment.service.dto.OrderProvidersDto;
-import by.bsuir.purchasingdepartment.service.dto.RequiredResourcesDto;
-import by.bsuir.purchasingdepartment.service.dto.ResourceCountDto;
+import by.bsuir.purchasingdepartment.service.dto.*;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,6 +23,8 @@ public class OrderImpl implements OrderService {
     private final ResourceRepository resourceRepository;
     private final CatalogRepository catalogRepository;
     private final PaymentTypeRepository paymentTypeRepository;
+    private final UserRepository userRepository;
+    private final StatusRepository statusRepository;
 
     @Override
     public Set<RequiredResourcesDto> findRequiredResources() {
@@ -49,13 +52,39 @@ public class OrderImpl implements OrderService {
         return result;
     }
 
+    @Override
+    public Order createOrder(CreatingOrderDto dto) {
+        Order order = new Order();
+        order.setCount(dto.getCount());
+        order.setPaymentType(paymentTypeRepository.getById(dto.getPaymentTypeId()));
+        Catalog catalog = catalogRepository.getById(dto.getCatalogId());
+        order.setCatalog(catalog);
+        order.setManager(getUserFromAuth());
+        order.setDeliveryDate(LocalDate.now().plusDays(catalog.getDeliveryTimeInDays()));
+        Status status = statusRepository.getByName(OrderStatus.EN_ROUTE.name());
+        order.setStatus(status);
+        order.setIsPaid(false);
+        order.setWholePrice(catalog.getPrice() * dto.getCount());
+        Order savedOrder = orderRepository.save(order);
+        return savedOrder;
+    }
+
+    private User getUserFromAuth() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        JwtUser jwtUser = (JwtUser) auth.getPrincipal();
+        if (Objects.nonNull(jwtUser)) {
+            return userRepository.getById(jwtUser.getId());
+        }
+        return null;
+    }
+
     private List<OrderProvidersDto> createProviderList(List<Catalog> catalogList, Integer requiredCount) {
         List<OrderProvidersDto> res = new ArrayList<>();
         for (Catalog c : catalogList) {
             OrderProvidersDto dto = new OrderProvidersDto();
             dto.setProvider(c.getProvider());
             dto.setPriceForOne(c.getPrice());
-            dto.setPriceForAll(c.getPrice()*requiredCount);
+            dto.setPriceForAll(c.getPrice() * requiredCount);
             dto.setDeliveryDate(LocalDate.now().plusDays(c.getDeliveryTimeInDays()));
             res.add(dto);
         }
