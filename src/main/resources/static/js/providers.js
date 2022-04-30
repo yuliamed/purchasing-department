@@ -110,10 +110,10 @@
         const {action} = correctBtn.dataset;
 
         switch (action) {
-            case 'add':
-                toggleProcess(true);
-                addTableRow(table, btns);
-                return toggleBtn(correctBtn, btns);
+            // case 'add':
+            //     toggleProcess(true);
+            //     addTableRow(table, btns);
+            //     return toggleBtn(correctBtn, btns);
             case 'edit':
                 if (isInProcess) return;
                 selectedRows.length && toggleProcess();
