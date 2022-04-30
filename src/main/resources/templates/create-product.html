@@ -1,85 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Create Product</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/create-product.css}">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Create Product</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/create-product.css}">
 </head>
 <body>
 <script>
-  var page = 'create-product';
+    var page = 'create-product';
 </script>
 <header class="mui-appbar mui--z1 header">
-  <div class="mui-container">
-    <div class="nav">
-      <a th:href="@{/orders}" data-to="orders">Заказы</a>
-      <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
-      <a th:href="@{/products}" data-to="products">Продукты</a>
-      <a th:href="@{/providers}" data-to="producers">Поставщики</a>
-      <a th:href="@{/plans}" data-to="plans">План производства</a>
-      <a th:href="@{/store}" data-to="store">Склад</a>
-      <div class="logout">
-        <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
-      </div>
+    <div class="mui-container">
+        <div class="nav">
+            <a th:href="@{/orders}" data-to="orders">Заказы</a>
+            <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
+            <a th:href="@{/products}" data-to="products">Продукты</a>
+            <a th:href="@{/providers}" data-to="producers">Поставщики</a>
+            <a th:href="@{/plans}" data-to="plans">План производства</a>
+            <a th:href="@{/store}" data-to="store">Склад</a>
+            <div class="logout">
+                <a th:href="@{/auth}"><img th:src="@{/icons/logout.svg}"></a>
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 <main id="content-wrapper" class="mui--text-center">
-  <div class="mui-container">
-    <div class="content-add-product">
-      <div class="add-product-title">Создание продукта</div>
-      <div class="add-product-form">
-        <div class="block-input">
-          <label for="add-product-id">ID</label>
-          <input id="add-product-id" type="text">
-        </div>
-        <div class="block-input add-product-select">
-          <label for="add-product-type">Тип продукта</label>
-          <select id="add-product-type" class="with-arrow">
-            <option value="Первый">Первый</option>
-            <option value="Второй">Второй</option>
-          </select>
-        </div>
-        <div class="block-input">
-          <label for="add-product-name">Название</label>
-          <input id="add-product-name" type="text">
-        </div>
-        <div class="block-input">
-          <label for="add-product-amount">Количество</label>
-          <input id="add-product-amount" type="text">
-        </div>
-      </div>
+    <div class="mui-container">
+        <form method="POST" th:action="@{/products/create-product/add}">
+            <div class="content-add-product">
+                <div class="add-product-title">Создание продукта</div>
+                <div class="add-product-form">
+
+                    <div class="block-input">
+                        <label for="add-product-name">Название</label>
+                        <input th:field="*{new_product.name}" id="add-product-name" type="text">
+                    </div>
+                    <!--        <div class="block-input">-->
+                    <!--          <label for="add-product-id">ID</label>-->
+                    <!--          <input id="add-product-id" type="text">-->
+                    <!--        </div>-->
+<!--                    <div class="block-input add-product-select">-->
+<!--                        <label for="add-product-type">Тип продукта</label>-->
+<!--                        <select id="add-product-type" class="with-arrow">-->
+<!--                            <option value="Первый">Первый</option>-->
+<!--                            <option value="Второй">Второй</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+                    <div class="block-input">
+                        <label for="add-product-description">Описание</label>
+                        <input th:field="*{new_product.description}" id="add-product-description" type="text">
+                    </div>
+                    <input id="specifications" hidden="true" type="text" name="example" th:field="*{ids.delIds}"/>
+                    <!--        <div class="block-input">-->
+                    <!--          <label for="add-product-amount">Количество</label>-->
+                    <!--          <input id="add-product-amount" type="text">-->
+                    <!--        </div>-->
+                </div>
+            </div>
+            <table class="content-table" id="create-product-table">
+                <thead>
+                <tr>
+                    <th class="check-mark" style="width:60px" scope="col" data-checkmark></th>
+                    <th class="id" style="width:196px" scope="col">ID</th>
+                    <th class="name" style="width:704px" scope="col">Название</th>
+                    <th class="description" style="width:196px" scope="col">Количество</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="res:${resources}">
+                    <td class="check-mark-active"></td>
+                    <td th:utext="${res.id}"></td>
+                    <td th:utext="${res.name}"></td>
+                    <td><input id="resource_counter" hidden="true" type="number"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="save-wrapper">
+                <button id="save-btn" class="save btn btn-blue">Создать продукт</button>
+            </div>
+        </form>
     </div>
-    <table class="content-table" id="create-product-table">
-      <thead>
-      <tr>
-        <th class="check-mark" style="width:60px" scope="col" data-checkmark></th>
-        <th class="id" style="width:196px" scope="col">ID</th>
-        <th class="name" style="width:704px" scope="col">Название</th>
-        <th class="description" style="width:196px" scope="col">Количество</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="res:${resources}">
-        <td class="check-mark-active"></td>
-        <td th:utext="${res.id}"></td>
-        <td th:utext="${res.name}"></td>
-        <td></td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="save-wrapper">
-      <button class="save btn btn-blue">Создать продукт</button>
-    </div>
-  </div>
 </main>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/create-product.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
-<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+<script type="text/javascript" th:src="@{/js/productCreateTableControl.js}"></script>
 </body>
 </html>

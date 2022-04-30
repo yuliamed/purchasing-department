@@ -2,6 +2,7 @@ package by.bsuir.purchasingdepartment.controller;
 
 import by.bsuir.purchasingdepartment.entity.Product;
 import by.bsuir.purchasingdepartment.entity.Resource;
+import by.bsuir.purchasingdepartment.entity.Specification;
 import by.bsuir.purchasingdepartment.repository.ResourceRepository;
 import by.bsuir.purchasingdepartment.service.ProductService;
 import by.bsuir.purchasingdepartment.service.dto.IdsDto;
@@ -10,10 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -59,6 +57,14 @@ public class ProductController {
         List<Resource> resources = resourceRepository.findAll();
         model.addAttribute("new_product", new ProductDto());
         model.addAttribute("resources", resources);
+        model.addAttribute("ids", new IdsDto());
         return "create-product";
+    }
+    @PostMapping(value = "/create-product/add")
+    public String addProduct(@ModelAttribute("new_product") ProductDto productDto, @ModelAttribute("ids") IdsDto idsDto) {
+        //productService.addProduct(productDto.setSpecifications(););
+
+        //Specification specification = new Specification();
+        return "redirect:/products";
     }
 }

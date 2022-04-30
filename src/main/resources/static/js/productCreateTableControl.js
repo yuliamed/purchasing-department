@@ -706,4 +706,19 @@
       document.head.append(newScript);
     }
   }
+  let saveBtn = document.getElementById("save-btn");
+  saveBtn.addEventListener('click', function (e) {
+    //e.preventDefault();
+    selectedIndex = []
+    selectedRows.forEach(row => {
+      selectedIndex.push(row.node.innerText.split('\t')[1]);
+    });
+    console.log(selectedIndex)
+    if (selectedIndex.length < 1) {
+      alert("Для создания продукта выберите хотя бы 1 ресурс")
+      e.preventDefault();
+    } else {
+      document.getElementById("specifications").value = selectedIndex;
+    }
+  });
 })();
