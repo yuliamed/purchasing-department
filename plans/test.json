@@ -1,14 +1,14 @@
 [
   {
     "count": 10,
-    "date": "2022-04-30",
+    "date": "2022-05-30",
     "product": 2,
     "dimension": 1
   },
   {
     "count": 10,
-    "date": "2022-04-30",
-    "product": 2,
+    "date": "2022-05-30",
+    "product": 3,
     "dimension": 1
   }
 ]

@@ -19,12 +19,20 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class AuthController {
     private final UserService userService;
+
     @GetMapping
     public String auth(Model model) {
-        model.addAttribute("user",  new SignInDto());
+        model.addAttribute("user", new SignInDto());
         return "auth";
     }
-//
+
+    @GetMapping("/out")
+    public String authOut(Model model) {
+        model.addAttribute("user", new SignInDto());
+        return "auth";
+    }
+
+    //
 //    @RequestMapping(method = RequestMethod.POST)
 //    public String authPost(@ModelAttribute("user") User user) {
 //        //проверка наличия
@@ -38,10 +46,12 @@ public class AuthController {
         try {
             resp = userService.signIn(request);
         } catch (AuthenticationException e) {
-            resp=new JwtResp(null, null);
+            resp = new JwtResp(null, null);
             //TODO вывод сообщения об ошибке входа и возврат на стартовую страницу
-            return "redirect:/resources";
+
+            return "redirect:/auth";
         }
+        System.out.println("user: " + resp.getToken() + resp.getEmail());
         return "redirect:/resources";
     }
 

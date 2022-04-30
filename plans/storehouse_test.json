@@ -6,7 +6,17 @@
   },
   {
     "count": 100,
-    "resourceId": 1,
+    "resourceId": 7,
+    "dimension": 1
+  },
+  {
+    "count": 100,
+    "resourceId": 6,
+    "dimension": 1
+  },
+  {
+    "count": 100,
+    "resourceId": 4,
     "dimension": 1
   }
 ]
