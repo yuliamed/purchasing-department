@@ -1,14 +1,16 @@
 package by.bsuir.purchasingdepartment.service.impl;
 
 import by.bsuir.purchasingdepartment.entity.*;
-import by.bsuir.purchasingdepartment.repository.OrderRepository;
-import by.bsuir.purchasingdepartment.repository.PlanRepository;
-import by.bsuir.purchasingdepartment.repository.StorehouseRepository;
+import by.bsuir.purchasingdepartment.repository.*;
 import by.bsuir.purchasingdepartment.service.OrderService;
+import by.bsuir.purchasingdepartment.service.dto.DataForCreatingOrderDto;
+import by.bsuir.purchasingdepartment.service.dto.OrderProvidersDto;
 import by.bsuir.purchasingdepartment.service.dto.RequiredResourcesDto;
+import by.bsuir.purchasingdepartment.service.dto.ResourceCountDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -17,6 +19,9 @@ public class OrderImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final PlanRepository planRepository;
     private final StorehouseRepository storeRepository;
+    private final ResourceRepository resourceRepository;
+    private final CatalogRepository catalogRepository;
+    private final PaymentTypeRepository paymentTypeRepository;
 
     @Override
     public Set<RequiredResourcesDto> findRequiredResources() {
@@ -31,6 +36,32 @@ public class OrderImpl implements OrderService {
         return resSet;
     }
 
+    @Override
+    public DataForCreatingOrderDto getOrderProvidersByResId(ResourceCountDto reqDto) {
+        DataForCreatingOrderDto result = new DataForCreatingOrderDto();
+        Resource resource = resourceRepository.getById(reqDto.getResId());
+        List<Catalog> catalogList = catalogRepository.findByResource(resource);
+        List<OrderProvidersDto> orderProvidersList = createProviderList(catalogList, reqDto.getRequiredCount());
+        result.setListProviders(orderProvidersList);
+        result.setCount(reqDto.getRequiredCount());
+        result.setResource(resource);
+        result.setPaymentTypes(paymentTypeRepository.findAll());
+        return result;
+    }
+
+    private List<OrderProvidersDto> createProviderList(List<Catalog> catalogList, Integer requiredCount) {
+        List<OrderProvidersDto> res = new ArrayList<>();
+        for (Catalog c : catalogList) {
+            OrderProvidersDto dto = new OrderProvidersDto();
+            dto.setProvider(c.getProvider());
+            dto.setPriceForOne(c.getPrice());
+            dto.setPriceForAll(c.getPrice()*requiredCount);
+            dto.setDeliveryDate(LocalDate.now().plusDays(c.getDeliveryTimeInDays()));
+            res.add(dto);
+        }
+        return res;
+    }
+
     private Set<RequiredResourcesDto> countNeedToBuyResource(Map<Resource, Integer> mainMap) {
         Set<RequiredResourcesDto> resSet = new HashSet<>();
         Set<Resource> resourcesFromMap = mainMap.keySet();
@@ -40,7 +71,7 @@ public class OrderImpl implements OrderService {
             dto.setRequiredResCount(mainMap.get(r));
             Storehouse store = storeRepository.findByResource(r);
             if (Objects.nonNull(store)) {
-                Integer needToBuyCount = mainMap.get(r) - store.getCount()*store.getDimension().getCapacity();
+                Integer needToBuyCount = mainMap.get(r) - store.getCount() * store.getDimension().getCapacity();
                 if (needToBuyCount > 0) {
                     dto.setNeedToBuyCount(needToBuyCount);
                 } else {
