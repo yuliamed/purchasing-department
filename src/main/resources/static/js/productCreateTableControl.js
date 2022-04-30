@@ -67,6 +67,11 @@
   function toggleTableSelectedRow(tr, index) {
     if (tr && typeof index === 'number') {
       tr.classList.toggle('selected');
+        let cells = tr.getElementsByTagName("td")
+        let found = cells[3].getElementsByTagName("input")[0];
+        if (found.hidden == true){found.hidden = false;}else{
+            found.hidden = true;
+        }
       if (tr.classList.contains('selected')) selectedRows.push({
         node: tr, index
       });
