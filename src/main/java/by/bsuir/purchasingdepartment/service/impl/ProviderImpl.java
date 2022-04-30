@@ -35,7 +35,7 @@ public class ProviderImpl implements ProviderService {
         for (Catalog c : provider.getCatalogList()) {
             c.setProvider(provider);
         }
-        Provider res = providerRepository.save(providerMapper.toEntity(dto));
+        Provider res = providerRepository.save(provider);
         return res;
     }
 

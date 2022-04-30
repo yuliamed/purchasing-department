@@ -64,7 +64,7 @@ public class ProviderController {
     @PostMapping(value = "/create-provider/add")
     public String addProduct(@ModelAttribute("new_provider") ProviderDto providerDto,
                              @ModelAttribute("catalog") NewProviderCatalog dto) {
-        //providerService.addProvider(providerDto, dto);
+        providerService.addProvider(providerDto, dto);
         return "redirect:/providers";
     }
 //    @GetMapping("/show-catalog")
