@@ -69,6 +69,12 @@ public class OrderImpl implements OrderService {
         return savedOrder;
     }
 
+    @Override
+    public List<Order> findAll() {
+        List<Order> orders = orderRepository.findAll();
+        return orders;
+    }
+
     private User getUserFromAuth() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         JwtUser jwtUser = (JwtUser) auth.getPrincipal();
