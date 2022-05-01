@@ -27,14 +27,14 @@ public class OrderImpl implements OrderService {
     private final StatusRepository statusRepository;
 
     @Override
-    public Set<RequiredResourcesDto> findRequiredResources() {
+    public List<RequiredResourcesDto> findRequiredResources() {
         List<Plan> plans = planRepository.findAll();
         Map<Resource, Integer> map = new HashMap<>();
         for (Plan plan : plans) {
             Product product = plan.getProduct();
             countResourcesWithSpecification(plan.getCount(), product.getSpecifications(), map);
         }
-        Set<RequiredResourcesDto> resSet = countNeedToBuyResource(map);
+        List<RequiredResourcesDto> resSet = countNeedToBuyResource(map);
 
         return resSet;
     }
@@ -57,7 +57,8 @@ public class OrderImpl implements OrderService {
         Order order = new Order();
         order.setCount(dto.getCount());
         order.setPaymentType(paymentTypeRepository.getById(dto.getPaymentTypeId()));
-        Catalog catalog = catalogRepository.getById(dto.getCatalogId());
+        Catalog catalog = findCatalog(dto.getResourceId(), dto.getProviderId());
+        //catalogRepository.getById(dto.getCatalogId());
         order.setCatalog(catalog);
         order.setManager(getUserFromAuth());
         order.setDeliveryDate(LocalDate.now().plusDays(catalog.getDeliveryTimeInDays()));
@@ -67,6 +68,15 @@ public class OrderImpl implements OrderService {
         order.setWholePrice(catalog.getPrice() * dto.getCount());
         Order savedOrder = orderRepository.save(order);
         return savedOrder;
+    }
+
+    private Catalog findCatalog(Long resourceId, Long providerId) {
+        List<Catalog> catalogList = catalogRepository.findByResource(resourceRepository.getById(resourceId));
+        for(Catalog c : catalogList){
+            if(c.getProvider().getId().equals(providerId))
+                return c;
+        }
+        return null;
     }
 
     @Override
@@ -97,8 +107,8 @@ public class OrderImpl implements OrderService {
         return res;
     }
 
-    private Set<RequiredResourcesDto> countNeedToBuyResource(Map<Resource, Integer> mainMap) {
-        Set<RequiredResourcesDto> resSet = new HashSet<>();
+    private List<RequiredResourcesDto> countNeedToBuyResource(Map<Resource, Integer> mainMap) {
+        List<RequiredResourcesDto> resSet = new ArrayList<>();
         Set<Resource> resourcesFromMap = mainMap.keySet();
         for (Resource r : resourcesFromMap) {
             RequiredResourcesDto dto = new RequiredResourcesDto();

@@ -10,8 +10,9 @@ import lombok.Setter;
 public class CreatingOrderDto {
     // Его надо брать из таблицы и отправлять, жесть конечно, но так проще.
     // Если не получится, то надо отправлять поставщика и ресурс айдишки, они ниже закомментированы
-    private Long catalogId;
-    //private Long providerId;private Long resourceId;
+    //private Long catalogId;
+    private Long providerId;
+    private Long resourceId;
     private Integer count;
     private Long paymentTypeId;
 }

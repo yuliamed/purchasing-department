@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface OrderService {
-    Set<RequiredResourcesDto> findRequiredResources();
+    List<RequiredResourcesDto> findRequiredResources();
     DataForCreatingOrderDto getOrderProvidersByResId(ResourceCountDto reqDto);
     Order createOrder(CreatingOrderDto dto);
     List<Order> findAll();
