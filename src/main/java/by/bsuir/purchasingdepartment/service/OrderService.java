@@ -1,6 +1,8 @@
 package by.bsuir.purchasingdepartment.service;
 
 import by.bsuir.purchasingdepartment.entity.Order;
+import by.bsuir.purchasingdepartment.entity.PaymentType;
+import by.bsuir.purchasingdepartment.entity.Status;
 import by.bsuir.purchasingdepartment.service.dto.*;
 
 import java.util.List;
@@ -11,4 +13,6 @@ public interface OrderService {
     DataForCreatingOrderDto getOrderProvidersByResId(ResourceCountDto reqDto);
     Order createOrder(CreatingOrderDto dto);
     List<Order> findAll();
+    public List<Status>getAllStatuses();
+    public List<PaymentType> getAllPaymentTypes();
 }

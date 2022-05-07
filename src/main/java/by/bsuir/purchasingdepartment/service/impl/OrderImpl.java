@@ -70,6 +70,24 @@ public class OrderImpl implements OrderService {
         return savedOrder;
     }
 
+    @Override
+    public List<Order> findAll() {
+        List<Order> orders = orderRepository.findAll();
+        return orders;
+    }
+
+    @Override
+    public List<Status>getAllStatuses(){
+        List<Status> statuses = statusRepository.findAll();
+        return statuses;
+    }
+
+    @Override
+    public List<PaymentType> getAllPaymentTypes(){
+        List<PaymentType> statuses = paymentTypeRepository.findAll();
+        return statuses;
+    }
+
     private Catalog findCatalog(Long resourceId, Long providerId) {
         List<Catalog> catalogList = catalogRepository.findByResource(resourceRepository.getById(resourceId));
         for(Catalog c : catalogList){
@@ -79,11 +97,7 @@ public class OrderImpl implements OrderService {
         return null;
     }
 
-    @Override
-    public List<Order> findAll() {
-        List<Order> orders = orderRepository.findAll();
-        return orders;
-    }
+
 
     private User getUserFromAuth() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
