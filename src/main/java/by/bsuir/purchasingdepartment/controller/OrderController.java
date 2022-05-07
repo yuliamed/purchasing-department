@@ -9,15 +9,19 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.jar.Attributes;
 
 @Controller
 @RequestMapping(value = "/orders")
 @AllArgsConstructor
 public class OrderController {
     private final OrderService orderService;
+    private List<CreatingOrderDto> creatingOrderDtos;
 
     @GetMapping
     public String showOrdersPage(Model model) {
@@ -50,13 +54,24 @@ public class OrderController {
 
     @GetMapping(value = "/required-res")
     public String showRequiredResoucesPage(Model model) {
-
+        this.creatingOrderDtos.clear();
         List<RequiredResourcesDto> requiredResources = orderService.findRequiredResources();
         model.addAttribute("resources", requiredResources);
+        model.addAttribute("orderDto", new CreatingOrderDto());
         return "required-resources";
     }
+    @PostMapping(value = "/required-res")
+    public String createOrder(@ModelAttribute("orderDto") CreatingOrderDto creatingOrderDto){
+        this.creatingOrderDtos.add(creatingOrderDto);
+        return "redirect:create-order";
+    }
+
+
     @GetMapping(value = "/create-order")
     public String showCreateOrderPage(Model model) {
+     //   List<ProviderDto> providerDtos = orderService.getOrderProvidersByResId(this.creatingOrderDtos.get(0));
+        model.addAttribute("order", this.creatingOrderDtos.get(0));
+//        model.addAttribute("providers", )
         return "create-order";
     }
 }

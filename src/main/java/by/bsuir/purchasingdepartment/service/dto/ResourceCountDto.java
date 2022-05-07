@@ -3,7 +3,7 @@ package by.bsuir.purchasingdepartment.service.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+//TODO удалить и переделать
 @NoArgsConstructor
 @Getter
 @Setter

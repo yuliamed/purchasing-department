@@ -56,7 +56,7 @@
                 <div class="processing-inputs">
                     <div>
                         <label for="id-order">ID Заказа</label>
-                        <input id="id-order" type="text" data-key="orderId">
+                        <input id="id-order" type="text" data-key="orderId" th:text="${order.resourceId}">
                     </div>
                     <div>
                         <label for="recourse">Ресурс</label>

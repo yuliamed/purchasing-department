@@ -31,7 +31,15 @@
       <div class="title">Требуемые ресурсы</div>
       <div class="content-edit-buttons" data-table="required-resources-table">
         <div>
-          <button class="btn btn-blue">Оформить заказ</button>
+          <form id="form" method="POST" th:action="@{/orders/required-res}" th:object="${orderDto}">
+            <div class="inputs"><input id="chosenResourceId" hidden="true" type="text" name="example" th:field="*{resourceId}"/></div>
+            <div class="inputs"><input id="amount1" hidden="true" type="text" name="example" th:field="*{count}"/></div>
+            <div class="submit">
+              <button id='create-order-btn' type="submit" class="btn btn-blue">Оформить заказ</button>
+            </div>
+
+          </form>
+
         </div>
         <div data-action="refresh">
           <a th:href="@{/orders/required-res}"><img th:src="@{/icons/refresh.svg}"></a>
@@ -60,8 +68,8 @@
     </table>
   </div>
 </main>
-<!--<script type="text/javascript" th:src="@{/js/required-resources.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/required-resources.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
-<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+<!--<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>-->
 </body>
 </html>

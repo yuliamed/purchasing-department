@@ -11,6 +11,7 @@ public class CreatingOrderDto {
     // Его надо брать из таблицы и отправлять, жесть конечно, но так проще.
     // Если не получится, то надо отправлять поставщика и ресурс айдишки, они ниже закомментированы
     //private Long catalogId;
+    //TODO getResourceById
     private Long providerId;
     private Long resourceId;
     private Integer count;
