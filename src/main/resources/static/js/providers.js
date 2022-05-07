@@ -715,15 +715,18 @@
         }
     }
 
-    form1 = document.getElementById("btn1")
-    form1.addEventListener('click', function (e) {
-        //e.preventDefault();
+    show_catalog_btn = document.getElementById("btn1")
+    show_catalog_btn.addEventListener('click', function (e) {
         selectedIndex = []
         selectedRows.forEach(row => {
             selectedIndex.push(row.node.innerText.split('\t')[1]);
         });
         //console.log(selectedIndex)
-        if (selectedIndex.length > 1) {
+        if (selectedIndex.length == 0) {
+            alert("Для отображения номенкларуры выберите пожалуйста поставщика")
+            e.preventDefault();
+        }
+        else if (selectedIndex.length > 1) {
             alert("Для отображения номенкларуры выберите пожалуйста ОДНОГО поставщика")
             e.preventDefault();
         } else {

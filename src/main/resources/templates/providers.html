@@ -104,7 +104,7 @@
                         <div class="content-row-info">
                             <div class="line"></div>
                             <div th:if="${ not #lists.isEmpty(catalog)}" class="mui-container info-title">
-                                <div th:utext="${catalog.get(0).getProvider().name}"></div>
+                                <div th:utext="${'номенклатура ' + catalog.get(0).getProvider().name}"></div>
                                 <div class="line"></div>
                             </div>
                             <div class="line"></div>
