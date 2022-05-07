@@ -1,5 +1,6 @@
 package by.bsuir.purchasingdepartment.controller;
 
+import by.bsuir.purchasingdepartment.entity.Order;
 import by.bsuir.purchasingdepartment.entity.Provider;
 import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.service.OrderService;
@@ -23,23 +24,29 @@ public class OrderController {
 
     @GetMapping
     public String showOrdersPage(Model model) {
-        List<RequiredResourcesDto> req = orderService.findRequiredResources();
-        for (RequiredResourcesDto dto : req) {
-            System.out.println(dto.getNeedToBuyCount() + " " + dto.getRequiredResCount() + " " + dto.getResource().getName());
-        }
-        Resource res = req.get(0).getResource();
-        Integer count = req.get(0).getNeedToBuyCount();
-        ResourceCountDto resourceCountDto = new ResourceCountDto();
-        resourceCountDto.setRequiredCount(count);
-        resourceCountDto.setResId(res.getId());
-        DataForCreatingOrderDto dataForCreatingOrderDto = orderService.getOrderProvidersByResId(resourceCountDto);
+//        List<RequiredResourcesDto> req = orderService.findRequiredResources();
+//        for (RequiredResourcesDto dto : req) {
+//            System.out.println(dto.getNeedToBuyCount() + " " + dto.getRequiredResCount() + " " + dto.getResource().getName());
+//        }
+//        Resource res = req.get(0).getResource();
+//        Integer count = req.get(0).getNeedToBuyCount();
+//        ResourceCountDto resourceCountDto = new ResourceCountDto();
+//        resourceCountDto.setRequiredCount(count);
+//        resourceCountDto.setResId(res.getId());
+//        DataForCreatingOrderDto dataForCreatingOrderDto = orderService.getOrderProvidersByResId(resourceCountDto);
+//
+//        CreatingOrderDto creatingOrderDto = new CreatingOrderDto();
+//        creatingOrderDto.setCount(count);
+//        Provider provider = dataForCreatingOrderDto.getListProviders().get(0).getProvider();
+//        creatingOrderDto.setProviderId(provider.getId());
+//        creatingOrderDto.setResourceId(res.getId());
+//        orderService.createOrder(creatingOrderDto);
 
-        CreatingOrderDto creatingOrderDto = new CreatingOrderDto();
-        creatingOrderDto.setCount(count);
-        Provider provider = dataForCreatingOrderDto.getListProviders().get(0).getProvider();
-        creatingOrderDto.setProviderId(provider.getId());
-        creatingOrderDto.setResourceId(res.getId());
-        orderService.createOrder(creatingOrderDto);
+        List<Order> orders = orderService.findAll();
+        // TODO нужен метод получения свех возможных статусов
+        // List<String> statuses =
+        model.addAttribute("orders", orders);
+        //model.addAttribute("statuses", statuses);
 
         return "orders";
     }
