@@ -724,8 +724,8 @@
             selectedAmount.push(row.node.getElementsByTagName("td")[4].innerText)
         });
         // console.log(selectedIndex)
-        if (selectedIndex.length != 1) {
-            alert("ошибка с количеством ресурсов")
+        if (selectedIndex.length < 1) {
+            alert("выберите ресурс для создания заказа")
             e.preventDefault();
         } else {
             document.getElementById("chosenResourceId").value = selectedIndex[0];

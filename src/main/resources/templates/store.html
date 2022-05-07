@@ -1,76 +1,80 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Store</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/store.css}">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Store</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/store.css}">
 </head>
 <body>
 <header class="mui-appbar header">
-  <div class="mui-container">
-    <div class="nav">
-      <a th:href="@{/orders}" data-to="orders">Заказы</a>
-      <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
-      <a th:href="@{/products}" data-to="products">Продукты</a>
-      <a th:href="@{/providers}" data-to="producers">Поставщики</a>
-      <a th:href="@{/plans}" data-to="plans">План производства</a>
-      <a th:href="@{/store}" data-to="store">Склад</a>
-      <div class="logout">
-        <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
-      </div>
+    <div class="mui-container">
+        <div class="nav">
+            <a th:href="@{/orders}" data-to="orders">Заказы</a>
+            <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
+            <a th:href="@{/products}" data-to="products">Продукты</a>
+            <a th:href="@{/providers}" data-to="producers">Поставщики</a>
+            <a th:href="@{/plans}" data-to="plans">План производства</a>
+            <a th:href="@{/store}" data-to="store">Склад</a>
+            <div class="logout">
+                <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 <main id="content-wrapper" class="mui--text-center">
-  <div class="content-row-info">
-    <div class="line"></div>
-    <div class="mui-container info-title">
-      <div>Склад</div>
-      <div class="line"></div>
-    </div>
-    <div class="line"></div>
-  </div>
-  <div class="mui-container">
-    <div class="content-edit-buttons" data-table="store_table">
-      <div data-action="refresh">
-        <img th:src="@{/icons/refresh.svg}">
-      </div>
-      <form id="add-file-plan" method="POST" th:action="@{/store/add}" enctype="multipart/form-data" >
-        <input id="file" type="file" name="file" hidden="true" accept=".json">
-        <label for="file"><img th:src="@{/icons/add.svg}"></label>
-        <div>
-          <label for="file" id="label-for-file">   </label>
+    <div class="content-row-info">
+        <div class="line"></div>
+        <div class="mui-container info-title">
+            <div>Склад</div>
+            <div class="line"></div>
         </div>
-        <div>
-          <button class="btn btn-primary" type="submit" id="btn-upload" hidden="true">Отправить</button>
-        </div>
-      </form>
+        <div class="line"></div>
     </div>
-    <table class="content-table" id="store_table">
-      <thead>
-      <tr>
-        <th class="id" style="width:176px" scope="col">ID Продукта</th>
-        <th class="name" style="width:292px" scope="col">Название продукта</th>
-        <th class="description" style="width:432px" scope="col">Описание</th>
-        <th class="amount" style="width:276px" scope="col">Количество</th>
-        <th class="dimension" style="width:176px" scope="col">Ед.изм.</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="store:${stores}">
-        <td th:utext="${store.resource.id}"></td>
-        <td th:utext="${store.resource.name}"></td>
-        <td th:utext="${store.resource.description}"></td>
-        <td th:utext="${store.count}"></td>
-        <td th:utext="${store.dimension.name}"></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="mui-container">
+        <div class="content-edit-buttons" data-table="store_table">
+            <div data-action="refresh">
+                <a th:href="@{/store}"><img th:src="@{/icons/refresh.svg}"></a>
+            </div>
+            <form id="add-file-plan" method="POST" th:action="@{/store/add}" enctype="multipart/form-data">
+                <input id="file" type="file" name="file" hidden="true" accept=".json">
+                <label for="file"><img th:src="@{/icons/add.svg}"></label>
+                <div>
+                    <label for="file" id="label-for-file"> </label>
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit" id="btn-upload" hidden="true">Отправить</button>
+                </div>
+            </form>
+        </div>
+        <table class="content-table" id="store_table">
+            <thead>
+            <tr>
+                <th class="id" style="width:176px" scope="col">ID Продукта</th>
+                <th class="name" style="width:292px" scope="col">Название продукта</th>
+                <th class="description" style="width:432px" scope="col">Описание</th>
+                <th class="amount" style="width:276px" scope="col">Количество</th>
+                <th class="dimension" style="width:176px" scope="col">Ед.изм.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="store:${stores}">
+                <td th:utext="${store.resource.id}"></td>
+                <td th:utext="${store.resource.name}"></td>
+                <td th:utext="${store.resource.description}"></td>
+                <td th:utext="${store.count}"></td>
+                <td th:utext="${store.dimension.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <div><a th:href="@{/store/register-resource}">
+            <button id='register-resource-btn' class="btn btn-blue">зарегистрировать ресурс</button>
+        </a></div>
+    </div>
 </main>
 <script type="text/javascript" th:src="@{/js/store.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>

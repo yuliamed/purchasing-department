@@ -1,28 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Confirm Order</title>
-  <link rel="stylesheet" href="../../static/css/cancel.css" />
-  <link rel="stylesheet" href="../../static/css/mui.css" />
-  <link rel="stylesheet" href="../../static/css/general.css" />
-  <link rel="stylesheet" href="./confirm-order.css" />
-  <script src="../../static/scripts/definePage.js" defer></script>
-  <script src="../../static/scripts/tableControl.js" defer></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/confirm-order.css}">
 </head>
 <body>
 <header class="header">
   <div class="mui-container">
     <div class="nav">
-      <a href="../orders.html" data-to="orders">Заказы</a>
-      <a href="../resources.html" data-to="resources">Ресурсы</a>
-      <a href="../products.html" data-to="products">Продукты</a>
-      <a href="../providers.html" data-to="producers">Поставщики</a>
-      <a href="../plans.html" data-to="plans">План производства</a>
-      <a href="../store.html" data-to="store">Склад</a>
+      <a th:href="@{/orders}" data-to="orders">Заказы</a>
+      <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
+      <a th:href="@{/products}" data-to="products">Продукты</a>
+      <a th:href="@{/providers}" data-to="producers">Поставщики</a>
+      <a th:href="@{/plans}" data-to="plans">План производства</a>
+      <a th:href="@{/store}" data-to="store">Склад</a>
       <div class="logout">
-        <a href="/logout"><img src="../../static/icons/logout.svg"></a>
+        <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
       </div>
     </div>
   </div>
@@ -45,7 +43,7 @@
             <button class="btn btn-blue">Подтвердить</button>
           </div>
           <div data-action="refresh">
-            <img src="../../static/icons/refresh.svg"/>
+            <a th:href="@{orders/order-payment-confirm}"><img th:src="@{/icons/refresh.svg}"/></a>
           </div>
         </div>
       </div>
@@ -118,6 +116,8 @@
     </div>
   </div>
 </main>
-<script src="./confirm-order.js"></script>
+<script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+<script type="text/javascript" th:src="@{/js/confirm-order.js}"></script>
 </body>
 </html>

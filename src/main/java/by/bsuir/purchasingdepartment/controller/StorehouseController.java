@@ -1,4 +1,5 @@
 package by.bsuir.purchasingdepartment.controller;
+import by.bsuir.purchasingdepartment.entity.Plan;
 import by.bsuir.purchasingdepartment.entity.Storehouse;
 import by.bsuir.purchasingdepartment.service.StorehouseService;
 import by.bsuir.purchasingdepartment.service.UserService;
@@ -28,5 +29,11 @@ public class StorehouseController {
     public String addFileWithPlan(@RequestParam("file") MultipartFile file){
         storehouseService.addProductsFromFile(file);
         return "redirect:";
+    }
+    @GetMapping(value = "/register-resource")
+    public String showConfirmOrderArrivePage(Model model) {
+//        List<Plan> plans = planService.findAll();
+//        model.addAttribute("plans", plans);
+        return "register-production";
     }
 }

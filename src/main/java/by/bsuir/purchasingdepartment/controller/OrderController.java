@@ -74,4 +74,10 @@ public class OrderController {
 //        model.addAttribute("providers", )
         return "create-order";
     }
+    @GetMapping(value = "/order-payment-confirm")
+    public String showOrderArriveConfirmPage(Model model) {
+        List<Order> orders = orderService.findAll();
+        model.addAttribute("orders",orders);
+        return "confirm-order";
+    }
 }

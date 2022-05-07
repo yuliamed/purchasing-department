@@ -54,17 +54,17 @@
             </div>
             <div class="content-processing-inputs">
                 <div class="processing-inputs">
-                    <div>
-                        <label for="id-order">ID Заказа</label>
-                        <input id="id-order" type="text" data-key="orderId" th:text="${order.resourceId}">
-                    </div>
+<!--                    <div>-->
+<!--                        <label for="id-order">ID Заказа</label>-->
+<!--                        <input id="id-order" type="text" data-key="orderId">-->
+<!--                    </div>-->
                     <div>
                         <label for="recourse">Ресурс</label>
-                        <input id="recourse" type="text" data-key="resource">
+                        <input id="recourse" type="text" data-key="resource" readonly="true">
                     </div>
                     <div>
                         <label for="amount">Количество</label>
-                        <input id="amount" type="text" data-key="amount">
+                        <input id="amount" type="text" data-key="amount" th:value="${order.count}" readonly="true">
                     </div>
                     <div>
                         <label for="pay-type">Тип оплаты</label>
