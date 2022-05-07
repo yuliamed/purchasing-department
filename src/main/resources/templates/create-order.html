@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Create Order</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/create-order.css}">
+</head>
+<body>
+<header class="header">
+    <div class="mui-container">
+        <div class="nav">
+            <a th:href="@{/orders}" data-to="orders">Заказы</a>
+            <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
+            <a th:href="@{/products}" data-to="products">Продукты</a>
+            <a th:href="@{/providers}" data-to="producers">Поставщики</a>
+            <a th:href="@{/plans}" data-to="plans">План производства</a>
+            <a th:href="@{/store}" data-to="store">Склад</a>
+            <div class="logout">
+                <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
+            </div>
+        </div>
+    </div>
+</header>
+<main id="content-wrapper">
+    <div class="mui-container">
+        <div class="content-processing-order">
+            <div class="content-processing-main">
+                <div class="title">Оформление заказа</div>
+                <div class="ordering">
+                    <button class="btn btn-gray">Запросить цены</button>
+                </div>
+                <table class="content-table">
+                    <thead>
+                    <th style="width:76px" scope="col">ID</th>
+                    <th style="width:76px" scope="col">Поставшик</th>
+                    <th style="width:76px" scope="col">Номенклатура</th>
+                    <th style="width:76px" scope="col">Цена</th>
+                    <th style="width:76px" scope="col">Дата поставки</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="content-processing-inputs">
+                <div class="processing-inputs">
+                    <div>
+                        <label for="id-order">ID Заказа</label>
+                        <input id="id-order" type="text" data-key="orderId">
+                    </div>
+                    <div>
+                        <label for="recourse">Ресурс</label>
+                        <input id="recourse" type="text" data-key="resource">
+                    </div>
+                    <div>
+                        <label for="amount">Количество</label>
+                        <input id="amount" type="text" data-key="amount">
+                    </div>
+                    <div>
+                        <label for="pay-type">Тип оплаты</label>
+                        <select id="pay-type" data-key="payType">
+                            <option value="первый">Первый</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="producer">Поставщик</label>
+                        <select id="producer" data-key="producer">
+                            <option value="поставщик-1">Поставщик 1</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="price">Цена</label>
+                        <input id="price" type="text" data-key="price">
+                    </div>
+                </div>
+            </div>
+            <div class="create-order">
+                <button class=" btn btn-blue">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+<script type="text/javascript" th:src="@{/js/create-order.js}"></script>
+</body>
+</html>

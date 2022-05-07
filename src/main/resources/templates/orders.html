@@ -43,10 +43,10 @@
   <div class="mui-container">
     <div class="content-edit-buttons content-edit-buttons-all" data-table="orders_table">
       <div data-action="refresh">
-        <img th:src="@{/icons/refresh.svg}">
+        <a th:href="@{/orders}"><img th:src="@{/icons/refresh.svg}"></a>
       </div>
-      <div data-action="add">
-        <img th:src="@{/icons/add.svg}">
+      <div>
+        <a th:href="@{/orders/required-res}"><img th:src="@{/icons/add.svg}"></a>
       </div>
       <div data-action="edit">
         <img th:src="@{/icons/edit.svg}">

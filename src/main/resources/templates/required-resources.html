@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Required Resources</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/required-resources.css}">
+</head>
+<body>
+<header class="mui-appbar mui--z1 header">
+  <div class="mui-container">
+    <div class="nav">
+      <a th:href="@{/orders}" data-to="orders">Заказы</a>
+      <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
+      <a th:href="@{/products}" data-to="products">Продукты</a>
+      <a th:href="@{/providers}" data-to="producers">Поставщики</a>
+      <a th:href="@{/plans}" data-to="plans">План производства</a>
+      <a th:href="@{/store}" data-to="store">Склад</a>
+      <div class="logout">
+        <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper" class="mui--text-center">
+  <div class="mui-container">
+    <div class="content-edit-wrapper">
+      <div class="title">Требуемые ресурсы</div>
+      <div class="content-edit-buttons" data-table="required-resources-table">
+        <div>
+          <button class="btn btn-blue">Оформить заказ</button>
+        </div>
+        <div data-action="refresh">
+          <a th:href="@{/orders/required-res}"><img th:src="@{/icons/refresh.svg}"></a>
+        </div>
+      </div>
+    </div>
+    <table class="content-table" id="required-resources-table">
+      <thead>
+      <tr>
+        <th class="check-mark" style="width:100px" scope="col" data-checkmark></th>
+        <th class="id" style="width:158px" scope="col">ID Ресурса</th>
+        <th class="name" style="width:276px" scope="col">Название</th>
+        <th style="width:314px" scope="col">Общая потребность</th>
+        <th style="width:314px" scope="col">Надо дозаказать</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="res:${resources}">
+        <td class="check-mark-active"></td>
+        <td th:utext="${res.resource.id}"></td>
+        <td th:utext="${res.resource.name}"></td>
+        <td th:utext="${res.requiredResCount}"></td>
+        <td th:utext="${res.needToBuyCount}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<!--<script type="text/javascript" th:src="@{/js/required-resources.js}"></script>-->
+<script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+</body>
+</html>

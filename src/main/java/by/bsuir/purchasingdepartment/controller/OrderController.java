@@ -4,10 +4,7 @@ import by.bsuir.purchasingdepartment.entity.Order;
 import by.bsuir.purchasingdepartment.entity.Provider;
 import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.service.OrderService;
-import by.bsuir.purchasingdepartment.service.dto.CreatingOrderDto;
-import by.bsuir.purchasingdepartment.service.dto.DataForCreatingOrderDto;
-import by.bsuir.purchasingdepartment.service.dto.RequiredResourcesDto;
-import by.bsuir.purchasingdepartment.service.dto.ResourceCountDto;
+import by.bsuir.purchasingdepartment.service.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,4 +48,15 @@ public class OrderController {
         return "orders";
     }
 
+    @GetMapping(value = "/required-res")
+    public String showRequiredResoucesPage(Model model) {
+
+        List<RequiredResourcesDto> requiredResources = orderService.findRequiredResources();
+        model.addAttribute("resources", requiredResources);
+        return "required-resources";
+    }
+    @GetMapping(value = "/create-order")
+    public String showCreateOrderPage(Model model) {
+        return "create-order";
+    }
 }

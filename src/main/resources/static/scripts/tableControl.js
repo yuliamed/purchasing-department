@@ -1,9 +1,10 @@
 (function() {
-  onLoad();
-
   let newRowsToAdd = [];
   let selectedRows = [];
   let isInProcess = false;
+
+  onLoad();
+
 
   const onAddRowSave = () => {
   };
