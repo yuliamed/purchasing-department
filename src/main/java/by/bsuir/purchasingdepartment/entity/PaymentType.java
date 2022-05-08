@@ -18,4 +18,7 @@ import javax.persistence.Table;
 public class PaymentType extends AbstractEntity{
     @Column(name="payment_name", length = 45, nullable = false)
     private String name;
+
+    @Column(name="rus_payment_name", length = 45, nullable = false)
+    private String name_rus;
 }
