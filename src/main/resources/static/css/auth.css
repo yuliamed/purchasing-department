@@ -12,7 +12,7 @@ body {
 
 .auth-window {
   max-width: 576px;
-  max-height: 472px;
+  max-height: 600px;
   padding: 47px 97px 42px;
   background-color: #8EE5F8;
 }
