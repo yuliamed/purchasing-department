@@ -63,7 +63,7 @@ public class OrderImpl implements OrderService {
         order.setCatalog(catalog);
         order.setManager(getUserFromAuth());
         order.setDeliveryDate(LocalDate.now().plusDays(catalog.getDeliveryTimeInDays()));
-        Status status = statusRepository.getByName(OrderStatus.EN_ROUTE.name());
+        Status status = statusRepository.getByName(OrderStatus.CREATED.name());
         order.setStatus(status);
         order.setIsPaid(false);
         order.setWholePrice(catalog.getPrice() * dto.getCount());
@@ -93,6 +93,24 @@ public class OrderImpl implements OrderService {
     public Resource getResource(Long id){
         Resource res = resourceRepository.getById(id);
         return res;
+    }
+
+    @Override
+    public List<Order> getUnpaidOrders(){
+        List<Order> list = orderRepository.findAll();
+        for(Order o: list){
+            if(o.getIsPaid()) list.remove(o);
+        }
+        return list;
+    }
+
+    @Override
+    public void changeIsPaidStatus(List<Long> ids){
+        for(Long id :ids){
+            Order order = orderRepository.getById(id);
+            order.setIsPaid(true);
+            orderRepository.save(order);
+        }
     }
 
     private Catalog findCatalog(Long resourceId, Long providerId) {
