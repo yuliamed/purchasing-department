@@ -56,9 +56,23 @@ public class AuthController {
     }
 
 
+//    @GetMapping("/sign-up")
+//    public String signUp(@ModelAttribute("user") SignUpDto userReq) {
+//        UserDto userResp = userService.signUp(userReq);
+//        return "signUp";
+//    }
+
     @PostMapping("/sign-up")
-    public ResponseEntity<UserDto> signUp(@RequestBody SignUpDto userReq) {
-        UserDto userResp = userService.signUp(userReq);
-        return new ResponseEntity<>(userResp, HttpStatus.CREATED);
+    //TODO доделать проверку valid
+    public String signUp(@ModelAttribute("user") SignUpDto request) {
+        userService.signUp(request);
+//        System.out.println("user: " + resp.getToken() + resp.getEmail());
+        return "redirect:/auth";
+    }
+
+    @GetMapping("/sign-up")
+    public String signUp(Model model) {
+        model.addAttribute("user", new SignUpDto());
+        return "signUp";
     }
 }

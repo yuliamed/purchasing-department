@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Authentication</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/auth.css}">
+</head>
+<body>
+<div class="auth-wrapper">
+    <div class="auth-window-1">
+        <form id="form" method="POST" th:action="@{/auth/sign-up}" th:object="${user}">
+            <div class="title">Регистрация</div>
+            <div class="inputs">
+                <div class="login-wrapper">
+                    <input id="email" type="email" placeholder="Email"name th:field="*{email}">
+                </div>
+                <div class="login-wrapper">
+                    <input id="login" type="text" placeholder="Логин" th:field="*{login}">
+                </div>
+                <div class="login-wrapper">
+                    <input id="name" type="text" placeholder="Имя" th:field="*{name}">
+                </div>
+                <div class="login-wrapper">
+                    <input id="surname" type="text" placeholder="Фамилия" th:field="*{surname}">
+                </div>
+                <div class="login-wrapper">
+                    <input id="patronymic" type="text" placeholder="Отчество" th:field="*{patronymic}">
+                </div>
+                <div class="password-wrapper">
+                    <input id="password" type="password" placeholder="Пароль" th:field="*{pass}">
+                </div>
+                <div class="password-wrapper">
+                    <input id="confPassword" type="password" placeholder="Подтверждение пароля" th:field="*{confirmPass}">
+                </div>
+            </div>
+            <div class="submit">
+                <button id="submit" class="btn btn-white" type="submit">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--<script src="../static/Auth/auth.js"></script>-->
+<script type="text/javascript" th:src="@{/js/auth.js}"></script>
+</body>
+</html>

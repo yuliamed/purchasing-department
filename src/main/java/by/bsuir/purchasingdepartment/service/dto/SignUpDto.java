@@ -2,6 +2,7 @@ package by.bsuir.purchasingdepartment.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class SignUpDto extends AbstractDTO{
     @NotBlank(message = "User name can`t be empty")
     private String name;
