@@ -5,7 +5,10 @@ import by.bsuir.purchasingdepartment.entity.enam.OrderStatus;
 import by.bsuir.purchasingdepartment.repository.*;
 import by.bsuir.purchasingdepartment.security.service.JwtUser;
 import by.bsuir.purchasingdepartment.service.OrderService;
-import by.bsuir.purchasingdepartment.service.dto.*;
+import by.bsuir.purchasingdepartment.service.dto.CreatingOrderDto;
+import by.bsuir.purchasingdepartment.service.dto.DataForCreatingOrderDto;
+import by.bsuir.purchasingdepartment.service.dto.OrderProvidersDto;
+import by.bsuir.purchasingdepartment.service.dto.RequiredResourcesDto;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -78,51 +81,74 @@ public class OrderImpl implements OrderService {
     }
 
     @Override
-    public List<Status>getAllStatuses(){
+    public List<Status> getAllStatuses() {
         List<Status> statuses = statusRepository.findAll();
         return statuses;
     }
 
     @Override
-    public List<PaymentType> getAllPaymentTypes(){
+    public List<PaymentType> getAllPaymentTypes() {
         List<PaymentType> statuses = paymentTypeRepository.findAll();
         return statuses;
     }
 
     @Override
-    public Resource getResource(Long id){
+    public Resource getResource(Long id) {
         Resource res = resourceRepository.getById(id);
         return res;
     }
 
     @Override
-    public List<Order> getUnpaidOrders(){
+    public List<Order> getUnpaidOrders() {
         List<Order> list = orderRepository.findAll();
-        for(Order o: list){
-            if(o.getIsPaid()) list.remove(o);
-        }
+        list.removeIf(Order::getIsPaid);
         return list;
     }
 
     @Override
-    public void changeIsPaidStatus(List<Long> ids){
-        for(Long id :ids){
+    public void changeIsPaidStatus(List<Long> ids) {
+        for (Long id : ids) {
             Order order = orderRepository.getById(id);
             order.setIsPaid(true);
             orderRepository.save(order);
         }
     }
 
+    @Override
+    public List<Order> getDeliveredOrders() {
+        List<Order> list = orderRepository.findAll();
+        list.removeIf(o -> !o.getStatus().getName().equals(OrderStatus.DELIVERED.name()));
+        return list;
+    }
+
+    @Override
+    public void confrirmArrivedResources(List<Long> ordersIds) {
+        //List<Storehouse> storehouseList = storeRepository.findAll();
+        for (Long orderId : ordersIds) {
+            Order order = orderRepository.getById(orderId);
+            Catalog catalog = order.getCatalog();
+            Resource res = catalog.getResource();
+            Storehouse store = storeRepository.findByResource(res);
+            if(Objects.nonNull(store)){
+                Integer newCount = store.getCount()+order.getCount();
+                store.setCount(newCount);
+            } else {
+                store = new Storehouse();
+                store.setResource(res);
+                store.setCount(order.getCount());
+            }
+            storeRepository.save(store);
+        }
+    }
+
     private Catalog findCatalog(Long resourceId, Long providerId) {
         List<Catalog> catalogList = catalogRepository.findByResource(resourceRepository.getById(resourceId));
-        for(Catalog c : catalogList){
-            if(c.getProvider().getId().equals(providerId))
+        for (Catalog c : catalogList) {
+            if (c.getProvider().getId().equals(providerId))
                 return c;
         }
         return null;
     }
-
-
 
     private User getUserFromAuth() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -155,7 +181,7 @@ public class OrderImpl implements OrderService {
             dto.setRequiredResCount(mainMap.get(r));
             Storehouse store = storeRepository.findByResource(r);
             if (Objects.nonNull(store)) {
-                Integer needToBuyCount = mainMap.get(r) - store.getCount() * store.getDimension().getCapacity();
+                Integer needToBuyCount = mainMap.get(r) - store.getCount() /** store.getDimension().getCapacity()*/;
                 if (needToBuyCount > 0) {
                     dto.setNeedToBuyCount(needToBuyCount);
                 } else {

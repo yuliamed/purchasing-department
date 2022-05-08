@@ -28,4 +28,8 @@ public interface OrderService {
     List<Order> getUnpaidOrders();
 
     void changeIsPaidStatus(List<Long> ids);
+
+    List<Order> getDeliveredOrders();
+
+    void confrirmArrivedResources(List<Long> ordersIds);
 }

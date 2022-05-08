@@ -29,7 +29,7 @@ import java.util.*;
 public class StorehouseImpl implements StorehouseService {
     private final StorehouseRepository storehouseRepository;
     private final ResourceRepository resourceRepository;
-    private final DimensionRepository dimensionRepository;
+   // private final DimensionRepository dimensionRepository;
     public final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
@@ -70,15 +70,15 @@ public class StorehouseImpl implements StorehouseService {
         ArrayList<Storehouse> res = new ArrayList<>();
         for (StorehouseFileDto dto : plans) {
             Storehouse storehouse = new Storehouse();
-            Optional<Dimension> dimension = dimensionRepository.findById(dto.getDimension());
+            //Optional<Dimension> dimension = dimensionRepository.findById(dto.getDimension());
             Optional<Resource> resource = resourceRepository.findById(dto.getResourceId());
 
-            if (!resource.isPresent() || !dimension.isPresent()) {
+            if (!resource.isPresent() /*|| !dimension.isPresent()*/) {
                 continue;
             }
 
             storehouse.setCount(dto.getCount());
-            storehouse.setDimension(dimension.get());
+            //storehouse.setDimension(dimension.get());
             storehouse.setResource(resource.get());
             res.add(storehouse);
         }

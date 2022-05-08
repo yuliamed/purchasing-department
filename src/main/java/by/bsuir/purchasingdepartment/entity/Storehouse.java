@@ -22,7 +22,7 @@ public class Storehouse extends AbstractEntity {
     @Column(name = "count", nullable = false)
     private Integer count;
 
-    @ManyToOne
-    @JoinColumn(name = "dimension")
-    private Dimension dimension;
+//    @ManyToOne
+//    @JoinColumn(name = "dimension")
+//    private Dimension dimension;
 }
