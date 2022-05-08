@@ -30,24 +30,26 @@
         <div class="content-processing-order">
             <div class="content-processing-main">
                 <div class="title">Оформление заказа</div>
+
                 <div class="ordering">
-                    <button class="btn btn-gray">Запросить цены</button>
+
+<!--                    <button class="btn btn-gray">Запросить цены</button>-->
                 </div>
                 <table class="content-table">
                     <thead>
                     <th style="width:76px" scope="col">ID</th>
                     <th style="width:76px" scope="col">Поставшик</th>
-                    <th style="width:76px" scope="col">Номенклатура</th>
+<!--                    <th style="width:76px" scope="col">Номенклатура</th>-->
                     <th style="width:76px" scope="col">Цена</th>
                     <th style="width:76px" scope="col">Дата поставки</th>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr th:each="prov:${dto.listProviders}">
+                        <td th:utext="${prov.provider.id}"></td>
+                        <td th:utext="${prov.provider.name}"></td>
+<!--                        <td></td>-->
+                        <td th:utext="${prov.priceForAll}"></td>
+                        <td th:utext="${prov.deliveryDate}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -60,7 +62,7 @@
 <!--                    </div>-->
                     <div>
                         <label for="recourse">Ресурс</label>
-                        <input id="recourse" type="text" data-key="resource" readonly="true">
+                        <input id="recourse" type="text" data-key="resource"  readonly="true">
                     </div>
                     <div>
                         <label for="amount">Количество</label>

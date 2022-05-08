@@ -44,7 +44,7 @@ public class OrderController {
 //        orderService.createOrder(creatingOrderDto);
 
         List<Order> orders = orderService.findAll();
-        // TODO нужен метод получения свех возможных статусов
+        // TODO (ЮЛЯ) нужен метод получения свех возможных статусов и типов оплаты
         // List<String> statuses =
         model.addAttribute("orders", orders);
         //model.addAttribute("statuses", statuses);
@@ -69,9 +69,9 @@ public class OrderController {
 
     @GetMapping(value = "/create-order")
     public String showCreateOrderPage(Model model) {
-        DataForCreatingOrderDto providerDtos = orderService.getOrderProvidersByResId(this.creatingOrderDtos.get(0));
+        DataForCreatingOrderDto dto = orderService.getOrderProvidersByResId(this.creatingOrderDtos.get(0));
         model.addAttribute("order", this.creatingOrderDtos.get(0));
-//        model.addAttribute("providers", )
+        model.addAttribute("dto", dto);
         return "create-order";
     }
     @GetMapping(value = "/order-payment-confirm")
