@@ -44,7 +44,6 @@ public class OrderController {
 //        orderService.createOrder(creatingOrderDto);
 
         List<Order> orders = orderService.findAll();
-        // TODO (ЮЛЯ) нужен метод получения свех возможных статусов и типов оплаты
         // List<String> statuses =
         model.addAttribute("orders", orders);
         //model.addAttribute("statuses", statuses);
@@ -71,8 +70,20 @@ public class OrderController {
     public String showCreateOrderPage(Model model) {
         DataForCreatingOrderDto dto = orderService.getOrderProvidersByResId(this.creatingOrderDtos.get(0));
         model.addAttribute("order", this.creatingOrderDtos.get(0));
+        model.addAttribute("new_order", new CreatingOrderDto());
         model.addAttribute("dto", dto);
+        //orderService.getAllStatuses();
         return "create-order";
+    }
+    @PostMapping(value = "/create-order")
+    public String CreateOrder(@ModelAttribute("new_order") CreatingOrderDto cod) {
+        //DataForCreatingOrderDto dto = orderService.getOrderProvidersByResId(this.creatingOrderDtos.get(0));
+        //orderService.getAllStatuses();
+        cod.setResourceId(this.creatingOrderDtos.get(0).getResourceId());
+//        my_new_order.setProviderId(cod.getProviderId());
+//        my_new_order.setPaymentTypeId(cod.getPaymentTypeId());
+        orderService.createOrder(cod);
+        return "redirect:/orders";
     }
     @GetMapping(value = "/order-payment-confirm")
     public String showOrderArriveConfirmPage(Model model) {

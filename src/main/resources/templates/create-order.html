@@ -33,13 +33,13 @@
 
                 <div class="ordering">
 
-<!--                    <button class="btn btn-gray">Запросить цены</button>-->
+                    <!--                    <button class="btn btn-gray">Запросить цены</button>-->
                 </div>
                 <table class="content-table">
                     <thead>
                     <th style="width:76px" scope="col">ID</th>
                     <th style="width:76px" scope="col">Поставшик</th>
-<!--                    <th style="width:76px" scope="col">Номенклатура</th>-->
+                    <!--                    <th style="width:76px" scope="col">Номенклатура</th>-->
                     <th style="width:76px" scope="col">Цена</th>
                     <th style="width:76px" scope="col">Дата поставки</th>
                     </thead>
@@ -47,53 +47,66 @@
                     <tr th:each="prov:${dto.listProviders}">
                         <td th:utext="${prov.provider.id}"></td>
                         <td th:utext="${prov.provider.name}"></td>
-<!--                        <td></td>-->
+                        <!--                        <td></td>-->
                         <td th:utext="${prov.priceForAll}"></td>
                         <td th:utext="${prov.deliveryDate}"></td>
                     </tr>
                     </tbody>
                 </table>
+
             </div>
-            <div class="content-processing-inputs">
-                <div class="processing-inputs">
-<!--                    <div>-->
-<!--                        <label for="id-order">ID Заказа</label>-->
-<!--                        <input id="id-order" type="text" data-key="orderId">-->
-<!--                    </div>-->
-                    <div>
-                        <label for="recourse">Ресурс</label>
-                        <input id="recourse" type="text" data-key="resource"  readonly="true">
-                    </div>
-                    <div>
-                        <label for="amount">Количество</label>
-                        <input id="amount" type="text" data-key="amount" th:value="${order.count}" readonly="true">
-                    </div>
-                    <div>
-                        <label for="pay-type">Тип оплаты</label>
-                        <select id="pay-type" data-key="payType">
-                            <option value="первый">Первый</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="producer">Поставщик</label>
-                        <select id="producer" data-key="producer">
-                            <option value="поставщик-1">Поставщик 1</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="price">Цена</label>
-                        <input id="price" type="text" data-key="price">
+
+                <div class="content-processing-inputs">
+                    <div class="processing-inputs">
+                        <!--                    <div>-->
+                        <!--                        <label for="id-order">ID Заказа</label>-->
+                        <!--                        <input id="id-order" type="text" data-key="orderId">-->
+                        <!--                    </div>-->
+                        <div>
+                            <label for="recourse">Ресурс</label>
+                            <input id="recourse" type="text" data-key="resource" readonly="true">
+                        </div>
+                        <div>
+                            <label for="amount">Количество</label>
+                            <input id="amount" type="text" data-key="amount" th:value="${order.count}" readonly="true">
+                        </div>
+                        <div>
+                            <label for="pay-type">Тип оплаты</label>
+                            <select id="pay-type" data-key="payType">
+                                <div th:each="pt:${dto.paymentTypes}">
+                                    <option th:text="${pt.id} +' '+ ${pt.name}"></option>
+                                </div>
+                            </select>
+                        </div>
+                        <!--                    <div>-->
+                        <!--                        <label for="producer">Поставщик</label>-->
+                        <!--                        <select id="producer" data-key="producer">-->
+                        <!--                            <div th:each="prov:${dto.listProviders}">-->
+                        <!--                                <option th:text="${prov.provider.name}"></option>-->
+                        <!--                            </div>-->
+                        <!--                        </select>-->
+                        <!--                    </div>-->
+                        <!--                    <div>-->
+                        <!--                        <label for="price">Цена</label>-->
+                        <!--                        <input id="price" type="text" data-key="price">-->
+                        <!--                    </div>-->
                     </div>
                 </div>
-            </div>
-            <div class="create-order">
-                <button class=" btn btn-blue">Оформить заказ</button>
-            </div>
+            <form method="POST" th:action="@{/orders/create-order}" th:object="${new_order}">
+<!--                <input id="price" hidden="true" type="text" name="example" th:field="*{}"/>&ndash;&gt;-->
+                <input id="providerId" hidden="true" type="text" name="example" th:field="*{providerId}"/>
+                <input id="payment-type" hidden="true" type="text" name="example" th:field="*{paymentTypeId}"/>
+                <input id="count" hidden="true" type="text" name="example" th:field="*{count}"/>
+                <br>
+                <div class="create-order">
+                    <button id="create-order-btn" type="submit" class=" btn btn-blue">Оформить заказ</button>
+                </div>
+            </form>
         </div>
     </div>
 </main>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
-<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+<!--<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>-->
 <script type="text/javascript" th:src="@{/js/create-order.js}"></script>
 </body>
 </html>
