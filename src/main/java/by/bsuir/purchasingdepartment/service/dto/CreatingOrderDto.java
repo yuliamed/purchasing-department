@@ -12,6 +12,7 @@ public class CreatingOrderDto {
     // Если не получится, то надо отправлять поставщика и ресурс айдишки, они ниже закомментированы
     //private Long catalogId;
     //TODO (ЮЛЯ) getResourceById
+    private String resource;
     private Long providerId;
     private Long resourceId;
     private Integer count;

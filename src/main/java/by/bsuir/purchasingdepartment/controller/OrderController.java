@@ -61,6 +61,7 @@ public class OrderController {
     }
     @PostMapping(value = "/required-res")
     public String createOrder(@ModelAttribute("orderDto") CreatingOrderDto creatingOrderDto){
+        creatingOrderDto.setResource(orderService.getResource(creatingOrderDto.getResourceId()).getName());
         this.creatingOrderDtos.add(creatingOrderDto);
         return "redirect:create-order";
     }
@@ -77,11 +78,7 @@ public class OrderController {
     }
     @PostMapping(value = "/create-order")
     public String CreateOrder(@ModelAttribute("new_order") CreatingOrderDto cod) {
-        //DataForCreatingOrderDto dto = orderService.getOrderProvidersByResId(this.creatingOrderDtos.get(0));
-        //orderService.getAllStatuses();
         cod.setResourceId(this.creatingOrderDtos.get(0).getResourceId());
-//        my_new_order.setProviderId(cod.getProviderId());
-//        my_new_order.setPaymentTypeId(cod.getPaymentTypeId());
         orderService.createOrder(cod);
         return "redirect:/orders";
     }
