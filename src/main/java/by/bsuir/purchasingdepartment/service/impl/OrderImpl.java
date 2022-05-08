@@ -89,6 +89,12 @@ public class OrderImpl implements OrderService {
         return statuses;
     }
 
+    @Override
+    public Resource getResource(Long id){
+        Resource res = resourceRepository.getById(id);
+        return res;
+    }
+
     private Catalog findCatalog(Long resourceId, Long providerId) {
         List<Catalog> catalogList = catalogRepository.findByResource(resourceRepository.getById(resourceId));
         for(Catalog c : catalogList){

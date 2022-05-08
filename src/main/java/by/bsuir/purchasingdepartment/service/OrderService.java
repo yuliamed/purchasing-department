@@ -2,6 +2,7 @@ package by.bsuir.purchasingdepartment.service;
 
 import by.bsuir.purchasingdepartment.entity.Order;
 import by.bsuir.purchasingdepartment.entity.PaymentType;
+import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.entity.Status;
 import by.bsuir.purchasingdepartment.service.dto.*;
 
@@ -15,4 +16,7 @@ public interface OrderService {
     List<Order> findAll();
     public List<Status>getAllStatuses();
     public List<PaymentType> getAllPaymentTypes();
+
+    Resource getResource(Long id);
+
 }
