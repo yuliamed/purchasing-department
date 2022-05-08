@@ -1,5 +1,6 @@
 package by.bsuir.purchasingdepartment.service.dto;
 
+import by.bsuir.purchasingdepartment.entity.Resource;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

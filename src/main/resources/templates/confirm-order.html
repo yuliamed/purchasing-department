@@ -53,7 +53,8 @@
           <th class="check-mark" style="width:70px" scope="col" data-checkmark></th>
           <th class="number" style="width:72px" scope="col">№</th>
           <th style="width:152px" scope="col">Поставщик</th>
-          <th style="width:142px" scope="col">Номенклатура</th>
+          <th class="number" style="width:72px" scope="col">ID</th>
+          <th style="width:142px" scope="col">Ресурс</th>
           <th style="width:104px" scope="col">Кол-во</th>
           <th style="width:162px" scope="col">Дата поставки</th>
           <th style="width:232px" scope="col">Тип оплаты</th>
@@ -61,55 +62,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr th:each="pro:${orders}">
           <td class="check-mark-active"></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>ДД.ММ.ГГГГ</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="">
-          <td class="check-mark-active"></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>ДД.ММ.ГГГГ</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="">
-          <td class="check-mark-active"></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>ДД.ММ.ГГГГ</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="">
-          <td class="check-mark-active"></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>ДД.ММ.ГГГГ</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="">
-          <td class="check-mark-active"></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>ДД.ММ.ГГГГ</td>
-          <td></td>
-          <td></td>
+          <td th:utext="${pro.id}"></td>
+          <td th:utext="${pro.catalog.provider.name}"></td>
+          <!--                <td th:utext="${pro.getPhNumber()}"></td>-->
+
+          <td th:utext="${pro.catalog.resource.id}"></td>
+          <td th:utext="${pro.catalog.resource.name}"></td>
+          <td th:utext="${pro.count}"></td>
+          <td th:utext="${pro.deliveryDate}"></td>
+          <td th:utext="${pro.paymentType.name_rus}"></td>
+          <td>Не оплачено</td>
         </tr>
         </tbody>
       </table>

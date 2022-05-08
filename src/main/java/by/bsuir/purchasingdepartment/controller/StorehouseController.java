@@ -1,6 +1,8 @@
 package by.bsuir.purchasingdepartment.controller;
+import by.bsuir.purchasingdepartment.entity.Order;
 import by.bsuir.purchasingdepartment.entity.Plan;
 import by.bsuir.purchasingdepartment.entity.Storehouse;
+import by.bsuir.purchasingdepartment.service.OrderService;
 import by.bsuir.purchasingdepartment.service.StorehouseService;
 import by.bsuir.purchasingdepartment.service.UserService;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class StorehouseController {
     private final StorehouseService storehouseService;
+    private final OrderService orderService;
 
     @GetMapping
     public String showPlanPage(Model model) {
@@ -32,8 +35,8 @@ public class StorehouseController {
     }
     @GetMapping(value = "/register-resource")
     public String showConfirmOrderArrivePage(Model model) {
-//        List<Plan> plans = planService.findAll();
-//        model.addAttribute("plans", plans);
+        List<Order> plans = orderService.getDeliveredOrders();
+        model.addAttribute("orders", plans);
         return "register-production";
     }
 }

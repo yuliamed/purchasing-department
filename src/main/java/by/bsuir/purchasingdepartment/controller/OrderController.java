@@ -59,13 +59,13 @@ public class OrderController {
         model.addAttribute("orderDto", new CreatingOrderDto());
         return "required-resources";
     }
+
     @PostMapping(value = "/required-res")
     public String createOrder(@ModelAttribute("orderDto") CreatingOrderDto creatingOrderDto){
         creatingOrderDto.setResource(orderService.getResource(creatingOrderDto.getResourceId()).getName());
         this.creatingOrderDtos.add(creatingOrderDto);
         return "redirect:create-order";
     }
-
 
     @GetMapping(value = "/create-order")
     public String showCreateOrderPage(Model model) {
@@ -76,15 +76,17 @@ public class OrderController {
         //orderService.getAllStatuses();
         return "create-order";
     }
+
     @PostMapping(value = "/create-order")
     public String CreateOrder(@ModelAttribute("new_order") CreatingOrderDto cod) {
         cod.setResourceId(this.creatingOrderDtos.get(0).getResourceId());
         orderService.createOrder(cod);
         return "redirect:/orders";
     }
+
     @GetMapping(value = "/order-payment-confirm")
     public String showOrderArriveConfirmPage(Model model) {
-        List<Order> orders = orderService.findAll();
+        List<Order> orders = orderService.getUnpaidOrders();
         model.addAttribute("orders",orders);
         return "confirm-order";
     }

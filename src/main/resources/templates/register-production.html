@@ -1,112 +1,75 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Register Production</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/register-production.css}">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register Production</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register-production.css}">
 </head>
 <body>
 <header class="mui-appbar mui--z1 header">
-  <div class="mui-container">
-      <div class="mui-container">
-          <div class="nav">
-              <a th:href="@{/orders}" data-to="orders">Заказы</a>
-              <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
-              <a th:href="@{/products}" data-to="products">Продукты</a>
-              <a th:href="@{/providers}" data-to="producers">Поставщики</a>
-              <a th:href="@{/plans}" data-to="plans">План производства</a>
-              <a th:href="@{/store}" data-to="store">Склад</a>
-              <div class="logout">
-                  <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
-              </div>
-          </div>
+    <div class="mui-container">
+        <div class="mui-container">
+            <div class="nav">
+                <a th:href="@{/orders}" data-to="orders">Заказы</a>
+                <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
+                <a th:href="@{/products}" data-to="products">Продукты</a>
+                <a th:href="@{/providers}" data-to="producers">Поставщики</a>
+                <a th:href="@{/plans}" data-to="plans">План производства</a>
+                <a th:href="@{/store}" data-to="store">Склад</a>
+                <div class="logout">
+                    <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 <main id="content-wrapper" class="mui--text-center">
-  <div class="mui-container">
-    <div class="content-edit-wrapper">
-      <div class="title">Регистрация продукции</div>
-      <div class="content-edit-buttons" data-table="register-production-table">
-        <div>
-          <button class="btn btn-blue">Подтвердить</button>
+    <div class="mui-container">
+        <div class="content-edit-wrapper">
+            <div class="title">Регистрация продукции</div>
+            <div class="content-edit-buttons" data-table="register-production-table">
+                <div>
+                    <button class="btn btn-blue">Подтвердить</button>
+                </div>
+                <div data-action="refresh">
+                    <a th:href="@{/store/register-resource}"><img th:src="@{/icons/refresh.svg}"></a>
+                </div>
+            </div>
         </div>
-        <div data-action="refresh">
-          <a th:href="@{/store/register-resource}"><img th:src="@{/icons/refresh.svg}"></a>
-        </div>
-      </div>
+        <table class="content-table" id="register-production-table">
+            <thead>
+            <tr>
+                <th class="check-mark" style="width:63px" scope="col"></th>
+                <th class="number" style="width:66px" scope="col">№</th>
+                <th class="" style="width:171px" scope="col">Поставщик</th>
+<!--                <th class="" style="width:200px" scope="col">Номенклатура</th>-->
+                <th class="" style="width:176px" scope="col">ID Ресурса</th>
+                <th class="resource" style="width:200px" scope="col">Ресурс</th>
+                <th class="" style="width:100px" scope="col">Кол-во</th>
+                <th class="" style="width:200px" scope="col">Дата поставки</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="pro:${orders}">
+                <td class="check-mark-active"></td>
+                <td th:utext="${pro.id}"></td>
+                <td th:utext="${pro.catalog.provider.name}"></td>
+<!--                <td th:utext="${pro.getPhNumber()}"></td>-->
+
+                <td th:utext="${pro.catalog.resource.id}"></td>
+                <td th:utext="${pro.catalog.resource.name}"></td>
+                <td th:utext="${pro.count}"></td>
+                <td th:utext="${pro.deliveryDate}"></td>
+            </tr>
+
+            </tbody>
+        </table>
     </div>
-    <table class="content-table" id="register-production-table">
-      <thead>
-      <tr>
-        <th class="check-mark" style="width:63px" scope="col"></th>
-        <th class="number" style="width:66px" scope="col">№</th>
-        <th class="" style="width:171px" scope="col">Поставщик</th>
-        <th class="" style="width:200px" scope="col">Номенклатура</th>
-        <th class="" style="width:100px" scope="col">Кол-во</th>
-        <th class="" style="width:176px" scope="col">ID Ресурса</th>
-        <th class="resource" style="width:200px" scope="col">Ресурс</th>
-        <th class="" style="width:200px" scope="col">Дата поставки</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="check-mark-active"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>ДД.ММ.ГГГГ</td>
-      </tr>
-      <tr class="">
-        <td class="check-mark-active"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>ДД.ММ.ГГГГ</td>
-      </tr>
-      <tr class="">
-        <td class="check-mark-active"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>ДД.ММ.ГГГГ</td>
-      </tr>
-      <tr class="">
-        <td class="check-mark-active"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>ДД.ММ.ГГГГ</td>
-      </tr>
-      <tr class="">
-        <td class="check-mark-active"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>ДД.ММ.ГГГГ</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
 </main>
 <script type="text/javascript" th:src="@{/js/register-production.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
