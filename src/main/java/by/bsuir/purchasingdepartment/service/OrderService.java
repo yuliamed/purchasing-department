@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface OrderService {
     List<RequiredResourcesDto> findRequiredResources();
-    DataForCreatingOrderDto getOrderProvidersByResId(ResourceCountDto reqDto);
+    DataForCreatingOrderDto getOrderProvidersByResId(CreatingOrderDto reqDto);
     Order createOrder(CreatingOrderDto dto);
     List<Order> findAll();
     public List<Status>getAllStatuses();

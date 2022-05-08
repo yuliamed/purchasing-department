@@ -40,13 +40,14 @@ public class OrderImpl implements OrderService {
     }
 
     @Override
-    public DataForCreatingOrderDto getOrderProvidersByResId(ResourceCountDto reqDto) {
+    public DataForCreatingOrderDto getOrderProvidersByResId(
+            CreatingOrderDto reqDto) {
         DataForCreatingOrderDto result = new DataForCreatingOrderDto();
-        Resource resource = resourceRepository.getById(reqDto.getResId());
+        Resource resource = resourceRepository.getById(reqDto.getResourceId());
         List<Catalog> catalogList = catalogRepository.findByResource(resource);
-        List<OrderProvidersDto> orderProvidersList = createProviderList(catalogList, reqDto.getRequiredCount());
+        List<OrderProvidersDto> orderProvidersList = createProviderList(catalogList, reqDto.getCount());
         result.setListProviders(orderProvidersList);
-        result.setCount(reqDto.getRequiredCount());
+        result.setCount(reqDto.getCount());
         result.setResource(resource);
         result.setPaymentTypes(paymentTypeRepository.findAll());
         return result;

@@ -69,7 +69,7 @@ public class OrderController {
 
     @GetMapping(value = "/create-order")
     public String showCreateOrderPage(Model model) {
-     //   List<ProviderDto> providerDtos = orderService.getOrderProvidersByResId(this.creatingOrderDtos.get(0));
+        DataForCreatingOrderDto providerDtos = orderService.getOrderProvidersByResId(this.creatingOrderDtos.get(0));
         model.addAttribute("order", this.creatingOrderDtos.get(0));
 //        model.addAttribute("providers", )
         return "create-order";
