@@ -129,8 +129,8 @@ public class OrderImpl implements OrderService {
             Catalog catalog = order.getCatalog();
             Resource res = catalog.getResource();
             Storehouse store = storeRepository.findByResource(res);
-            if(Objects.nonNull(store)){
-                Integer newCount = store.getCount()+order.getCount();
+            if (Objects.nonNull(store)) {
+                Integer newCount = store.getCount() + order.getCount();
                 store.setCount(newCount);
             } else {
                 store = new Storehouse();
@@ -138,6 +138,9 @@ public class OrderImpl implements OrderService {
                 store.setCount(order.getCount());
             }
             storeRepository.save(store);
+            Status newStatus = statusRepository.getByName(OrderStatus.CLOSED.name());
+            order.setStatus(newStatus);
+            orderRepository.save(order);
         }
     }
 
