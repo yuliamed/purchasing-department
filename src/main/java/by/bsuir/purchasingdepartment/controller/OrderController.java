@@ -88,6 +88,12 @@ public class OrderController {
     public String showOrderArriveConfirmPage(Model model) {
         List<Order> orders = orderService.getUnpaidOrders();
         model.addAttribute("orders",orders);
+        model.addAttribute("orderIds", new IdsDto());
         return "confirm-order";
+    }
+    @PostMapping(value = "/order-payment-confirm")
+    public String confirmOrders(@ModelAttribute("orderIds") IdsDto idsDto) {
+        orderService.changeIsPaidStatus(idsDto.getDelIds());
+        return "redirect:/orders";
     }
 }
