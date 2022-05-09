@@ -32,9 +32,13 @@
         <div class="content-edit-wrapper">
             <div class="title">Регистрация продукции</div>
             <div class="content-edit-buttons" data-table="register-production-table">
-                <div>
-                    <button class="btn btn-blue">Подтвердить</button>
-                </div>
+                <form method="POST" th:object="${orderIds1}" th:action="@{/store/register-resource/reg}">
+                    <div><input id="ids1" hidden="true" type="text" th:field="*{delIds}"/></div>
+
+                    <div>
+                        <button id="conf" class="btn btn-blue">Зарегистрировать</button>
+                    </div>
+                </form>
                 <div data-action="refresh">
                     <a th:href="@{/store/register-resource}"><img th:src="@{/icons/refresh.svg}"></a>
                 </div>
@@ -46,7 +50,7 @@
                 <th class="check-mark" style="width:63px" scope="col"></th>
                 <th class="number" style="width:66px" scope="col">№</th>
                 <th class="" style="width:171px" scope="col">Поставщик</th>
-<!--                <th class="" style="width:200px" scope="col">Номенклатура</th>-->
+                <!--                <th class="" style="width:200px" scope="col">Номенклатура</th>-->
                 <th class="" style="width:176px" scope="col">ID Ресурса</th>
                 <th class="resource" style="width:200px" scope="col">Ресурс</th>
                 <th class="" style="width:100px" scope="col">Кол-во</th>
@@ -59,7 +63,7 @@
                 <td class="check-mark-active"></td>
                 <td th:utext="${pro.id}"></td>
                 <td th:utext="${pro.catalog.provider.name}"></td>
-<!--                <td th:utext="${pro.getPhNumber()}"></td>-->
+                <!--                <td th:utext="${pro.getPhNumber()}"></td>-->
 
                 <td th:utext="${pro.catalog.resource.id}"></td>
                 <td th:utext="${pro.catalog.resource.name}"></td>
@@ -73,6 +77,6 @@
 </main>
 <script type="text/javascript" th:src="@{/js/register-production.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
-<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+<!--<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>-->
 </body>
 </html>

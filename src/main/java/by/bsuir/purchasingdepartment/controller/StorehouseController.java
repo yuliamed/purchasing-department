@@ -5,6 +5,7 @@ import by.bsuir.purchasingdepartment.entity.Storehouse;
 import by.bsuir.purchasingdepartment.service.OrderService;
 import by.bsuir.purchasingdepartment.service.StorehouseService;
 import by.bsuir.purchasingdepartment.service.UserService;
+import by.bsuir.purchasingdepartment.service.dto.IdsDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +38,13 @@ public class StorehouseController {
     public String showConfirmOrderArrivePage(Model model) {
         List<Order> plans = orderService.getDeliveredOrders();
         model.addAttribute("orders", plans);
+        model.addAttribute("orderIds1", new IdsDto());
         return "register-production";
+    }
+    @PostMapping(value = "/register-resource/reg")
+    public String register(@ModelAttribute("orderIds1") IdsDto idsDto) {
+//        List<Order> plans = orderService.getDeliveredOrders();
+        orderService.confrirmArrivedResources(idsDto.getDelIds());
+        return "redirect:/store";
     }
 }
