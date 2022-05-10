@@ -1,5 +1,6 @@
 try {
     document && document.addEventListener('DOMContentLoaded', onLoad);
+
 } catch (e) {
     console.warn(e);
 }
@@ -8,6 +9,24 @@ const onAddRow = () => {
 };
 
 function onLoad() {
+
+    const getSort = ({ target }) => {
+        const order = (target.dataset.order = -(target.dataset.order || -1));
+        const index = [...target.parentNode.cells].indexOf(target);
+        const collator = new Intl.Collator(['en', 'ru'], { numeric: true });
+        const comparator = (index, order) => (a, b) => order * collator.compare(
+            b.children[index].innerHTML,
+            a.children[index].innerHTML
+        );
+
+        for(const tBody of target.closest('table').tBodies)
+            tBody.append(...[...tBody.rows].sort(comparator(index, order)));
+
+        for(const cell of target.parentNode.cells)
+            cell.classList.toggle('sorted', cell === target);
+    };
+    document.querySelectorAll('.content-table thead').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
+
     const buttonAddResource = document.querySelector('[data-related=add-resource]');
     const modal = document.querySelector('[data-modal]');
 
