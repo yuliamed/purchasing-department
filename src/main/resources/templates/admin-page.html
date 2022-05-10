@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Orders</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin-page.css}">
+
+</head>
+<body>
+<script>
+    var page = 'admin-page';
+</script>
+<header class="header">
+  <div class="mui-container">
+    <div class="nav">
+<!--      <a th:href="@{/orders}" data-to="orders">Заказы</a>-->
+<!--      <a th:href="@{/resources}" data-to="resources">Ресурсы</a>-->
+<!--      <a th:href="@{/products}" data-to="products">Продукты</a>-->
+<!--      <a th:href="@{/providers}" data-to="producers">Поставщики</a>-->
+<!--      <a th:href="@{/plans}" data-to="plans">План производства</a>-->
+<!--      <a th:href="@{/store}" data-to="store">Склад</a>-->
+      <div class="logout">
+        <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</header>
+<main id="content-wrapper">
+    <div class="content-row-info">
+        <div class="line"></div>
+        <div class="mui-container info-title">
+            <div>Управление пользователями</div>
+            <div class="line"></div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="mui-container">
+        <table class="content-table" id="orders_table">
+            <thead>
+            <tr>
+                <th class="check-mark" scope="col" style="width:68px" data-checkmark=""></th>
+                <th style="width:56px" scope="col">№</th>
+                <th style="width:126px" scope="col">Логин</th>
+                <th style="width:184px" scope="col">Имя</th>
+                <th style="width:104px" scope="col">Фамилия</th>
+                <th style="width:136px" scope="col">Отчество</th>
+                <!--        <th style="width:172px" scope="col" data-statuses="первый,второй">Статус</th>-->
+                <th style="width:176px" scope="col">Почта</th>
+                <th style="width:176px" scope="col">Дата последнего визита</th>
+                <th style="width:176px" scope="col">Статус</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user:${users}">
+                <td class="check-mark-active"></td>
+                <td id="id" th:utext="${user.id}"></td>
+                <td th:utext="${user.login}"></td>
+                <td th:utext="${user.name}"></td>
+                <td th:utext="${user.surname}"></td>
+                <td th:utext="${user.patronymic}"></td>
+                <td th:utext="${user.email}"></td>
+                <td th:utext="${user.lastVisitDate}"></td>
+                <!--        <td class="select-wrapper" th:utext="${order.status.name_rus}">-->
+                <!--&lt;!&ndash;          <select class="with-arrow">&ndash;&gt;-->
+                <!--&lt;!&ndash;            <option disabled selected></option>&ndash;&gt;-->
+                <!--&lt;!&ndash;            <option value="Первый">Первый</option>&ndash;&gt;-->
+                <!--&lt;!&ndash;            <option value="Второй">Второй</option>&ndash;&gt;-->
+                <!--&lt;!&ndash;          </select>&ndash;&gt;-->
+                <!--        </td>-->
+                <td th:switch="${user.isActive}">
+                    <p th:case="false">не активен</p>
+                    <p th:case="true">активен</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <div>
+            <form method="POST" th:object="${tuserId}" th:action="@{/admin/user-toggle}">
+                <div><input id="ids" hidden="true" type="text" th:field="*{id}"/></div>
+                <div>
+                    <button type="submit" id='statusToggle-btn' class="btn btn-blue">сменить статус</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<!--<script type="text/javascript" th:src="@{/js/orders.js}"></script>-->
+<script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
+<script type="text/javascript" th:src="@{/js/admin-page.js}"></script>
+</body>
+</html>
