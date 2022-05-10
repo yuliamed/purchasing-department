@@ -52,6 +52,7 @@ public class AuthController {
             return "redirect:/auth";
         }
         System.out.println("user: " + resp.getToken() + resp.getEmail());
+
         return "redirect:/resources";
     }
 

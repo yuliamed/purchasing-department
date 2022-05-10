@@ -51,7 +51,7 @@ public class ResourceController {
     public ResponseEntity<Resource> updateRes(Resource res) {
 //        res = resourceService.updateResource(res);
         Resource entity = new Resource("test-2", "test-2");
-        res = resourceService.updateResource(entity);
+        //res = resourceService.updateResource(entity);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 }

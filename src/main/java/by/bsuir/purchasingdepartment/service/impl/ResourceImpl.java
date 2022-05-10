@@ -4,6 +4,7 @@ import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.repository.ResourceRepository;
 import by.bsuir.purchasingdepartment.service.ResourceService;
 import by.bsuir.purchasingdepartment.service.dto.ResourceDto;
+import by.bsuir.purchasingdepartment.service.dto.ResourceUpdateDto;
 import by.bsuir.purchasingdepartment.service.exception.ResourceNotFoundException;
 import by.bsuir.purchasingdepartment.service.mapper.ResourceMapper;
 import lombok.AllArgsConstructor;
@@ -24,8 +25,12 @@ public class ResourceImpl implements ResourceService {
     }
 
     @Override
-    public Resource updateResource(Resource updateResource) {
-        return resourceRepository.save(updateResource);
+    public Resource updateResource(ResourceUpdateDto updateResource) {
+        Long id = Long.valueOf(updateResource.getId());
+        Resource res = resourceRepository.getById(id);
+        res.setDescription(updateResource.getDescription());
+        res.setName(updateResource.getName());
+        return resourceRepository.save(res);
     }
 
     @Override
