@@ -16,4 +16,6 @@ public interface UserService {
     List<User> findAll();
 
     User approveUser(Long userId);
+
+    Boolean isAdmin(String email);
 }

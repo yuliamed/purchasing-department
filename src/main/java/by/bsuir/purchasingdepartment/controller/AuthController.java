@@ -1,17 +1,18 @@
 package by.bsuir.purchasingdepartment.controller;
 
 import by.bsuir.purchasingdepartment.security.dto.JwtResp;
+import by.bsuir.purchasingdepartment.security.jwt.JwtTokenProvider;
 import by.bsuir.purchasingdepartment.service.UserService;
 import by.bsuir.purchasingdepartment.service.dto.SignInDto;
 import by.bsuir.purchasingdepartment.service.dto.SignUpDto;
-import by.bsuir.purchasingdepartment.service.dto.UserDto;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class AuthController {
     private final UserService userService;
+    private final JwtTokenProvider provider;
 
     @GetMapping
     public String auth(Model model) {
@@ -45,6 +47,10 @@ public class AuthController {
         JwtResp resp = null;
         try {
             resp = userService.signIn(request);
+
+            Boolean isAdmin = userService.isAdmin(resp.getEmail());
+            if (isAdmin)
+                return "redirect:/admin";
         } catch (AuthenticationException e) {
             resp = new JwtResp(null, null);
             //TODO вывод сообщения об ошибке входа и возврат на стартовую страницу
@@ -76,4 +82,5 @@ public class AuthController {
         model.addAttribute("user", new SignUpDto());
         return "signUp";
     }
+
 }

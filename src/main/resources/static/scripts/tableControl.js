@@ -414,18 +414,15 @@
             });
 
             ul.innerHTML = resourcesElementsHtml;
-            console.log("1111")
 
             neededNode.innerHTML = '';
             neededNode.append(ul);
           }
           if (orderStatusIndex > -1 && +inpKey === orderStatusIndex) {
             isComplexChange = true;
-              console.log("222")
           }
           if (!isComplexChange) {
             neededNode.innerText = trsToChange[trKey].inputsValues[inpKey];
-            // console.log(trsToChange[trKey].inputsValues)
           }
         }
       }
@@ -595,6 +592,7 @@
         }
         newTr.append(td);
       }
+
       tr.insertAdjacentElement('afterend', newTr);
       removeSaveBtn();
       addSaveButton(table, onSave, onCancel, config());

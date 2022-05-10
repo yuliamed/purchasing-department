@@ -20,7 +20,6 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -71,14 +70,13 @@ public class UserImpl implements UserService {
         String jwt = jwtTokenProvider.createToken(authentication);
 
         JwtUser userDetails = (JwtUser) authentication.getPrincipal();
-
         User user = getUserByEmail(signInReq.getEmail());
         if (!user.getIsActive()) {
             throw new JwtAuthenticationException("NOT ACTIVE");
         }
 
-            user.setLastVisitDate(LocalDateTime.now());
-            userRepository.save(user);
+        user.setLastVisitDate(LocalDateTime.now());
+        userRepository.save(user);
 
 
         return new JwtResp(jwt, userDetails.getUsername());
@@ -97,6 +95,15 @@ public class UserImpl implements UserService {
         user.setIsActive(!user.getIsActive());
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    public Boolean isAdmin(String email) {
+        User user = userRepository.getByEmail(email);
+        Role admin = roleRepository.getByName(TypeOfRole.ADMIN.name());
+        if (user.getRoles().contains(admin))
+            return true;
+        return false;
     }
 
     private void validateEmailAvailability(String newEmail) {
