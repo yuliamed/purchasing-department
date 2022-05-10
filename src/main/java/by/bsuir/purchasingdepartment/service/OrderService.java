@@ -32,4 +32,8 @@ public interface OrderService {
     List<Order> getDeliveredOrders();
 
     void confrirmArrivedResources(List<Long> ordersIds);
+
+    void makeOrderEnROUTE(Long id);
+
+    void makeOrderDELIVERED(Long id);
 }

@@ -1,10 +1,11 @@
 package by.bsuir.purchasingdepartment.controller;
 
 import by.bsuir.purchasingdepartment.entity.Order;
-import by.bsuir.purchasingdepartment.entity.Provider;
-import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.service.OrderService;
-import by.bsuir.purchasingdepartment.service.dto.*;
+import by.bsuir.purchasingdepartment.service.dto.CreatingOrderDto;
+import by.bsuir.purchasingdepartment.service.dto.DataForCreatingOrderDto;
+import by.bsuir.purchasingdepartment.service.dto.IdsDto;
+import by.bsuir.purchasingdepartment.service.dto.RequiredResourcesDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.jar.Attributes;
 
 @Controller
 @RequestMapping(value = "/orders")
@@ -61,7 +61,7 @@ public class OrderController {
     }
 
     @PostMapping(value = "/required-res")
-    public String createOrder(@ModelAttribute("orderDto") CreatingOrderDto creatingOrderDto){
+    public String createOrder(@ModelAttribute("orderDto") CreatingOrderDto creatingOrderDto) {
         creatingOrderDto.setResource(orderService.getResource(creatingOrderDto.getResourceId()).getName());
         this.creatingOrderDtos.add(creatingOrderDto);
         return "redirect:create-order";
@@ -87,10 +87,11 @@ public class OrderController {
     @GetMapping(value = "/order-payment-confirm")
     public String showOrderArriveConfirmPage(Model model) {
         List<Order> orders = orderService.getUnpaidOrders();
-        model.addAttribute("orders",orders);
+        model.addAttribute("orders", orders);
         model.addAttribute("orderIds", new IdsDto());
         return "confirm-order";
     }
+
     @PostMapping(value = "/order-payment-confirm")
     public String confirmOrders(@ModelAttribute("orderIds") IdsDto idsDto) {
         orderService.changeIsPaidStatus(idsDto.getDelIds());

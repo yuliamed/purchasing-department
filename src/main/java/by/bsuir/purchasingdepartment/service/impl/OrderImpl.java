@@ -144,6 +144,22 @@ public class OrderImpl implements OrderService {
         }
     }
 
+    @Override
+    public void makeOrderEnROUTE(Long id){
+        Order order = orderRepository.getById(id);
+        Status status = statusRepository.getByName(OrderStatus.EN_ROUTE.name());
+        order.setStatus(status);
+        orderRepository.save(order);
+    }
+
+    @Override
+    public void makeOrderDELIVERED(Long id){
+        Order order = orderRepository.getById(id);
+        Status status = statusRepository.getByName(OrderStatus.DELIVERED.name());
+        order.setStatus(status);
+        orderRepository.save(order);
+    }
+
     private Catalog findCatalog(Long resourceId, Long providerId) {
         List<Catalog> catalogList = catalogRepository.findByResource(resourceRepository.getById(resourceId));
         for (Catalog c : catalogList) {
