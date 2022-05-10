@@ -372,8 +372,24 @@
       for (const trKey in trsBeforeDelete) {
         trsBeforeDelete[trKey].remove();
       }
+        // console.log(trsToChange)
+
       for (const trKey in trsToChange) {
+          let id = trsToChange[trKey].inputsValues[1];
+          let name = trsToChange[trKey].inputsValues[2];
+          let desc = trsToChange[trKey].inputsValues[3];
+        $.ajax({
+          url: '/resources/edit',         /* Куда пойдет запрос */
+          method: 'post',             /* Метод передачи (post или get) */
+          dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+          data: {id:id, name:name,description:desc},     /* Параметры передаваемые в запросе. */
+          success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
+            alert(data);            /* В переменной data содержится ответ от index.php. */
+          }
+        });
         for (const inpKey in trsToChange[trKey].inputsValues) {
+
+
           const neededNode = trsToChange[trKey].node.children[inpKey];
           if (!neededNode || neededNode.tagName !== 'TD') continue;
           let isComplexChange = false;
@@ -398,15 +414,18 @@
             });
 
             ul.innerHTML = resourcesElementsHtml;
+            console.log("1111")
 
             neededNode.innerHTML = '';
             neededNode.append(ul);
           }
           if (orderStatusIndex > -1 && +inpKey === orderStatusIndex) {
             isComplexChange = true;
+              console.log("222")
           }
           if (!isComplexChange) {
             neededNode.innerText = trsToChange[trKey].inputsValues[inpKey];
+            // console.log(trsToChange[trKey].inputsValues)
           }
         }
       }
@@ -444,13 +463,9 @@
       for (let i = 0; i < tdsLength; i++) {
         let isComplexChange = false;
         const td = document.createElement('td');
+
         if (checkMarkIndex > -1 && i === checkMarkIndex) {
           isComplexChange = true;
-          const input = document.createElement('input');
-          input.type = 'checkbox';
-          input.value = tr.children[i].checked;
-          trsToChange[index].inputsValues[i] = input.value;
-          td.append(input);
         }
         if (resourceIndex > -1 && i === resourceIndex) {
           isComplexChange = true;
@@ -570,6 +585,9 @@
           input.type = 'text';
           input.value = tr.children[i].innerText || '';
           trsToChange[index].inputsValues[i] = input.value;
+          if (i ==1 ){
+            input.readOnly="True";
+          }
           input.addEventListener('input', e => {
             trsToChange[index].inputsValues[i] = e.target.value;
           });
@@ -577,7 +595,6 @@
         }
         newTr.append(td);
       }
-
       tr.insertAdjacentElement('afterend', newTr);
       removeSaveBtn();
       addSaveButton(table, onSave, onCancel, config());

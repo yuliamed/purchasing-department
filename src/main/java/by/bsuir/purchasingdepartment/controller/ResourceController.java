@@ -4,6 +4,7 @@ import by.bsuir.purchasingdepartment.entity.Resource;
 import by.bsuir.purchasingdepartment.service.ResourceService;
 import by.bsuir.purchasingdepartment.service.dto.ResourceDto;
 import by.bsuir.purchasingdepartment.service.dto.IdsDto;
+import by.bsuir.purchasingdepartment.service.dto.ResourceUpdateDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,5 +54,14 @@ public class ResourceController {
         Resource entity = new Resource("test-2", "test-2");
         //res = resourceService.updateResource(entity);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
+    }
+    @PostMapping("/edit")
+    public @ResponseBody String update(ResourceUpdateDto res, BindingResult result) {
+        String returnText="изменение ресурсов выполнено успешно";
+        resourceService.updateResource(res);
+//        for (int i = 0;i < delIds.getDelIds().size(); i++){
+//            resourceService.deleteResource(delIds.getDelIds().get(i));
+//        }
+        return returnText;
     }
 }
