@@ -25,6 +25,8 @@ public class User extends AbstractEntity {
     private String pass;
     @Column(name = "name", length = 45, nullable = true)
     private String name;
+    @Column(name = "is_active", nullable = true)
+    private Boolean isActive = false;
     @Column(name = "surname", length = 45, nullable = true)
     private String surname;
     @Column(name = "patronymic", length = 45, nullable = true)
