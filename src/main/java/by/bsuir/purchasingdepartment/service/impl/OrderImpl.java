@@ -145,19 +145,23 @@ public class OrderImpl implements OrderService {
     }
 
     @Override
-    public void makeOrderEnROUTE(Long id){
-        Order order = orderRepository.getById(id);
-        Status status = statusRepository.getByName(OrderStatus.EN_ROUTE.name());
-        order.setStatus(status);
-        orderRepository.save(order);
+    public void makeOrderEnROUTE(List<Long> ids) {
+        for (Long id : ids) {
+            Order order = orderRepository.getById(id);
+            Status status = statusRepository.getByName(OrderStatus.EN_ROUTE.name());
+            order.setStatus(status);
+            orderRepository.save(order);
+        }
     }
 
     @Override
-    public void makeOrderDELIVERED(Long id){
-        Order order = orderRepository.getById(id);
-        Status status = statusRepository.getByName(OrderStatus.DELIVERED.name());
-        order.setStatus(status);
-        orderRepository.save(order);
+    public void makeOrderDELIVERED(List<Long> ids) {
+        for (Long id : ids) {
+            Order order = orderRepository.getById(id);
+            Status status = statusRepository.getByName(OrderStatus.DELIVERED.name());
+            order.setStatus(status);
+            orderRepository.save(order);
+        }
     }
 
     private Catalog findCatalog(Long resourceId, Long providerId) {

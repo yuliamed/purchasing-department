@@ -33,7 +33,7 @@ public interface OrderService {
 
     void confrirmArrivedResources(List<Long> ordersIds);
 
-    void makeOrderEnROUTE(Long id);
+    void makeOrderEnROUTE(List<Long> ids);
 
-    void makeOrderDELIVERED(Long id);
+    void makeOrderDELIVERED(List<Long> ids);
 }
