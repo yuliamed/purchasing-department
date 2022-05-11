@@ -1,105 +1,122 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Orders</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/orders.css}">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Orders</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cancel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/orders.css}">
 
 </head>
 <body>
 <script>
-  var page = 'orders';
+    var page = 'orders';
 </script>
 <header class="header">
-  <div class="mui-container">
-    <div class="nav">
-      <a th:href="@{/orders}" data-to="orders">Заказы</a>
-      <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
-      <a th:href="@{/products}" data-to="products">Продукты</a>
-      <a th:href="@{/providers}" data-to="producers">Поставщики</a>
-      <a th:href="@{/plans}" data-to="plans">План производства</a>
-      <a th:href="@{/store}" data-to="store">Склад</a>
-      <div class="logout">
-        <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
-      </div>
+    <div class="mui-container">
+        <div class="nav">
+            <a th:href="@{/orders}" data-to="orders">Заказы</a>
+            <a th:href="@{/resources}" data-to="resources">Ресурсы</a>
+            <a th:href="@{/products}" data-to="products">Продукты</a>
+            <a th:href="@{/providers}" data-to="producers">Поставщики</a>
+            <a th:href="@{/plans}" data-to="plans">План производства</a>
+            <a th:href="@{/store}" data-to="store">Склад</a>
+            <div class="logout">
+                <a th:href="@{/logout}"><img th:src="@{/icons/logout.svg}"></a>
+            </div>
+        </div>
     </div>
     </div>
     </div>
-  </div>
 </header>
 <main id="content-wrapper">
-  <div class="content-row-info">
-    <div class="line"></div>
-    <div class="mui-container info-title">
-      <div>Управление заказами</div>
-      <div class="line"></div>
+    <div class="content-row-info">
+        <div class="line"></div>
+        <div class="mui-container info-title">
+            <div>Управление заказами</div>
+            <div class="line"></div>
+        </div>
+        <div class="line"></div>
     </div>
-    <div class="line"></div>
-  </div>
-  <div class="mui-container">
-    <div class="content-edit-buttons content-edit-buttons-all" data-table="orders_table">
-      <div data-action="refresh">
-        <a th:href="@{/orders}"><img th:src="@{/icons/refresh.svg}"></a>
-      </div>
-      <div>
-        <a th:href="@{/orders/required-res}"><img th:src="@{/icons/add.svg}"></a>
-      </div>
-      <div data-action="edit">
-        <img th:src="@{/icons/edit.svg}">
-      </div>
-<!--      <div data-action="remove">-->
-<!--        <img th:src="@{/icons/close-square.svg}">-->
-<!--      </div>-->
-    </div>
-    <table class="content-table" id="orders_table">
-      <thead>
-      <tr>
-        <th class="check-mark" scope="col" style="width:68px" data-checkmark=""></th>
-        <th style="width:56px" scope="col">№</th>
-        <th style="width:126px"scope="col">Поставщик</th>
-        <th style="width:184px" scope="col">Ресурс</th>
-        <th style="width:104px" scope="col">Кол-во</th>
-        <th style="width:136px" scope="col">Дата поставки</th>
-        <th style="width:152px" scope="col">Тип оплаты</th>
-        <th style="width:172px" scope="col" data-statuses="первый,второй">Статус заказа</th>
-        <th style="width:176px" scope="col">Статус оплаты</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="order:${orders}">
-        <td class="check-mark-active"></td>
-        <td th:utext="${order.id}"></td>
-        <td th:utext="${order.catalog.provider.name}"></td>
-        <td th:utext="${order.catalog.resource.name}"></td>
-        <td th:utext="${order.count}"></td>
-        <td th:utext="${order.deliveryDate}"></td>
-        <td th:utext="${order.paymentType.name_rus}"></td>
-        <td class="select-wrapper" th:utext="${order.status.name_rus}">
-<!--          <select class="with-arrow">-->
-<!--            <option disabled selected></option>-->
-<!--            <option value="Первый">Первый</option>-->
-<!--            <option value="Второй">Второй</option>-->
-<!--          </select>-->
-        </td>
-        <td th:switch="${order.isPaid}">
-          <p th:case="false">не оплачено</p>
-          <p th:case="true">оплачено</p>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <br>
-    <div><a th:href="@{/orders/order-payment-confirm}">
-      <button id='order-payment-confirm-btn' class="btn btn-blue">подтвердить оплату</button>
+    <div class="mui-container">
+        <div class="content-edit-buttons content-edit-buttons-all" data-table="orders_table">
+            <div data-action="refresh">
+                <a th:href="@{/orders}"><img th:src="@{/icons/refresh.svg}"></a>
+            </div>
+            <div>
+                <a th:href="@{/orders/required-res}"><img th:src="@{/icons/add.svg}"></a>
+            </div>
+<!--            <div data-action="edit">-->
+<!--                <img th:src="@{/icons/edit.svg}">-->
+<!--            </div>-->
+            <!--      <div data-action="remove">-->
+            <!--        <img th:src="@{/icons/close-square.svg}">-->
+            <!--      </div>-->
+        </div>
+        <table class="content-table" id="orders_table">
+            <thead>
+            <tr>
+                <th class="check-mark" scope="col" style="width:68px" data-checkmark=""></th>
+                <th style="width:56px" scope="col">№</th>
+                <th style="width:126px" scope="col">Поставщик</th>
+                <th style="width:184px" scope="col">Ресурс</th>
+                <th style="width:104px" scope="col">Кол-во</th>
+                <th style="width:136px" scope="col">Дата поставки</th>
+                <th style="width:152px" scope="col">Тип оплаты</th>
+                <th style="width:172px" scope="col" data-statuses="первый,второй">Статус заказа</th>
+                <th style="width:176px" scope="col">Статус оплаты</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order:${orders}">
+                <td class="check-mark-active"></td>
+                <td th:utext="${order.id}"></td>
+                <td th:utext="${order.catalog.provider.name}"></td>
+                <td th:utext="${order.catalog.resource.name}"></td>
+                <td th:utext="${order.count}"></td>
+                <td th:utext="${order.deliveryDate}"></td>
+                <td th:utext="${order.paymentType.name_rus}"></td>
+                <td class="select-wrapper" th:utext="${order.status.name_rus}">
+                    <!--          <select class="with-arrow">-->
+                    <!--            <option disabled selected></option>-->
+                    <!--            <option value="Первый">Первый</option>-->
+                    <!--            <option value="Второй">Второй</option>-->
+                    <!--          </select>-->
+                </td>
+                <td th:switch="${order.isPaid}">
+                    <p th:case="false">не оплачено</p>
+                    <p th:case="true">оплачено</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br><div style="float: left;" ><a th:href="@{/orders/order-payment-confirm}">
+        <button id='order-payment-confirm-btn' class="btn btn-blue">подтвердить оплату</button>
     </a></div>
-  </div>
+        <div>
+
+            <div style="float: right; padding-left: 15px">
+                <form method="POST" th:object="${orderIds2}" th:action="@{/orders/change-status1}">
+                    <input id="ids2" hidden="true" type="text" th:field="*{delIds}"/>
+                    <button id="conf11" class="btn btn-blue">Статус "В пути"</button>
+                </form>
+            </div>
+            <div style="float: right;">
+                <form method="POST" th:object="${orderIds3}" th:action="@{/orders/change-status2}">
+                    <input id="ids3" hidden="true" type="text" th:field="*{delIds}"/>
+                    <button id="conf12" class="btn btn-blue">Статус "Доставлен"</button>
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
 </main>
 <script type="text/javascript" th:src="@{/js/orders.js}"></script>
 <script type="text/javascript" th:src="@{/scripts/definePage.js}"></script>
-<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>
+<!--<script type="text/javascript" th:src="@{/scripts/tableControl.js}"></script>-->
 </body>
 </html>

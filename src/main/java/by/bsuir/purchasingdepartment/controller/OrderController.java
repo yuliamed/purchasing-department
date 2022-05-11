@@ -46,6 +46,8 @@ public class OrderController {
         List<Order> orders = orderService.findAll();
         // List<String> statuses =
         model.addAttribute("orders", orders);
+        model.addAttribute("orderIds2", new IdsDto());
+        model.addAttribute("orderIds3", new IdsDto());
         //model.addAttribute("statuses", statuses);
 
         return "orders";
@@ -95,6 +97,18 @@ public class OrderController {
     @PostMapping(value = "/order-payment-confirm")
     public String confirmOrders(@ModelAttribute("orderIds") IdsDto idsDto) {
         orderService.changeIsPaidStatus(idsDto.getDelIds());
+        return "redirect:/orders";
+    }
+    @PostMapping(value = "/change-status1")
+    public String changeStatus1(@ModelAttribute("orderIds2") IdsDto idsDto) {
+//        orderService.changeIsPaidStatus(idsDto.getDelIds());
+        orderService.makeOrderEnROUTE(idsDto.getDelIds());
+        return "redirect:/orders";
+    }
+    @PostMapping(value = "/change-status2")
+    public String changeStatus2(@ModelAttribute("orderIds3") IdsDto idsDto) {
+        orderService.makeOrderDELIVERED(idsDto.getDelIds());
+//        orderService.changeIsPaidStatus(idsDto.getDelIds());
         return "redirect:/orders";
     }
 }
